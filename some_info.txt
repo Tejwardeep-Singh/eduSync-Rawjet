@@ -1,0 +1,76 @@
+1. color tones
+{
+    Primary Color: Deep Brown (#4E3629)
+
+    Secondary Color: Olive Green (#808000)
+
+    Accent Color: Light Tan (#D2B48C)
+
+    Background Color: Soft Cream (#FFF5E1)
+    
+    nav:(#808000a1)
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Head Panel</title>
+    <style>
+        form {
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 400px;
+        }
+        .preview {
+            max-width: 150px;
+            max-height: 150px;
+        }
+    </style>
+</head>
+<body>
+
+<% if (message) { %>
+    <p style="color: green;"><%= message %></p>
+<% } %>
+<% if (error) { %>
+    <p style="color: red;"><%= error %></p>
+<% } %>
+
+<!-- Head Form -->
+<h2>Head Details</h2>
+<form action="/" method="POST" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Name" value="<%= user?.name || '' %>" required><br>
+    <input type="text" name="fatherName" placeholder="Father's Name" value="<%= user?.fatherName || '' %>" required><br>
+    <input type="date" name="dob" value="<%= user?.dob || '' %>" required><br>
+    <input type="date" name="dateOfJoining" value="<%= user?.dateOfJoining || '' %>" required><br>
+    <input type="text" name="mobile" placeholder="Mobile" value="<%= user?.mobile || '' %>" required><br>
+    <input type="email" name="email" placeholder="Email" value="<%= user?.email || '' %>" required><br>
+    <input type="file" name="image"><br>
+    <% if (user?.image) { %>
+        <img src="/<%= user.image %>" class="preview" alt="Head Image">
+    <% } %>
+    <button type="submit">Save Head</button>
+</form>
+
+<!-- Teacher Form -->
+<h2>Teacher Details</h2>
+<form action="/teacherDetails" method="POST" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Name" value="<%= user1?.name || '' %>" required><br>
+    <input type="text" name="fatherName" placeholder="Father's Name" value="<%= user1?.fatherName || '' %>" required><br>
+    <input type="date" name="dob" value="<%= user1?.dob || '' %>" required><br>
+    <input type="date" name="dateOfJoining" value="<%= user1?.dateOfJoining || '' %>" required><br>
+    <input type="text" name="mobile" placeholder="Mobile" value="<%= user1?.mobile || '' %>" required><br>
+    <input type="email" name="email" placeholder="Email" value="<%= user1?.email || '' %>" required><br>
+    <input type="file" name="image"><br>
+    <% if (user1?.image) { %>
+        <img src="/<%= user1.image %>" class="preview" alt="Teacher Image">
+    <% } %>
+    <button type="submit">Save Teacher</button>
+</form>
+
+</body>
+</html>

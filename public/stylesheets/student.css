@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    overflow-x: hidden;
+    background-color: #FFF5E1;
+}
+
+main{
+    width: 100vw;
+}
+
+#page1{
+    height: 100vh;
+    width: 100vw;
+}
+#panel{
+    height: 20vh;
+    width: 100vw;
+}
+
+@media only screen and (max-width: 800px){
+}

@@ -1,0 +1,15 @@
+const mongoose = require("mongoose");
+const config=require("config");
+
+const dgbr = require("debug")("development:mongoose");
+const dbUri=`${config.get("MONGODB_URI")}/pandori`;
+
+const connection=mongoose.connect(dbUri)
+.then(function(){
+    dgbr("connected");
+})
+.catch(function(){
+    dgbr(err);
+});
+
+module.exports=connection;
