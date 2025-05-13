@@ -15,6 +15,7 @@ app.use(expressSession({
     secret:process.env.EXPRESS_SESSION_SECRET,
 }));    
 app.use(flash());
+app.use(cookieParser());
 
 
 //routes
@@ -27,7 +28,9 @@ const studentRouter=require("./routes/student")
 const teacherRouter=require("./routes/teacher")
 const headRouter=require("./routes/head")
 const headTeacherRouter=require("./routes/headTeacher")
-const authRouter=require("./controllers/authContoller");
+const teacherStudentRouter=require("./routes/teacherStudent")
+const authRouter=require("./controllers/authController");
+const teacherControllerRouter=require("./controllers/teacherController");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -42,10 +45,13 @@ app.use("/images",imagesRouter);
 app.use("/student",studentRouter);
 app.use("/teacher",teacherRouter);
 app.use("/headTeacher",headTeacherRouter);
+app.use("/teacherStudent",teacherStudentRouter);
 app.use("/head",headRouter);
 app.use("/",headTeacherRouter);
+app.use("/",teacherStudentRouter);
 app.use("/",headRouter);
 app.use("/",authRouter);
+app.use("/",teacherControllerRouter);
 app.use('/uploads', express.static('uploads'));
 
 

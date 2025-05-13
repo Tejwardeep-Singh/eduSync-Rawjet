@@ -1,11 +1,11 @@
 const express = require("express");
 const multer = require('multer');
 const path = require('path');
-const headTeacherRouter = express.Router();
+const teacherStudentRouter = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const studentDetails = require('../models/studentModel');
 const teacherDetails = require('../models/teacherModel');
-const headDetails = require('../models/headDetails');
 
 // Set up multer storage configuration
 const storage = multer.diskStorage({
@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // ✅ POST route: Create/update teacher, then redirect to /head with teacher ID
-headTeacherRouter.post('/', upload.single('image'), async function(req, res) {
+teacherStudentRouter.post('/', upload.single('image'), async function(req, res) {
     const { login_id, name, fatherName, dob, dateOfJoining, mobile, email } = req.body;
     const image = req.file ? req.file.path : null;
     const dobFormatted = new Date(dob).toISOString().split('T')[0];
@@ -28,7 +28,7 @@ headTeacherRouter.post('/', upload.single('image'), async function(req, res) {
 
     try {
         const hashedPassword = await bcrypt.hash(login_id, saltRounds);
-        await teacherDetails.findOneAndUpdate(
+        await studentDetails.findOneAndUpdate(
             { login_id },
             {
                 login_id,
@@ -53,31 +53,29 @@ headTeacherRouter.post('/', upload.single('image'), async function(req, res) {
     }
 });
 
-// GET route to fetch teacher data and head data
-headTeacherRouter.get('/', async function(req, res) {
+teacherStudentRouter.get('/', async function(req, res) {
     const { id, message, error } = req.query;
 
     try {
-        const teacher = id ? await teacherDetails.findOne({ login_id: id }) : null;
-        const head = await headDetails.findOne();
+        const student = id ? await studentDetails.findOne({ login_id: id }) : null;
+        const teacher = await teacherDetails.findOne();
 
-        // Render 'headTeacher' only if teacher is fetched
         if (teacher) {
-            res.render('headTeacher', {
-                user2: teacher,     // Teacher details
+            res.render('studentTeacher', {
+                user2:student,     
                 user1: {},          // Optional
-                user: head || {},   // Head details
+                user: teacher|| {},   // Head details
                 message: message || null,
                 error: null
             });
         } else {
-            // Teacher not found — optionally render head page with head info
-            res.render('head', {
+            // student not found — optionally render head page with head info
+            res.render('teacher', {
                 user1: {}, 
                 user2: {}, 
-                user: head || {},
+                user: teacher || {},
                 message: null,
-                error: "Teacher not found."
+                error: "student not found."
             }); 
         }
     } catch (err) {
@@ -85,4 +83,4 @@ headTeacherRouter.get('/', async function(req, res) {
     }
 });
 
-module.exports = headTeacherRouter;
+module.exports = teacherStudentRouter;

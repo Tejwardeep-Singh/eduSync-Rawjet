@@ -6,21 +6,20 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/ico/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/ico/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/ico/favicon-32x32.png">
-    <link rel="manifest" href="favicorn/site.webmanifest">
+    <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Fjalla+One&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <title>GPS PANDORI WARAICH | HOME</title>
+    <link rel="stylesheet" href="/stylesheets/head.css">
+    <title>GPS PANDORI WARAICH | Student Information </title>
 </head>
 <body>
     <main>
         <nav>
             <div class="nl">
-                <img src="/images/images/LOGO.webp" alt="">
+                <img src="/images/images/LOGO.webp" alt="Logo here">
             </div>
             <div class="nr">
                 <div class="nr-l">
@@ -29,7 +28,7 @@
                         <a href="#" id="log_button">Login</a>
                         <div id="login_items">
                             <a href="/studentlogin">Student Login</a>
-                            <a href="/teacherlogin">Teacher Login</a>
+                            <a href="/studentlogin">student Login</a>
                             <a href="/headlogin">Head Login</a>
                         </div>
                     </div>
@@ -42,71 +41,58 @@
             </div>
         </nav>  
         <div id="page1">
-            <img loop src="/images/videos/GPS PANDORI WARAICH.gif" alt="">
-        </div>
-        <div id="page2">
-            <div id="labs">
-                <h1>ABOUT SCHOOL</h1>
-                <p>GPS PANDORI WARAICH, BLOACK-AMRITSAR 2 <br> managed by <span>CHT SOHAN SINGH</span><br>
-                is on it's way to achieve dream of educating students of Punjab</p>
-            </div>
-            <div id="rabs">
-                <img src="/images/images/school_front.jpg" alt="">
-            </div>
-        </div>
-        <div id="horizontal-ruler"></div>
-        <div id="page3">
-            <div id="lh">
-                <img src="/images/images/l-2-s.png" alt="" id="layer" >
-                <img src="/images/images/bg.png" alt="" id="layer2">
-            </div>
-            <div id="rh">
-                <h1>SCHOOL HEAD</h1>
-                <p>The modern world is a Competitive world and require the products which are compatible 
-                    with its diversity and excellence. Keeping these in mind, the  School plans its pedagogy.
-                     Besides the usual syllabi effective planning is done to chisel the students in their best potential not 
-                     only in academic but also in other activities. Every effort is made by my dedicated staff to make the end 
-                     product a blend of educational physical and cultural expert, Keeping in mind the mid path of Modernity and
-                      tradition. I pray to the mighty to give the best to our institution, so that the student coming out of our
-                       institution are filled with Uniqueness. </p>
-            </div>
-        </div>
-        <div id="page3-blur">
-        </div>
-        <div id="page4">
-            <h1>GALLERY</h1>
-            <div id="moving-div">
-                <div class="blur-left"></div>
-                <div class="move">
-                    <img src="/images/images/p1.jpg" alt="">
-                    <img src="/images/images/p2.jpg" alt="">
-                    <img src="/images/images/p3.jpg" alt="">
-                    <img src="/images/images/p4.jpg" alt="">
-                    <img src="/images/images/p5.jpg" alt="">
-                    <img src="/images/images/p6.jpg" alt="">    
+            <div id="pg1-container">
+                <div id="panel">
+                    <div class="panel_elem" id="hp1"><a href="/teacher">Personal Information</a></div>
                 </div>
-                <div class="move">
-                    <img src="/images/images/p1.jpg" alt="">
-                    <img src="/images/images/p2.jpg" alt="">
-                    <img src="/images/images/p3.jpg" alt="">
-                    <img src="/images/images/p4.jpg" alt="">
-                    <img src="/images/images/p5.jpg" alt="">
-                    <img src="/images/images/p6.jpg" alt="">
+                <div id="data">
+                    <div class="part" id="studentInformation1">
+                        <div id="studentBox">
+                            <div id="studentInfo1" class="studentInfo">
+                                <div class="info" id="studentShow1">
+                                    <h1>Student Information</h1>
+                                    <div class="infoElem" id="imageElem">
+                                        <div id="image">
+                                            <% if (user2 && user2.image) { %>
+                                                <img src="/<%= user2.image %>" alt="User2 Image" />
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="infoElem">
+                                        <h2>ID:</h2>
+                                        <h3><%=user2.login_id%></h2>
+                                    </div>
+                                    <div class="infoElem">
+                                        <h2>Name:</h2>
+                                        <h3><%=user2.name%></h2>
+                                    </div>
+                                    <div class="infoElem">
+                                        <h2>Father Name:</h2>
+                                        <h3><%=user2.fatherName%>
+                                    </div>
+                                    <div class="infoElem">
+                                        <h2>Date Of Birth:</h2>
+                                        <h3><%=user2.dob%></h2>
+                                    </div>
+                                    <div class="infoElem">
+                                        <h2>Date Of Joining:</h2>
+                                        <h3><%=user2.dateOfJoining%></h2>
+                                    </div>
+                                    <div class="infoElem">
+                                        <h2>Mobile:</h2>
+                                        <h3><%=user2.mobile%></h2>
+                                    </div>
+                                    <div class="infoElem">
+                                        <h2>Email:</h2>
+                                        <h3><%=user2.email%></h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="blur-right"></div>
-            </div>
-            
-        </div>
-        <div id="page4-blur">
-        </div>
-        <div id="page4a">
-            <div id="videos">
-                
-                <video loop muted controls src="/images/videos/V1.mp4"></video>
-                <video loop muted controls src="/images/videos/V2.mp4"></video>
             </div>
         </div>
-        <div id="horizontal-ruler"></div>
         <div id="footer">
             <div id="footer-container">
                 <div class="fl">
@@ -137,11 +123,12 @@
         </div>
         <div id="horizontal-ruler"></div>
         <div id="copywright">
-            <h3>@2025 Team Rawjet. All Rights Reserved.</h3>
+            <h3>@2024 Team Rawjet. All Rights Reserved.</h3>
         </div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/javascripts/headScript.js"></script>
 <script src="/javascripts/script.js"></script>
 </body>
 </html>

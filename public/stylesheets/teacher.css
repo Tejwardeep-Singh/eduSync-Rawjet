@@ -1,0 +1,300 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.exo-2-sirat{
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:900;
+    font-style: normal;
+}
+.fjalla-one-regular {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}  
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: #FFF5E1;
+    overflow-x: hidden;
+}
+main{
+    width: 100vw;
+    height: auto;
+}
+
+#page1{
+    height: auto;
+    width:100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF5E1;
+}
+
+#pg1-container{
+    height: auto;
+    width:80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10vh 0 0 0;
+}
+#panel{
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #D2B48C;
+    border-radius: 50px;
+    border: solid #4E3629 2px;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    gap: 2vh;
+}
+.panel_elem{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.panel_elem a{
+    font-family:'fjalla-one-regular';
+    font-size: large;
+    font-weight: 600;
+    color: #4E3629;
+    transition: .5s all ease;
+    text-decoration: underline;
+}
+.panel_elem a:hover{
+    color:white;
+    text-decoration: overline;
+}
+#panel-menu{
+    display: none;
+}
+
+#data{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+    margin: 2%;
+    border: solid 2px #4E3629;
+    border-radius: 25px;
+    position: relative;
+}
+
+.part{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1vh;
+    background-color: #D2B48C;
+    border: solid 2px #4E3629;
+    border-radius: 25px;
+    padding: 2%;
+}
+
+.part h2{
+    font-size: 4vh;
+    font-family:'fjalla-one-regular';
+    color: #4E3629;
+    -webkit-text-stroke: #111  1px;
+}
+form{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items:flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1vh;
+    padding: 1%;
+
+}
+#label{
+    height:auto;
+    width: 100%;
+    border: #4E3629 solid 2px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 2%;
+    gap: 1vh;
+    background-color: #FFF5E1;
+
+}
+form button{
+    align-self: center;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    color:#111 ;
+    background-color:#FFF5E1;
+    border: #4E3629 2px solid;
+    font-weight: 900;
+    font-size: large;
+}
+#label label{
+    font-size: medium;
+    font-family: "Exo 2", sans-serif;
+    color: #111;
+}
+#label input{
+    background-color: #D2B48C;
+    height: auto;
+    width: 100%;
+    border-radius: 20px;
+    border: solid #111 1px;
+    padding: 1%;
+}
+#personalInformation{
+    display:flex;
+}
+#studentInformation
+{
+    display: none;
+}
+#studentInfo{
+    display: none;
+}
+#studentInformation
+{
+    display: none;
+}
+#editDetails
+{
+    display: none;
+}
+
+#leaveRequest
+{
+    display: none;
+}
+#changePassword
+{
+    display: none;
+}
+#studentBox{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1vh;
+    background-color: #D2B48C;
+    border-radius: 25px;
+    padding: 2%;
+}
+#studentPanel{
+    height: 5vh;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #FFF5E1;
+    border-radius: 50px;
+    border: solid #4E3629 2px;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    gap: 2vh;
+}
+#studentPanel h2{
+    text-decoration: underline;
+    cursor: pointer;
+    transition: .5s all ease;
+}
+#studentPanel h2:hover{
+    text-decoration: overline;
+}
+#studentShow{
+    display: none;
+}
+#studentAdd{
+    display: none;
+}
+.info{
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    gap: 2vh;
+}
+.info h1{
+    font-size: 6vh;
+    font-family:'fjalla-one-regular';
+    color: #4E3629;
+    -webkit-text-stroke: #111  1px;
+    width: 100%;
+    text-align: center;
+}
+.info h2{
+    font-size: 2vh;
+    font-family:'fjalla-one-regular';
+    color: #4E3629;
+    -webkit-text-stroke: #111  1px;
+}
+.info h3{
+    font-size: 2vh;
+    font-family:'fjalla-one-regular';
+    color: #4E3629;
+    -webkit-text-stroke: #111  1px;
+}
+.infoElem{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 2vw;
+    border: solid #4E3629 2px;
+    border-radius: 20px;
+    padding:1%;
+}
+#image{
+    height: 20vh;
+    width: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5%;
+    border: solid #4E3629 2px;
+    border-radius: 20px;
+}
+#image img{
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+#imageElem{
+    justify-content: center;
+    border: 0px;
+}
+#exam{
+    display: none;
+}
+@media only screen and (max-width: 800px)
+{
+    #panel{
+        padding: 5%;   
+        gap: 3vh; 
+    }
+    #panel a{
+        font-size: medium;
+    }
+}

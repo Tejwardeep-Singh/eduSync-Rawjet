@@ -19,7 +19,13 @@ const teacherDetailsSchema = mongoose.Schema({
         type:String,
     },
     image: { 
-        type: String }
+        type: String 
+    },
+    password: {
+        type: String,
+        required: true,
+        minLength: 8,
+    }
 });
 
 module.exports = mongoose.model("teacherDetails",teacherDetailsSchema);
