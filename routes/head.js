@@ -3,6 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const headRouter = express.Router();
 const HeadDetails = require('../models/headDetails');
+const {leaveRequestTeacher} = require("../models/leaveRequest")
 
 // Set up multer storage configuration
 const storage = multer.diskStorage({
@@ -54,17 +55,25 @@ headRouter.post('/', upload.single('image'), function(req, res) {
 });
 
 // GET route to show head details form
-headRouter.get('/', function(req, res) {
-    HeadDetails.findOne()
-        .then(headDetails => {
-            if (!headDetails) {
-                return res.status(404).send('Head Details not found');
-            }
-            res.render('head', { user: headDetails,user1:{},user2:{}, error: null, message: null });
-        })
-        .catch(err => {
-            res.status(500).send('Error fetching headDetails: ' + err.message);     
+headRouter.get('/', async function(req, res) {
+    try {
+        const headDetails = await HeadDetails.findOne();
+        const leave = await leaveRequestTeacher.find(); // Await the result
+        if (!headDetails) {
+            return res.status(404).send('Head Details not found');
+        }
+        res.render('head', {
+            user: headDetails,
+            user1: {},
+            user2: {},
+            leave, // now this is an actual array
+            error: null,
+            message: null
         });
+    } catch (err) {
+        res.status(500).send('Error fetching headDetails: ' + err.message);
+    }
 });
+
 
 module.exports = headRouter;

@@ -46,6 +46,7 @@
                     <div class="panel_elem" id="hp1"><a href="/head">Personal Information</a></div>
                     <div class="panel_elem" id="hp2"><a href="#">Teacher Information</a></div>
                     <div class="panel_elem" id="hp3"><a href="#">Student Information</a></div>
+                    <div class="panel_elem" id="hp3"><a href="#">Exams</a></div>
                     <div class="panel_elem" id="hp4"><a href="#">Leave Request</a></div>
                     <div class="panel_elem" id="hp5"><a href="#">Edit Details</a></div>
                     <div class="panel_elem" id="hp6"><a href="#">Change Password</a></div>
@@ -148,13 +149,32 @@
                         </div>
                     </div>
                     <div class="part" id="studentInformation"></div>
-                    <div class="part" id="leaveRequest"></div>
+                    <div class="part" id="leaveRequest">
+                        <div class="info" id="leaveInfoPanel">
+                            <div class="infoElem"><h2>Id</h2></div>
+                            <div class="infoElem"><h2>Name</h2></div>
+                            <div class="infoElem"><h2>from Date</h2></div>
+                            <div class="infoElem"><h2>Till Date</h2></div>
+                            <div class="infoElem"><h2>Reason</h2></div>
+                            <div class="infoElem"><h2>Approve</h2></div>
+                        </div>      
+                        <% leave.forEach(leaves=> { %>
+                            <div class="info" id="leaveInfo">
+                                <div class="infoElem"><%=leaves.id%></div>
+                                <div class="infoElem"><%=leaves.name%></div>
+                                <div class="infoElem"><%=leaves.from_date%></div>
+                                <div class="infoElem"><%=leaves.to_date%></div>
+                                <div class="infoElem"><%=leaves.reason%></div>
+                                <div class="infoElem"><button>APPROVE</button></div>
+                            </div>
+                        <% }) %>
+                    </div>
                     <div class="part" id="editDetails">
                         <h2>Edit Details</h2>
                         <form action="/head" method="POST" enctype="multipart/form-data">
                             <div id="label">
                                 <label for="name">Name: </label>
-                                <input type="text" id="name" name="name" value="<%= user1.name %>" required><br><br>
+                                <input type="text" id="name" name="name" value="<%= user.name %>" required><br><br>
                             </div>
                             <div id="label">
                                 <label for="fatherName">Father Name</label>
@@ -186,9 +206,7 @@
                             <button type="submit">Update</button>
                         </form>
                     </div>
-                    <div class="part" id="changePassword"></div>
-                    
-                    
+                    <div class="part" id="changePassword"></div> 
                 </div>
             </div>
         </div>

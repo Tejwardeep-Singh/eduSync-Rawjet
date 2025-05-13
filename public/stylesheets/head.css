@@ -285,6 +285,40 @@
         justify-content: center;
         border: 0px;
     }
+    #leaveInfoPanel{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        height: 100%;
+        width: 100%;
+    }
+    #leaveInfoPanel .infoElem{
+        border: none;
+    }
+    #leaveInfo{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        height: 100%;
+        width: 100%;
+        border: 2px solid #4E3629;
+        border-radius: 25px;
+    }
+    #leaveInfo .infoElem{
+        border: none;
+    }
+    #leaveInfo button{
+        height: 100%;
+        width: 50%;
+        padding: 2px;
+        background-color: red;
+        border-radius: 25px;
+        border: solid white 2px;
+        color: #D2B48C;
+        cursor: pointer;
+    }
     @media only screen and (max-width: 800px)
     {
         #panel{
