@@ -27,10 +27,12 @@ const imagesRouter=require("./routes/images")
 const studentRouter=require("./routes/student")
 const teacherRouter=require("./routes/teacher")
 const headRouter=require("./routes/head")
+const leaveRouter=require("./routes/leave")
 const headTeacherRouter=require("./routes/headTeacher")
 const teacherStudentRouter=require("./routes/teacherStudent")
 const authRouter=require("./controllers/authController");
 const teacherControllerRouter=require("./controllers/teacherController");
+const approve = require("./routes/approve");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -47,7 +49,9 @@ app.use("/teacher",teacherRouter);
 app.use("/headTeacher",headTeacherRouter);
 app.use("/teacherStudent",teacherStudentRouter);
 app.use("/head",headRouter);
-app.use("/",headTeacherRouter);
+app.use("/leave",leaveRouter);
+app.use("/approve",approve);
+
 app.use("/",teacherStudentRouter);
 app.use("/",headRouter);
 app.use("/",authRouter);

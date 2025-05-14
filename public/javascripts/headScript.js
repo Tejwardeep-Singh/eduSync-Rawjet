@@ -113,6 +113,25 @@ function headPanel(){
             duration:0.5
         })
     })
+    var hp7=document.querySelector("#hp7")
+    hp7.addEventListener("click",function(){
+        gsap.to(".part",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".panel_elem a",{
+            color:"#4E3629",
+            duration:0.5
+        })
+        gsap.to("#exams",{
+            display: 'flex',
+            duration:0.5,
+        })
+        gsap.to("#hp7 a",{
+            color:"white",
+            duration:0.5
+        })
+    })
 
 }
 var toggle = 0;
@@ -160,3 +179,13 @@ function teacherPanel(){
 
 }
 teacherPanel()
+function approve(){
+var button = document.querySelector("#leaveInfo button");
+button.addEventListener("click",function(){
+    gsap.to("#leaveInfo button",{
+        innerText:"APPROVED",
+        backgroundColor:"green"
+    })
+})
+}
+approve()

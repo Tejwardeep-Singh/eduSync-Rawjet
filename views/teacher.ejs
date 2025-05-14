@@ -44,12 +44,12 @@
         <div id="page1">
             <div id="pg1-container">
                 <div id="panel">
-                    <div class="panel_elem" id="hp1"><a href="/teacher">Personal Information</a></div>
-                    <div class="panel_elem" id="hp2"><a href="#">Student Information</a></div>
-                    <div class="panel_elem" id="hp3"><a href="#">Exam</a></div>
-                    <div class="panel_elem" id="hp4"><a href="#">Leave Request</a></div>
-                    <div class="panel_elem" id="hp5"><a href="#">Edit Details</a></div>
-                    <div class="panel_elem" id="hp6"><a href="#">Change Password</a></div>
+                    <div class="panel_elem" id="tp1"><a href="/teacher">Personal Information</a></div>
+                    <div class="panel_elem" id="tp2"><a href="#">Student Information</a></div>
+                    <div class="panel_elem" id="tp3"><a href="#">Exam</a></div>
+                    <div class="panel_elem" id="tp4"><a href="#">Leave Request</a></div>
+                    <div class="panel_elem" id="tp5"><a href="#">Edit Details</a></div>
+                    <div class="panel_elem" id="tp6"><a href="#">Change Password</a></div>
                 </div>
                 <div id="data">
                     <div class="part" id="personalInformation">
@@ -148,16 +148,104 @@
                             </div>
                         </div>
                     </div>
-                    <div class="part" id="exam">
+                    <div class="part" id="exams">
                         <div id="examPanel">
                             <h2 class="tp1">Datesheet</h2>
                             <h2 class="tp2">Marks</h2>
                         </div>
                     </div>
+                    <div class="part" id="leaveRequest">
+                        <div class="panel">
+                            <h2 id="apply">Apply Leave</h2>
+                            <h2 id="approve">Approve Leave</h2>
+                        </div>
+                        <div id="applyLeave" class="request">
+                            <h2>Apply Leave</h2>
+                            <form action="/leave" method="POST">
+                                <div id="label">
+                                    <label for="id">ID: </label>
+                                    <input type="number" id="id" name="id" value="<%= apply.id %>" required><br><br>
+                                </div>
+                                <div id="label">
+                                    <label for="name">Name</label>
+                                <input type="text" id="name" name="name" value="<%= apply.name %>" required><br><br>
+                                </div>
+                                <div id="label"> 
+                                    <label for="from_date">From Date : </label>
+                                    <input type="date" id="from_date" name="from_date" value="<%= user.from_date %>" required><br><br></div>
+                                <div id="label">
+                                    <label for="to_late">Till Date :</label>
+                                <input type="date" id="to_date" name="to_date" value="<%= apply.to_date %>" required><br><br>
+                                </div>
+                                <div id="label">
+                                    <label for="reason">Reason: </label>
+                                <input type="text" id="reason" name="reason" value="<%= apply.reason %>" required><br><br>
+                                </div>
+                                <button type="submit">Update</button>
+                            </form>
+                        </div>
+                            <div id="approveLeave" class="request">
+                                <div class="info" id="leaveInfoPanel">
+                                <div class="infoElem"><h2>Id</h2></div>
+                                <div class="infoElem"><h2>Name</h2></div>
+                                <div class="infoElem"><h2>from Date</h2></div>
+                                <div class="infoElem"><h2>Till Date</h2></div>
+                                <div class="infoElem"><h2>Reason</h2></div>
+                                <div class="infoElem"><h2>Approve</h2></div>
+                            </div>      
+                            <% leave.forEach(leaves=> { %>
+                                <div class="info" id="leaveInfo">
+                                    <div class="infoElem"><%=leaves.id%></div>
+                                    <div class="infoElem"><%=leaves.name%></div>
+                                    <div class="infoElem"><%=leaves.from_date%></div>
+                                    <div class="infoElem"><%=leaves.to_date%></div>
+                                    <div class="infoElem"><%=leaves.reason%></div>
+                                    <div class="infoElem"><button>APPROVE</button></div>
+                                </div>
+                            <% }) %>
+                        </div>
+                        
+                    </div>
                 </div>
 
             </div>
         </div>
+        <div id="footer">
+            <div id="footer-container">
+                <div class="fl">
+                    <h2>CONTACT US</h2>
+                    <div class="contact">
+                        <h4>9780914581 (Head)</h4>
+                        <h4>sandeepsinghsohian@gmail.com</h4>
+                    </div>
+                </div>
+                <div class="fc">
+                    <div class="quick-links">
+                        <h2>Quick Links</h2>
+                        <div class="contact">
+                            <a href="/">Home</a>
+                            <a href="/images">Images</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="fr">
+                    <h2>Location</h2>
+                    <div class="contact">
+                        <div id="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d548.6914284465247!2d74.90983231549603!3d31.690628893253695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919638655ecf77d%3A0x482bc38508456636!2sGovernment%20Elementary%20Smart%20School!5e1!3m2!1sen!2sin!4v1711472732719!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div id="horizontal-ruler"></div>
+        <div id="copywright">
+            <h3>@2024 Team Rawjet. All Rights Reserved.</h3>
+        </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/javascripts/teacherScript.js"></script>
+<script src="/javascripts/script.js"></script>
 </body>
 </html>

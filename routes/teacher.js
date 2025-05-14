@@ -1,4 +1,4 @@
-require('dotenv').config(); // ✅ Load environment variables at the top
+require('dotenv').config(); //  Load environment variables at the top
 
 const express = require("express");
 const multer = require("multer");
@@ -6,6 +6,7 @@ const path = require("path");
 const jwt = require("jsonwebtoken");
 const teacherRouter = express.Router();
 const teacherDetails = require("../models/teacherModel");
+const {leaveRequestStudent} = require("../models/leaveRequest")
 
 // Multer storage config
 const storage = multer.diskStorage({
@@ -58,6 +59,7 @@ teacherRouter.post("/", upload.single("image"), async (req, res) => {
     }
 });
 
+
 // GET / — Fetch and render teacher details
 teacherRouter.get("/", async (req, res) => {
     const token = req.cookies.token;
@@ -71,6 +73,7 @@ teacherRouter.get("/", async (req, res) => {
         const login_id = decoded.login_id;
 
         const teacher = await teacherDetails.findOne({ login_id: login_id });
+        const leave = await leaveRequestStudent.find();
 
         if (!teacher) {
             return res.status(404).send("Teacher not found");
@@ -80,6 +83,8 @@ teacherRouter.get("/", async (req, res) => {
             user: teacher,
             user1:{},
             user2:{},
+            apply:{},
+            leave,
             message: null,
             error: null,
         });

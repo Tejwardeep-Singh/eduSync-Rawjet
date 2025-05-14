@@ -46,7 +46,7 @@
                     <div class="panel_elem" id="hp1"><a href="/head">Personal Information</a></div>
                     <div class="panel_elem" id="hp2"><a href="#">Teacher Information</a></div>
                     <div class="panel_elem" id="hp3"><a href="#">Student Information</a></div>
-                    <div class="panel_elem" id="hp3"><a href="#">Exams</a></div>
+                    <div class="panel_elem" id="hp7"><a href="#">Exams</a></div>
                     <div class="panel_elem" id="hp4"><a href="#">Leave Request</a></div>
                     <div class="panel_elem" id="hp5"><a href="#">Edit Details</a></div>
                     <div class="panel_elem" id="hp6"><a href="#">Change Password</a></div>
@@ -148,7 +148,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="part" id="studentInformation"></div>
+                    <div class="part" id="studentInformation">
+                        <div id="studentInput">
+                            <form action="/headTeacher" method="get" enctype="multipart/form-data">
+                                <div id="label" id="studentLabel">
+                                    <label for="class"> CLASS: </label>
+                                    <input type="number" id="class" name="class"required><br><br>     
+                                </div>
+                                <button type="submit">SHOW</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="part" id="exams"></div>
                     <div class="part" id="leaveRequest">
                         <div class="info" id="leaveInfoPanel">
                             <div class="infoElem"><h2>Id</h2></div>
@@ -162,10 +173,15 @@
                             <div class="info" id="leaveInfo">
                                 <div class="infoElem"><%=leaves.id%></div>
                                 <div class="infoElem"><%=leaves.name%></div>
-                                <div class="infoElem"><%=leaves.from_date%></div>
-                                <div class="infoElem"><%=leaves.to_date%></div>
+                                <div class="infoElem"><%= leaves.from_date ? leaves.from_date.toISOString().split('T')[0] : 'N/A' %></div>
+                                <div class="infoElem"><%= leaves.to_date ? leaves.to_date.toISOString().split('T')[0] : 'N/A' %></div>
                                 <div class="infoElem"><%=leaves.reason%></div>
-                                <div class="infoElem"><button>APPROVE</button></div>
+                                <div class="infoElem">
+                                    <form action="/approve" method="post">
+                                        <input type="hidden" name="leaveId" value="<%= leaves._id %>">
+                                        <button type="submit">APPROVE</button>
+                                    </form>
+                            </div>
                             </div>
                         <% }) %>
                     </div>

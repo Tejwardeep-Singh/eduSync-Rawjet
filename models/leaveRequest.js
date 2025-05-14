@@ -13,6 +13,7 @@ const leaveRequestSchema = mongoose.Schema({
     },
     reason:{
         type:String,
+        default:"pending",
     },
     status:{
         type:String,

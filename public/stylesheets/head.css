@@ -170,6 +170,9 @@
     #teacherInfo{
         display: none;
     }
+    #exams{
+        display: none;
+    }
     #teacherInformation
     {
         display: none;
@@ -311,13 +314,19 @@
     }
     #leaveInfo button{
         height: 100%;
-        width: 50%;
+        width: 8vw;
         padding: 2px;
         background-color: red;
         border-radius: 25px;
         border: solid white 2px;
         color: #D2B48C;
         cursor: pointer;
+    }
+    #studentInput{
+        width: 40vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     @media only screen and (max-width: 800px)
     {

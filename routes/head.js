@@ -58,7 +58,7 @@ headRouter.post('/', upload.single('image'), function(req, res) {
 headRouter.get('/', async function(req, res) {
     try {
         const headDetails = await HeadDetails.findOne();
-        const leave = await leaveRequestTeacher.find(); // Await the result
+        const leave = await leaveRequestTeacher.find({status:"pending"}); // Await the result
         if (!headDetails) {
             return res.status(404).send('Head Details not found');
         }
