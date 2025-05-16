@@ -317,6 +317,19 @@ form button{
 .request{
 display: none;
 }
+#datesheetUpload{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1vh;
+    background-color: #D2B48C;
+    border: solid 2px #4E3629;
+    border-radius: 25px;
+    padding: 2%;
+}
 @media only screen and (max-width: 800px)
 {
     #panel{

@@ -159,7 +159,27 @@
                             </form>
                         </div>
                     </div>
-                    <div class="part" id="exams"></div>
+                    <div class="part" id="exams">
+                        <div id="examPanel">
+                            <h2 id="ep1">Datesheet</h2>
+                            <h2 id="ep2">Marks</h2>
+                        </div>
+                        <div id="examBox">
+                            <div id="datesheet">
+                                <h2>Datesheet</h2>
+                                <div id="datesheetInput">
+                                    <form action="/datesheet" method="get" enctype="multipart/form-data">
+                                        <div id="label">
+                                            <label for="id">CLASS: </label>
+                                            <input type="number" id="id" name="id"required><br><br>     
+                                        </div>
+                                        <button type="submit">SHOW</button>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
                     <div class="part" id="leaveRequest">
                         <div class="info" id="leaveInfoPanel">
                             <div class="infoElem"><h2>Id</h2></div>

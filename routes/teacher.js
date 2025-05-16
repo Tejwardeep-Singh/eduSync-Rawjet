@@ -6,7 +6,7 @@ const path = require("path");
 const jwt = require("jsonwebtoken");
 const teacherRouter = express.Router();
 const teacherDetails = require("../models/teacherModel");
-const {leaveRequestStudent} = require("../models/leaveRequest")
+const {leaveRequestStudent,leaveRequestTeacher} = require("../models/leaveRequest")
 
 // Multer storage config
 const storage = multer.diskStorage({
@@ -74,6 +74,7 @@ teacherRouter.get("/", async (req, res) => {
 
         const teacher = await teacherDetails.findOne({ login_id: login_id });
         const leave = await leaveRequestStudent.find();
+        const teacherLeaveDetails = await leaveRequestTeacher.find({id:login_id})
 
         if (!teacher) {
             return res.status(404).send("Teacher not found");
@@ -85,6 +86,7 @@ teacherRouter.get("/", async (req, res) => {
             user2:{},
             apply:{},
             leave,
+            teacherLeaveDetails,
             message: null,
             error: null,
         });

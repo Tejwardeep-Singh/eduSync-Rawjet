@@ -127,6 +127,17 @@ function leavePanel(){
             duration:0.5,
         })
     })
+    var view=document.querySelector("#view")
+    view.addEventListener("click",function(){
+        gsap.to(".request",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#viewLeave",{
+            display:'flex',
+            duration:0.5,
+        })
+    })
     var approve=document.querySelector("#approve")
     approve.addEventListener("click",function(){
         gsap.to(".request",{
@@ -140,3 +151,54 @@ function leavePanel(){
     })
 }
 leavePanel()
+function examPanel(){
+    var ep1=document.querySelector("#ep1");
+    ep1.addEventListener("click",function(){
+        gsap.to("#examPanel h2",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".exams",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#examBox",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#datesheetUpload",{
+            display:'flex',
+            duration:0.5,
+        })
+    })
+    var ep2=document.querySelector("#ep2");
+    ep2.addEventListener("click",function(){
+        gsap.to("#examPanel h2",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".exams",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#examBox",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#marksUpload",{
+            display:'flex',
+            duration:0.5,
+        })
+    })
+}
+examPanel()
+function approve(){
+var button = document.querySelector("#leaveInfo button");
+button.addEventListener("click",function(){
+    gsap.to("#leaveInfo button",{
+        innerText:"APPROVED",
+        backgroundColor:"green"
+    })
+})
+}
+approve()

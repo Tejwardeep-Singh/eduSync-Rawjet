@@ -179,6 +179,55 @@ function teacherPanel(){
 
 }
 teacherPanel()
+function examPanel(){
+    var ep1=document.querySelector("#ep1");
+    ep1.addEventListener("click",function(){
+        gsap.to("#examPanel h2",{
+            color:"#4E3629",
+            duration:0.5,
+        })
+        gsap.to(".exams",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#examBox",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#datesheet",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#datesheetInput",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#examPanel h2",{
+            color:"white",
+            duration:0.5,
+        })
+    })
+    var ep2=document.querySelector("#ep2");
+    ep2.addEventListener("click",function(){
+        gsap.to("#examPanel h2",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".exams",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#examBox",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#marks",{
+            display:'flex',
+            duration:0.5,
+        })
+    })
+}
+examPanel()
 function approve(){
 var button = document.querySelector("#leaveInfo button");
 button.addEventListener("click",function(){
@@ -189,3 +238,4 @@ button.addEventListener("click",function(){
 })
 }
 approve()
+

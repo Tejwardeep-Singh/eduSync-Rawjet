@@ -29,7 +29,7 @@
                         <a href="#" id="log_button">Login</a>
                         <div id="login_items">
                             <a href="/studentlogin">Student Login</a>
-                            <a href="/studentlogin">student Login</a>
+                            <a href="/teacherlogin">Teacher Login</a>
                             <a href="/headlogin">Head Login</a>
                         </div>
                     </div>
@@ -150,13 +150,28 @@
                     </div>
                     <div class="part" id="exams">
                         <div id="examPanel">
-                            <h2 class="tp1">Datesheet</h2>
-                            <h2 class="tp2">Marks</h2>
+                            <h2 id="ep1">Datesheet</h2>
+                            <h2 id="ep2">Marks</h2>
+                        </div>
+                        <div id="examBox">
+                            <div id="datesheetUpload" class="exams">
+                                <form action="/datesheet" method="post" enctype="multipart/form-data">
+                                    <div id="label">
+                                        <label for="id">CLASS: </label>
+                                        <input type="number" id="id" name="id"required><br><br>
+                                        <label for="Photo">Photo: </label>
+                                        <input type="file" name="image" accept="image/*" />
+                                    </div>
+                                    <button type="submit">SUBMIT</button>
+                                </form>
+                            </div>
+                            <div id="marksUpload" class="exams"></div>
                         </div>
                     </div>
                     <div class="part" id="leaveRequest">
                         <div class="panel">
                             <h2 id="apply">Apply Leave</h2>
+                            <h2 id="view">Leave Record</h2>
                             <h2 id="approve">Approve Leave</h2>
                         </div>
                         <div id="applyLeave" class="request">
@@ -184,15 +199,15 @@
                                 <button type="submit">Update</button>
                             </form>
                         </div>
-                            <div id="approveLeave" class="request">
-                                <div class="info" id="leaveInfoPanel">
+                        <div id="approveLeave" class="request">
+                            <div class="info" id="leaveInfoPanel">
                                 <div class="infoElem"><h2>Id</h2></div>
                                 <div class="infoElem"><h2>Name</h2></div>
                                 <div class="infoElem"><h2>from Date</h2></div>
                                 <div class="infoElem"><h2>Till Date</h2></div>
                                 <div class="infoElem"><h2>Reason</h2></div>
                                 <div class="infoElem"><h2>Approve</h2></div>
-                            </div>      
+                            </div>
                             <% leave.forEach(leaves=> { %>
                                 <div class="info" id="leaveInfo">
                                     <div class="infoElem"><%=leaves.id%></div>
@@ -204,7 +219,26 @@
                                 </div>
                             <% }) %>
                         </div>
-                        
+                        <div id="viewleave" class="request">
+                            <div class="info" id="leaveInfoPanel">
+                                <div class="infoElem"><h2>Id</h2></div>
+                                <div class="infoElem"><h2>Name</h2></div>
+                                <div class="infoElem"><h2>from Date</h2></div>
+                                <div class="infoElem"><h2>Till Date</h2></div>
+                                <div class="infoElem"><h2>Reason</h2></div>
+                                <div class="infoElem"><h2>Status</h2></div>
+                            </div>
+                            <% teacherLeaveDetails.forEach(view=> { %>
+                                <div class="info" id="leaveInfo">
+                                    <div class="infoElem"><%=view.id%></div>
+                                    <div class="infoElem"><%=view.name%></div>
+                                    <div class="infoElem"><%=view.from_date%></div>
+                                    <div class="infoElem"><%=view.to_date%></div>
+                                    <div class="infoElem"><%=view.reason%></div>
+                                    <div class="infoElem"><%=view.status%></div>
+                                </div>
+                            <% }) %>
+                        </div>  
                     </div>
                 </div>
 
