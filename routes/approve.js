@@ -2,7 +2,7 @@ const express = require("express");
 const leaveRouter = express.Router();
 const { leaveRequestTeacher,leaveRequestStudent} = require("../models/leaveRequest");
 
-leaveRouter.post("/", async function(req, res) {
+leaveRouter.post("/teacher", async function(req, res) {
     const { leaveId } = req.body; // Access leaveId from the query parameter
     if (!leaveId) {
         return res.status(400).send("Missing leaveId");
@@ -27,7 +27,7 @@ leaveRouter.post("/", async function(req, res) {
     }
 });
 
-leaveRouter.post("/", async function(req, res) {
+leaveRouter.post("/student", async function(req, res) {
     const { leaveId } = req.body; // Access leaveId from the query parameter
     if (!leaveId) {
         return res.status(400).send("Missing leaveId");
@@ -35,7 +35,7 @@ leaveRouter.post("/", async function(req, res) {
     
     try {
         // Find the leave request by its ID and update its status to "Approved"
-        const updatedLeave = await leaveRequestTeacher.findByIdAndUpdate(
+        const updatedLeave = await leaveRequestStudent.findByIdAndUpdate(
             leaveId,
             { status: "Approved" },
             { new: true }  // This option returns the updated document

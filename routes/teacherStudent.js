@@ -19,64 +19,22 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// ✅ POST route: Create/update teacher, then redirect to /head with teacher ID
-teacherStudentRouter.post('/', upload.single('image'), async function(req, res) {
-    const { login_id, name, fatherName, dob, dateOfJoining, mobile, email } = req.body;
-    const image = req.file ? req.file.path : null;
-    const dobFormatted = new Date(dob).toISOString().split('T')[0];
-    const dojFormatted = new Date(dateOfJoining).toISOString().split('T')[0];
-
-    try {
-        const hashedPassword = await bcrypt.hash(login_id, saltRounds);
-        await studentDetails.findOneAndUpdate(
-            { login_id },
-            {
-                login_id,
-                name,
-                fatherName,
-                dob: dobFormatted,
-                dateOfJoining: dojFormatted,
-                mobile,
-                email,
-                image,
-                password:hashedPassword,
-            },
-            { new: true, upsert: true }
-        );
-
-        // Redirect to /head with login_id as query param
-        res.redirect(`/head?id=${login_id}&message=Teacher%20updated%20successfully`);
-    } catch (err) {
-        console.error("Error updating teacher:", err.message);
-        // Redirect with error message (optional)
-        res.redirect(`/head?error=${encodeURIComponent(err.message)}`);
-    }
-});
 
 teacherStudentRouter.get('/', async function(req, res) {
     const { id, message, error } = req.query;
 
     try {
-        const student = id ? await studentDetails.findOne({ login_id: id }) : null;
-        const teacher = await teacherDetails.findOne();
-
-        if (teacher) {
+        const student = id ? await studentDetails.findOne({ id: id }) : null;
+        if (student) {
             res.render('studentTeacher', {
                 user2:student,     
-                user1: {},          // Optional
-                user: teacher|| {},   // Head details
+                user1: {},  
                 message: message || null,
                 error: null
             });
         } else {
             // student not found — optionally render head page with head info
-            res.render('teacher', {
-                user1: {}, 
-                user2: {}, 
-                user: teacher || {},
-                message: null,
-                error: "student not found."
-            }); 
+            res.redirect("/teacher");
         }
     } catch (err) {
         res.status(500).send('Error fetching data: ' + err.message);

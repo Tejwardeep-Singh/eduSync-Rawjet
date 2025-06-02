@@ -6,13 +6,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/ico/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/ico/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/ico/favicon-32x32.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="manifest" href="/images/ico/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/head.css">
+    <link rel="stylesheet" href="/stylesheets/teacher.css">
     <title>GPS PANDORI WARAICH | Head </title>
 </head>
 <body>
@@ -42,14 +43,20 @@
         </nav>  
         <div id="page1">
             <div id="pg1-container">
-                <div id="panel">
-                    <div class="panel_elem" id="hp1"><a href="/head">Personal Information</a></div>
-                    <div class="panel_elem" id="hp2"><a href="#">Teacher Information</a></div>
-                    <div class="panel_elem" id="hp3"><a href="#">Student Information</a></div>
-                    <div class="panel_elem" id="hp7"><a href="#">Exams</a></div>
-                    <div class="panel_elem" id="hp4"><a href="#">Leave Request</a></div>
-                    <div class="panel_elem" id="hp5"><a href="#">Edit Details</a></div>
-                    <div class="panel_elem" id="hp6"><a href="#">Change Password</a></div>
+                <div id="panel-container">
+                    <div class="nr-r" id="panel-logo">
+                    <i class="ri-menu-line"></i>
+                    </div>
+                    <div id="panel">
+                        <div class="panel_elem" id="hp1"><a href="/head">Personal Information</a></div>
+                        <div class="panel_elem" id="hp2"><a href="#">Teacher Information</a></div>
+                        <div class="panel_elem" id="hp3"><a href="#">Student Information</a></div>
+                        <div class="panel_elem" id="hp7"><a href="#">Exams</a></div>
+                        <div class="panel_elem" id="hp4"><a href="#">Leave Request</a></div>
+                        <div class="panel_elem" id="hp8"><a href="#">Admin</a></div>
+                        <div class="panel_elem" id="hp5"><a href="#">Edit Details</a></div>
+                        <div class="panel_elem" id="hp6"><a href="#">Change Password</a></div>
+                    </div>
                 </div>
                 <div id="data">
                     <div class="part" id="personalInformation">
@@ -64,7 +71,7 @@
                             </div>
                             <div class="infoElem">
                                 <h2>Name:</h2>
-                                <h3><%=user.name%></h2>
+                                <h2><%=user.name%></h2>
                             </div>
                             <div class="infoElem">
                                 <h2>Father Name:</h2>
@@ -197,11 +204,11 @@
                                 <div class="infoElem"><%= leaves.to_date ? leaves.to_date.toISOString().split('T')[0] : 'N/A' %></div>
                                 <div class="infoElem"><%=leaves.reason%></div>
                                 <div class="infoElem">
-                                    <form action="/approve" method="post">
+                                    <form action="/approve/teacher" method="post">
                                         <input type="hidden" name="leaveId" value="<%= leaves._id %>">
                                         <button type="submit">APPROVE</button>
                                     </form>
-                            </div>
+                                </div>
                             </div>
                         <% }) %>
                     </div>
@@ -242,7 +249,119 @@
                             <button type="submit">Update</button>
                         </form>
                     </div>
-                    <div class="part" id="changePassword"></div> 
+                    <div class="part" id="admin">
+                        <div id="adminPanel">
+                            <h2 id="ap1">Add Subject</h2>
+                            <h2 id="ap2">Add Class</h2>
+                            <h2 id="ap3">Add Subject To Class</h2>
+                            <h2 id="ap4">Assign Teacher</h2>
+                        </div>
+                        <div id="horizontal-ruler"></div>
+                        <div id="adminBlock">
+                            <div id="subject" class="admin">
+                                <div id="subjectShow" class="show">
+                                    <div class="info" id="adminInfoPanel">
+                                        <div class="infoElem" id="subjectData"><h2>Id</h2></div>
+                                        <div class="infoElem" id="subjectData"><h2>Name</h2></div>
+                                    </div>      
+                                    <% subjects.forEach(subject=> { %>
+                                        <div class="info" id="adminInfoPanel">
+                                            <div class="infoElem" id="subjectData"><%=subject.id%></div>
+                                            <div class="infoElem" id="subjectData"><%=subject.name%></div>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                                <div id="subjectAdd" class="add">
+                                    <h2>Add Subject</h2>
+                                    <form action="/subject" method="POST" >
+                                        <div id="label">
+                                            <label for="id">Id: </label>
+                                            <input type="text" id="id" name="id" value="<%= subjects.id%>" required>
+                                        </div>
+                                        <div id="label">
+                                            <label for="name">Name: </label>
+                                            <input type="text" id="name" name="name" value="<%= subjects.name %>" required><br><br>
+                                        </div>
+                                        <button type="submit">SUBMIT</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="class" class="admin">
+                                <div id="classShow" class="show">
+                                    <div class="info" id="adminInfoPanel">
+                                        <div class="infoElem" id="subjectData"><h2>Class</h2></div>
+                                        <div class="infoElem" id="subjectData"><h2>Section</h2></div>
+                                    </div>      
+                                    <% sections.forEach(section=> { %>
+                                        <div class="info" id="adminInfoPanel">
+                                            <div class="infoElem" id="subjectData"><%=section.name%></div>
+                                            <div class="infoElem" id="subjectData"><%=section.section%></div>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                                <div id="classAdd" class="add">
+                                    <h2>Add Class</h2>
+                                    <form action="/class" method="POST">
+                                        <div id="label">
+                                            <label for="name">Class: </label>
+                                            <input type="text" id="name" name="name" value="<%= sections.name %>" required><br><br>
+                                        </div>
+                                         <div id="label">
+                                            <label for="section">Section: </label>
+                                            <input type="text" id="section" name="section" value="<%= sections.section %>" required><br><br>
+                                        </div>
+                                        <button type="submit">SUBMIT</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="admin" id="addSubjectClass">
+                                <h2>Add Subject To Class</h2>
+                                    <form action="/class/assignTeacher" method="POST">
+                                        <div id="label">
+                                            <label for="name">Class: </label>
+                                            <input type="number" id="kaksha" name="kaksha" value="<%= subjects.kaksha%>" required><br><br>
+                                        </div>
+                                        <div id="label">
+                                            <label for="id">ID: </label>
+                                            <input type="number" id="id" name="id" value="<%= subjects.id %>" required><br><br>
+                                        </div>
+                                        <div id="label">
+                                            <label for="name">Subject: </label>
+                                            <input type="text" id="name" name="name" value="<%= subjects.name%>" required><br><br>
+                                        </div>
+                                        <button type="submit">SUBMIT</button>
+                                    </form>
+                            </div>
+                            <div class="admin" id="assignTeacher">
+                                <h2>Assign Teacher To Class</h2>
+                                <form action="/class/assignTeacher" method="POST">
+                                    <div id="label">
+                                        <label for="t_id">Teacher ID: </label>
+                                        <input type="number" id="t_id" name="t_id" value="<%= subjects.t_id%>" required><br><br>
+                                    </div>
+                                    <div id="label">
+                                        <label for="name">Class: </label>
+                                        <input type="number" id="kaksha" name="kaksha" value="<%= subjects.kaksha%>" required><br><br>
+                                    </div>
+                                    <button type="submit">SUBMIT</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="part" id="changePassword">
+                        <h2>Change Password</h2>
+                        <form action="/changePassword/head" method="POST">
+                            <div id="label">
+                                <label for="oldPassword">Old Password: </label>
+                                <input type="password" id="oldPass" name="oldPass"  required><br><br>
+                            </div>
+                            <div id="label">
+                                <label for="newPassword">New Password: </label>
+                            <input type="password" id="newPass" name="newPass"  required><br><br>
+                            </div>
+                            <button type="submit">Update</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

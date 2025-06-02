@@ -4,6 +4,8 @@ const path = require('path');
 const headRouter = express.Router();
 const HeadDetails = require('../models/headDetails');
 const {leaveRequestTeacher} = require("../models/leaveRequest")
+const subject= require("../models/subject")
+const section= require("../models/class")
 
 // Set up multer storage configuration
 const storage = multer.diskStorage({
@@ -59,6 +61,8 @@ headRouter.get('/', async function(req, res) {
     try {
         const headDetails = await HeadDetails.findOne();
         const leave = await leaveRequestTeacher.find({status:"pending"}); // Await the result
+        const subjects = await subject.find();
+        const sections= await section.find();
         if (!headDetails) {
             return res.status(404).send('Head Details not found');
         }
@@ -67,6 +71,8 @@ headRouter.get('/', async function(req, res) {
             user1: {},
             user2: {},
             leave, // now this is an actual array
+            subjects,
+            sections,
             error: null,
             message: null
         });

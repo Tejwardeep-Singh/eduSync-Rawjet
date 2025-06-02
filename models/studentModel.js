@@ -26,7 +26,22 @@ const studentDetailsSchema = mongoose.Schema({
         type:String,
     },
     image: { 
-        type: String }
+        type: String 
+    },
+    subjects:{
+        type:mongoose.Schema.Types.ObjectId,ref:'subjects'
+    },
+    class:{
+        type:mongoose.Schema.Types.ObjectId,ref:'class'
+    },
+    marks:{
+        type:mongoose.Schema.Types.ObjectId,ref:'marks'
+    },
+    password: {
+        type: String,
+        required: true,
+        minLength: 8,
+    }
 });
 
 module.exports = mongoose.model("studentDetails",studentDetailsSchema);

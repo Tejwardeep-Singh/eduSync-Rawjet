@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
 }
+
 .new-font{
     font-family: "Exo 2", sans-serif;
     font-optical-sizing: auto;
@@ -18,11 +19,11 @@ html,body{
     height: 100%;
     width: 100%;
     background-color: #FFF5E1;
-    overflow-x: hidden;
 }
 main{
     width: 100vw;
     height: auto;
+    overflow-x: hidden;
 }
 nav{
     height: 10vh;
@@ -32,7 +33,7 @@ nav{
     justify-content: space-between;
     padding: 0 3vw;
     position: fixed;
-    background-color:#808000a1;
+    background-color:#80800073 ;
     backdrop-filter: blur(2px);
     z-index: 9999;
 }
@@ -67,9 +68,11 @@ nav{
 .nr-l a{
     color: #201713;
     font-size: 1vw;
+    -webkit-text-stroke: #201713 1px;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .nr-r i{
+    display: none;
     height: 5vh;
     width: 5vh;
     border-radius: 50%;
@@ -77,6 +80,7 @@ nav{
     font-size: 1vw;
     color: #201713;
     padding: 0.5vw;
+    -webkit-text-stroke: #201713 2px
 }
 #login{
     display: flex;
@@ -103,16 +107,56 @@ nav{
 #page1{
     height: 100vh;
     width: 100vw;
-    background-color:#808000;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-#page1 img{
+#index-page{
     height: 100vh;
     width: 100vw;
-    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#title{
+    height:fit-content;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    padding: 1%;
+    overflow: hidden;
+}
+#title-2{
+    height: fit-content;
+    width: fit-content;
+    font-size: 4vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 800;
+    color:#201713;
+}
+.title.elem{
+    height: 100%;
+    width: 100%;
+}
+.title-elem h3{
+    font-size: 25vh;
+    font-weight:900;
+    font-family: "Fjalla One", sans-serif;
+    transition: 0.1s all ease;
+    color: #433326;
+    -webkit-text-stroke: #433326 8px;
+}
+.title-elem h3:hover{
+    transform: translateY(-15%);
 }
 
+#i1{
+    transform: translateY(20%);
+}
 #page2{
     width: 100vw;
     display: flex;
@@ -120,6 +164,7 @@ nav{
     justify-content: space-between;
     padding: 1vh 5vw;
     background-color: #FFF5E1;
+    overflow: hidden;
 }
 
 #labs{
@@ -137,6 +182,7 @@ nav{
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    border-radius: 20px;
 }
 
 #rabs img{
@@ -144,6 +190,7 @@ nav{
     transition-duration: 1s;
     transition-timing-function: all ease;
     border: solid 5px black;
+    border-radius: 20px;
 }
 
 #rabs img:hover{
@@ -152,14 +199,17 @@ nav{
 
 #labs span{
     font-weight: 800;
+    color:#201713;
+    -webkit-text-stroke: #4E3629 1px;
 }
 
 #labs p{
     border: solid 2px black;
     padding: 1vh;
     border-radius: 25px;
-    background-color: rgba(0, 255, 255, 0.514);
+    background-color:#80800084;
     backdrop-filter: blur(15px);
+    font-weight:600;
 }
 
 #page3{
@@ -240,10 +290,11 @@ nav{
     font-size: xx-large;
     font-weight: 400;
     backdrop-filter: blur(10px);
+    font-family: "Exo 2", sans-serif;
 }
 
 #rh h1{
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Fjalla One", sans-serif;;
     font-weight: 800;
     text-decoration: underline;
     font-size: 7vh;
@@ -490,6 +541,9 @@ nav{
     object-fit: cover;
     object-position: center;
 }
+#panel-logo{
+    display: none;
+}
 
 @keyframes mobe{
     0%{
@@ -502,22 +556,47 @@ nav{
 @media only screen and (max-width: 800px)
 {   
     nav{
+        width: 100%;
         height: 6vh;
         backdrop-filter: blur(0.5px);
+    }
+    #page1{
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+    #panel-logo{
+        display: flex;
+    }
+    #index-page{
+        height: fit-content;
+        padding-top: 10vh;
+    }
+    .title-elem h3{
+        font-size: 20vw;
+        -webkit-text-stroke: #433326 4px;
+    }
+    #title-2 h4{
+        font-size: 5vw;
     }
     #map iframe{
         width: 80vw;
     }
     .nr a{
-        font-size: 3vw;
+        font-size: 4vw;
         -webkit-text-stroke: solid black 0.2px;
     }
     .nr{
         width: 50vw;
+        justify-content: center;
+        align-items: center;
     }
     .nr-r i{
+        display: flex;
         font-size: 5vw;
-        padding: 1.5vw;
+        padding:0.5vw;
+        justify-content: center;
+        align-items: center;
     }
     .nr-l{
         transform: translateX(200%);
@@ -527,12 +606,6 @@ nav{
     }
     #page1 img{
         height: auto;
-    }
-
-    #page1{
-        height: auto;
-        margin: 0;
-        padding: 0;
     }
     #page2{
         flex-direction: column;

@@ -1,7 +1,7 @@
-function teacherPanel(){
-    var tp1=document.querySelector("#tp1")
-    tp1.addEventListener("click",function(){
-        gsap.to(".part",{
+function studentPanel(){
+    var details=document.querySelector("#details")
+    details.addEventListener("click",function(){
+        gsap.to(".part_elem",{
             display:'none',
             duration:0.5,
         })
@@ -13,89 +13,13 @@ function teacherPanel(){
             display:'flex',
             duration:0.5,
         })
-        gsap.to("#tp1 ",{
+        gsap.to("#details ",{
             color:"#111",
             duration:0.5
         })
     })
-    var tp2=document.querySelector("#tp2")
-    tp2.addEventListener("click",function(){
-        gsap.to(".part",{
-            display:'none',
-            duration:0.5,
-        })
-        gsap.to("#panel h2",{
-            color:"#4E3629",
-            duration:0.5
-        })
-        gsap.to("#studentInformation",{
-            display:'flex',
-            duration:0.5,
-        })
-        gsap.to("#tp2 ",{
-            color:"#111",
-            duration:0.5
-        })
-    })
-    var tp3=document.querySelector("#tp3")
-    tp3.addEventListener("click",function(){
-        gsap.to(".part",{
-            display:'none',
-            duration:0.5,
-        })
-        gsap.to("#panel h2",{
-            color:"#4E3629",
-            duration:0.5
-        })
-        gsap.to("#exams",{
-            display:'flex',
-            duration:0.5,
-        })
-        gsap.to("#tp3 ",{
-            color:"#111",
-            duration:0.5
-        })
-    })
-    var tp4=document.querySelector("#tp4")
-    tp4.addEventListener("click",function(){
-        gsap.to(".part",{
-            display:'none',
-            duration:0.5,
-        })
-        gsap.to("#panel h2",{
-            color:"#4E3629",
-            duration:0.5
-        })
-        gsap.to("#leaveRequest",{
-            display:'flex',
-            duration:0.5,
-        })
-        gsap.to("#tp4 ",{
-            color:"#111",
-            duration:0.5
-        })
-    })
-    var tp5=document.querySelector("#tp5")
-    tp5.addEventListener("click",function(){
-        gsap.to(".part",{
-            display:'none',
-            duration:0.5,
-        })
-        gsap.to("#panel h2",{
-            color:"#4E3629",
-            duration:0.5
-        })
-        gsap.to("#editDetails",{
-            display:'flex',
-            duration:0.5,
-        })
-        gsap.to("#tp5 ",{
-            color:"#111",
-            duration:0.5
-        })
-    })
-    var tp6=document.querySelector("#tp6")
-    tp6.addEventListener("click",function(){
+    var changePassword=document.querySelector("#changePassword")
+    changePassword.addEventListener("click",function(){
         gsap.to(".part",{
             display:'none',
             duration:0.5,
@@ -108,13 +32,89 @@ function teacherPanel(){
             display:'flex',
             duration:0.5,
         })
-        gsap.to("#tp6 ",{
+        gsap.to("#changePassword ",{
+            color:"#111",
+            duration:0.5
+        })
+    })
+    var attendance=document.querySelector("#attendance")
+    attendance.addEventListener("click",function(){
+        gsap.to(".part",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#panel h2",{
+            color:"#4E3629",
+            duration:0.5
+        })
+        gsap.to("#attendance",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#attendance ",{
+            color:"#111",
+            duration:0.5
+        })
+    })
+    var leaveRequest=document.querySelector("#leaveRequest")
+    leaveRequest.addEventListener("click",function(){
+        gsap.to(".part",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#panel h2",{
+            color:"#4E3629",
+            duration:0.5
+        })
+        gsap.to("#leaveRequest",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#leaveRequest ",{
+            color:"#111",
+            duration:0.5
+        })
+    })
+    var marks=document.querySelector("#marks")
+    marks.addEventListener("click",function(){
+        gsap.to(".part",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#panel h2",{
+            color:"#4E3629",
+            duration:0.5
+        })
+        gsap.to("#editDetails",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#marks ",{
+            color:"#111",
+            duration:0.5
+        })
+    })
+    var editDetails=document.querySelector("#editDetails")
+    editDetails.addEventListener("click",function(){
+        gsap.to(".part",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#panel h2",{
+            color:"#4E3629",
+            duration:0.5
+        })
+        gsap.to("#changePassword",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#editDetails ",{
             color:"#111",
             duration:0.5
         })
     })
 }
-teacherPanel()
+studentPanel()
 function leavePanel(){
     var apply=document.querySelector("#apply")
     apply.addEventListener("click",function(){
@@ -138,67 +138,5 @@ function leavePanel(){
             duration:0.5,
         })
     })
-    var approve=document.querySelector("#approve")
-    approve.addEventListener("click",function(){
-        gsap.to(".request",{
-            display:'none',
-            duration:0.5,
-        })
-        gsap.to("#approveLeave",{
-            display:'flex',
-            duration:0.5,
-        })
-    })
 }
 leavePanel()
-function examPanel(){
-    var ep1=document.querySelector("#ep1");
-    ep1.addEventListener("click",function(){
-        gsap.to("#examPanel h2",{
-            display:'none',
-            duration:0.5,
-        })
-        gsap.to(".exams",{
-            display:'none',
-            duration:0.5,
-        })
-        gsap.to("#examBox",{
-            display:'flex',
-            duration:0.5,
-        })
-        gsap.to("#datesheetUpload",{
-            display:'flex',
-            duration:0.5,
-        })
-    })
-    var ep2=document.querySelector("#ep2");
-    ep2.addEventListener("click",function(){
-        gsap.to("#examPanel h2",{
-            display:'none',
-            duration:0.5,
-        })
-        gsap.to(".exams",{
-            display:'none',
-            duration:0.5,
-        })
-        gsap.to("#examBox",{
-            display:'flex',
-            duration:0.5,
-        })
-        gsap.to("#marksUpload",{
-            display:'flex',
-            duration:0.5,
-        })
-    })
-}
-examPanel()
-function approve(){
-var button = document.querySelector("#leaveInfo button");
-button.addEventListener("click",function(){
-    gsap.to("#leaveInfo button",{
-        innerText:"APPROVED",
-        backgroundColor:"green"
-    })
-})
-}
-approve()

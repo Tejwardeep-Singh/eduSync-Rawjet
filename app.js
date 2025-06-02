@@ -31,9 +31,14 @@ const leaveRouter=require("./routes/leave")
 const headTeacherRouter=require("./routes/headTeacher")
 const teacherStudentRouter=require("./routes/teacherStudent")
 const authRouter=require("./controllers/authController");
-const teacherControllerRouter=require("./controllers/teacherController");
+const teacherControllerRouter= require("./controllers/teacherController");
+const studentControllerRouter= require("./controllers/studentController");
 const approveRouter = require("./routes/approve");
+const studentRegisterRouter = require("./routes/studentRegister");
 const datesheetRouter = require("./routes/datesheet");
+const subjectRouter = require("./routes/subject");
+const classRouter = require("./routes/class");
+const changePasswordRouter = require("./routes/changePassword");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -53,11 +58,19 @@ app.use("/head",headRouter);
 app.use("/leave",leaveRouter);
 app.use("/approve",approveRouter);
 app.use("/datesheet",datesheetRouter);
+app.use("/studentRegister",studentRegisterRouter);
+app.use("/subject",subjectRouter);
+app.use("/subject/addSubject",subjectRouter);
+app.use("/class",classRouter);
+app.use("/changePassword",changePasswordRouter);
+
 
 app.use("/",teacherStudentRouter);
 app.use("/",headRouter);
 app.use("/",authRouter);
 app.use("/",teacherControllerRouter);
+app.use("/",studentControllerRouter);
+
 app.use('/uploads', express.static('uploads'));
 
 

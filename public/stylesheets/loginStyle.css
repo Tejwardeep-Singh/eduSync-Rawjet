@@ -75,6 +75,11 @@ main{
     justify-content: center;
     align-items: center;
     padding: 2% 5%;
+    flex-direction: column;
+    gap:4% ;
+}
+#contact-pg4 a{
+    cursor: pointer;
 }
 
 .contact-container{
@@ -84,13 +89,22 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4%;
+    padding: 2%;
     background-color: #808000;
     border-radius: 50px;
     box-shadow: 0 8px 16px 0 rgba(140, 79, 0, 0.647);
     z-index: 996;
 }
-
+.registerStudent{
+    width: 60%;
+}
+.contact-container form{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .contact-left{
     width: 100%;
@@ -140,6 +154,13 @@ main{
     cursor: pointer;
     height: 5vh;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.575);
+}
+#label{
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 @media only screen and (max-width: 900px)
 {

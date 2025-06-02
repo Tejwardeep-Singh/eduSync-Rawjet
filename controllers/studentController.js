@@ -1,31 +1,30 @@
 const jwt = require('jsonwebtoken');
 const express = require('express');
-const teacherRouter = express.Router();
-const teacherModel = require('../models/teacherModel');
+const studentRouter = express.Router();
+const studentModel = require('../models/studentModel');
 const bcrypt = require('bcrypt');
-const generateTeacherToken = require('../utils/generateTeacherTokens');
+const generateStudentToken = require('../utils/generateStudentTokens');
 
 
-teacherRouter.post('/teacherLogin', async (req, res) => {
+studentRouter.post('/studentLogin', async (req, res) => {
     const { id, password } = req.body;
 
     try {
-        let teacher = await teacherModel.findOne({ login_id: id });
+        let student = await studentModel.findOne({ id: Number(id) });
 
-        if (!teacher) {
+        if (!student) {
             return res.status(400).send("Teacher not found");
         }
 
-        const isPasswordValid = await bcrypt.compare(password, teacher.password);
+        const isPasswordValid = await bcrypt.compare(password, student.password);
 
         if (isPasswordValid) {
             // Generate token and send it as a cookie or response
-            const token = generateTeacherToken(teacher);
+            const token = generateStudentToken(student);
             res.cookie('token', token, { httpOnly: true });
 
-            // Redirect to the teacher page
-            return res.redirect('/teacher');
-
+            // Redirect to the student page
+            return res.redirect('/student');
         } else {
             return res.status(400).send("Password incorrect");
         }
@@ -35,4 +34,4 @@ teacherRouter.post('/teacherLogin', async (req, res) => {
     }
 });
 
-module.exports = teacherRouter;
+module.exports = studentRouter;

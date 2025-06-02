@@ -132,6 +132,25 @@ function headPanel(){
             duration:0.5
         })
     })
+    var hp8=document.querySelector("#hp8")
+    hp8.addEventListener("click",function(){
+        gsap.to(".part",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".panel_elem a",{
+            color:"#4E3629",
+            duration:0.5
+        })
+        gsap.to("#admin",{
+            display: 'flex',
+            duration:0.5,
+        })
+        gsap.to("#hp8 a",{
+            color:"white",
+            duration:0.5
+        })
+    })
 
 }
 var toggle = 0;
@@ -228,6 +247,45 @@ function examPanel(){
     })
 }
 examPanel()
+function admin(){
+    var ap1= document.querySelector("#ap1");
+    ap1.addEventListener("click",function(){
+        gsap.to(".admin",{
+            display:"none",
+        })
+        gsap.to("#subject",{
+            display:"flex",
+        })
+    }) 
+    var ap2= document.querySelector("#ap2");
+    ap2.addEventListener("click",function(){
+        gsap.to(".admin",{
+            display:"none",
+        })
+        gsap.to("#class",{
+            display:"flex",
+        })
+    }) 
+    var ap3= document.querySelector("#ap3");
+    ap3.addEventListener("click",function(){
+        gsap.to(".admin",{
+            display:"none",
+        })
+        gsap.to("#addSubjectClass",{
+            display:"flex",
+        })
+    })
+    var ap4= document.querySelector("#ap4");
+    ap4.addEventListener("click",function(){
+        gsap.to(".admin",{
+            display:"none",
+        })
+        gsap.to("#assignTeacher",{
+            display:"flex",
+        })
+    })
+}
+admin()
 function approve(){
 var button = document.querySelector("#leaveInfo button");
 button.addEventListener("click",function(){

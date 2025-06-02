@@ -43,13 +43,18 @@
         </nav>  
         <div id="page1">
             <div id="pg1-container">
-                <div id="panel">
-                    <div class="panel_elem" id="tp1"><a href="/teacher">Personal Information</a></div>
-                    <div class="panel_elem" id="tp2"><a href="#">Student Information</a></div>
-                    <div class="panel_elem" id="tp3"><a href="#">Exam</a></div>
-                    <div class="panel_elem" id="tp4"><a href="#">Leave Request</a></div>
-                    <div class="panel_elem" id="tp5"><a href="#">Edit Details</a></div>
-                    <div class="panel_elem" id="tp6"><a href="#">Change Password</a></div>
+                <div id="panel-container">
+                    <div class="nr-r" id="panel-logo">
+                        <i class="ri-menu-line"></i>
+                    </div>
+                    <div id="panel">
+                        <div class="panel_elem" id="tp1"><a href="/teacher">Personal Information</a></div>
+                        <div class="panel_elem" id="tp2"><a href="#">Student Information</a></div>
+                        <div class="panel_elem" id="tp3"><a href="#">Exam</a></div>
+                        <div class="panel_elem" id="tp4"><a href="#">Leave Request</a></div>
+                        <div class="panel_elem" id="tp5"><a href="#">Edit Details</a></div>
+                        <div class="panel_elem" id="tp6"><a href="#">Change Password</a></div>
+                    </div>
                 </div>
                 <div id="data">
                     <div class="part" id="personalInformation">
@@ -91,7 +96,7 @@
                     <div class="part" id="studentInformation">
                         <div id="studentPanel">
                             <h2 class="tp1">Search student</h2>
-                            <h2 class="tp2">Add student</h2>
+                            <a class="tp2" href="/studentRegister">Add student</a>
                         </div>
                         <div id="studentBox">
                             <div id="studentInfo" class="studentInfo">
@@ -104,47 +109,6 @@
                                         <button type="submit">SHOW</button>
                                     </form>
                                 </div>
-                            </div>
-                            <div id="studentAdd" class="part" class="studentInfo">
-                                <h2>Add Or Update student</h2>
-                                <form action="/teacherStudent" method="POST" enctype="multipart/form-data">
-                                    <div id="label">
-                                        <label for="id">Id: </label>
-                                        <input type="number" id="login_id" name="login_id" value="<%= user1.login_id %>" required>
-                                    </div>
-                                    <div id="label">
-                                        <label for="name">Name: </label>
-                                        <input type="text" id="name" name="name" value="<%= user1.name %>" required><br><br>
-                                    </div>
-                                    <div id="label">
-                                        <label for="fatherName">Father Name</label>
-                                    <input type="text" id="fatherName" name="fatherName" value="<%= user1.fatherName %>" required><br><br>
-                                    </div>
-                                    <div id="label"> 
-                                        <label for="dob">Date Of Birth: </label>
-                                        <input type="date" id="dob" name="dob" value="<%= user1.dob %>" required><br><br></div>
-                                    <div id="label">
-                                        <label for="doj">date Of Joining: </label>
-                                    <input type="date" id="dateOfJoining" name="dateOfJoining" value="<%= user1.dateOfJoining %>" required><br><br>
-                                    </div>
-                                    <div id="label">
-                                        <label for="age">Age: </label>
-                                    <input type="number" id="age" name="age" value="<%= user1.age %>" required><br><br>
-                                    </div>
-                                    <div id="label">
-                                        <label for="mobile"> Mobile: </label>
-                                    <input type="number" id="mobile" name="mobile" value="<%= user1.mobile%>" required><br><br>
-                                    </div>
-                                    <div id="label">
-                                        <label for="email">Email: </label>
-                                    <input type="email" id="email" name="email" value="<%= user1.email %>" required><br><br>
-                                    </div>
-                                    <div id="label">
-                                        <label for="Photo">Photo: </label>
-                                        <input type="file" name="image" accept="image/*" />
-                                    </div>
-                                    <button type="submit">Update</button>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -176,7 +140,7 @@
                         </div>
                         <div id="applyLeave" class="request">
                             <h2>Apply Leave</h2>
-                            <form action="/leave" method="POST">
+                            <form action="/leave/teacher" method="POST">
                                 <div id="label">
                                     <label for="id">ID: </label>
                                     <input type="number" id="id" name="id" value="<%= apply.id %>" required><br><br>
@@ -215,7 +179,10 @@
                                     <div class="infoElem"><%=leaves.from_date%></div>
                                     <div class="infoElem"><%=leaves.to_date%></div>
                                     <div class="infoElem"><%=leaves.reason%></div>
-                                    <div class="infoElem"><button>APPROVE</button></div>
+                                    <form action="/approve/student" method="post">
+                                        <input type="hidden" name="leaveId" value="<%= leaves._id %>">
+                                        <button type="submit">APPROVE</button>
+                                    </form>
                                 </div>
                             <% }) %>
                         </div>
@@ -239,6 +206,20 @@
                                 </div>
                             <% }) %>
                         </div>  
+                    </div>
+                    <div class="part" id="changePassword">
+                        <h2>Change Password</h2>
+                        <form action="/changePassword/teacher" method="POST">
+                            <div id="label">
+                                <label for="oldPassword">Old Password: </label>
+                                <input type="password" id="oldPass" name="oldPass"  required><br><br>
+                            </div>
+                            <div id="label">
+                                <label for="newPassword">New Password: </label>
+                            <input type="password" id="newPass" name="newPass"  required><br><br>
+                            </div>
+                            <button type="submit">Update</button>
+                        </form>
                     </div>
                 </div>
 

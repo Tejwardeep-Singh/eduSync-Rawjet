@@ -43,6 +43,13 @@
         flex-direction: column;
         padding: 10vh 0 0 0;
     }
+    #panel-container{
+        height: 10vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;  
+    }
     #panel{
         height: 10vh;
         width: 100%;
@@ -53,8 +60,8 @@
         border-radius: 50px;
         border: solid #4E3629 2px;
         overflow-x: scroll;
-        flex-wrap: nowrap;
-        gap: 2vh;
+        gap: 0.5vw;
+        padding: 0 2%;
     }
     .panel_elem{
         height: 100%;
@@ -106,12 +113,19 @@
         padding: 2%;
     }
 
-    .part h2{
+    .part h2 {
         font-size: 4vh;
         font-family:'fjalla-one-regular';
         color: #4E3629;
         -webkit-text-stroke: #111  1px;
     }
+    .part a {
+        font-size: 4vh;
+        font-family:'fjalla-one-regular';
+        color: #4E3629;
+        -webkit-text-stroke: #111  2px;
+    }
+    
     form{
         height: 100%;
         width: 50%;
@@ -159,36 +173,6 @@
         border-radius: 20px;
         border: solid #111 1px;
         padding: 1%;
-    }
-    #personalInformation{
-        display:flex;
-    }
-    #studentInformation
-    {
-        display: none;
-    }
-    #teacherInfo{
-        display: none;
-    }
-    #exams{
-        display: none;
-    }
-    #teacherInformation
-    {
-        display: none;
-    }
-    #editDetails
-    {
-        display: none;
-    }
-
-    #leaveRequest
-    {
-        display: none;
-    }
-    #changePassword
-    {
-        display: none;
     }
     #teacherBox{
         height: 100%;
@@ -289,12 +273,12 @@
         border: 0px;
     }
     #leaveInfoPanel{
+        height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
-        height: 100%;
-        width: 100%;
     }
     #leaveInfoPanel .infoElem{
         border: none;
@@ -355,12 +339,83 @@
     #datesheet{
         display: none;
     }
+    #adminBlock{
+        height: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .admin{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #adminPanel{
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+        width: 100%;
+        height: auto;
+    }
+    #adminPanel h2{
+        cursor: pointer;
+    }
+    .show{
+        height: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .add{
+        height: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #adminInfoPanel{
+        height: 100%;
+        width: 100%;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid #4E3629;
+    }
+    #adminInfoPanel h2{
+        border: none;
+    }
+    #adminInfo{
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .admin{
+        display: none;
+    }
+    #subjectData{
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .part{
+        display: none;
+    }
+    #personalInformation{
+        display:flex;
+    }
     @media only screen and (max-width: 800px)
     {
-        #panel{
-            padding: 5%;   
-            gap: 3vh; 
-        }
+        
         #panel a{
             font-size: medium;
         }
