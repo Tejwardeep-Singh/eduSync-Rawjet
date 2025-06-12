@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app =express();
 const path=require("path");
@@ -7,8 +8,6 @@ const cookieParser=require("cookie-parser");
 const mongoose = require("mongoose");
 const connection=require("./config/mongooseConnection")
 
-
-require("dotenv").config();
 app.use(expressSession({
     resave:false,
     saveUninitialized:false,

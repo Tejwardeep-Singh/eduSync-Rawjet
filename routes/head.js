@@ -1,59 +1,52 @@
 const express = require("express");
-const multer = require('multer');
-const path = require('path');
 const headRouter = express.Router();
 const HeadDetails = require('../models/headDetails');
-const headModel = require('../models/headModel');
-const {leaveRequestTeacher} = require("../models/leaveRequest")
-const subject= require("../models/subject")
-const section= require("../models/class")
-const saltRounds = 10;
+const upload = require("../config/cloudinaryStorage");  
+const { leaveRequestTeacher } = require("../models/leaveRequest");
+const subject = require("../models/subject");
+const section = require("../models/class");
 
-// Set up multer storage configuration
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Directory to store images (make sure the directory exists)
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
-    }
-});
-
-const upload = multer({ storage: storage });
-
-
-
-// POST route to update or create head details with image upload
-headRouter.post('/', upload.single('image'), async function(req, res) {
-    const { name, fatherName, dob, dateOfJoining, mobile, email } = req.body;
-    const image = req.file ? req.file.path : null;
-
+// POST route with cloud upload
+headRouter.post('/', upload.single('image'), async function (req, res) {
     try {
-        const leave = await leaveRequestTeacher.find({ status: "pending" });
+        const { name, fatherName, dob, dateOfJoining, mobile, email } = req.body;
+        const image = req.file ? req.file.path : null; 
+
+        const updateData = { name, fatherName, dob, dateOfJoining, mobile, email };
+        if (image) updateData.image = image;
 
         const updatedUser = await HeadDetails.findOneAndUpdate(
             { name },
-            { name, fatherName, dob, dateOfJoining, mobile, email, image },
+            updateData,
             { new: true, upsert: true }
         );
+
+        const leave = await leaveRequestTeacher.find({ status: "pending" });
+        const subjects = await subject.find();
+        const sections = await section.find();
 
         res.render('head', {
             user: updatedUser,
             user1: {},
             user2: {},
             leave,
+            subjects,
+            sections,
             message: 'User updated successfully!',
-            error: null,
+            error: null
         });
+
     } catch (err) {
-        console.error("Error updating user:", err);
-        res.render('head', {
+        console.error("Cloud upload error:", err);
+        res.status(500).render('head', {
             user: req.body,
             user1: {},
             user2: {},
             leave: [],
+            subjects: [],
+            sections: [],
             message: null,
-            error: 'Error updating user: ' + err.message,
+            error: 'Error uploading image: ' + err.message
         });
     }
 });
