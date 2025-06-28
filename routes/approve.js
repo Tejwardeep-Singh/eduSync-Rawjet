@@ -10,7 +10,7 @@ leaveRouter.post("/teacher", async function(req, res) {
     
     try {
         // Find the leave request by its ID and update its status to "Approved"
-        const updatedLeave = await leaveRequestStudent.findByIdAndUpdate(
+        const updatedLeave = await leaveRequestTeacher.findByIdAndUpdate(
             leaveId,
             { status: "Approved" },
             { new: true }  // This option returns the updated document
@@ -19,6 +19,7 @@ leaveRouter.post("/teacher", async function(req, res) {
         if (!updatedLeave) {
             return res.status(404).send("Leave request not found");
         }
+        res.redirect("/head");  // Redirect to the head page after approval
 
         // Redirect to the appropriate page (e.g., /head)
     } catch (err) {
@@ -44,8 +45,8 @@ leaveRouter.post("/student", async function(req, res) {
         if (!updatedLeave) {
             return res.status(404).send("Leave request not found");
         }
+        res.redirect("/teacher");  
 
-        // Redirect to the appropriate page (e.g., /head)
     } catch (err) {
         console.error("Error approving leave:", err);
         res.status(500).send("Internal Server Error");

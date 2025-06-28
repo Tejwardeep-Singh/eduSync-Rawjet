@@ -7,6 +7,7 @@ const subject = require("../models/subject");
 const section = require("../models/class");
 
 // POST route with cloud upload
+
 headRouter.post('/', uploadHead.single('image'), async function (req, res) {
     try {
         const { name, fatherName, dob, dateOfJoining, mobile, email } = req.body;
