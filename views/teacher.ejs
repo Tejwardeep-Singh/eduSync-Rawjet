@@ -129,7 +129,79 @@
                                     <button type="submit">SUBMIT</button>
                                 </form>
                             </div>
-                            <div id="marksUpload" class="exams"></div>
+                            <div id="marks" class="exams">
+                                <div id="marksPanel">
+                                    <h2 id="mp1">View Marks</h2>
+                                    <h2 id="mp2">Upload Marks</h2>
+                                </div>
+                                <div id="marksBox">
+                                    <div id="viewMarks" class="marksElem">
+                                        <div id="viewMarksPanel">
+                                            <h2 id="vp1">Class Report</h2>
+                                            <h2 id="vp2">Student Report</h2>
+                                        </div>
+                                        <div id="viewMarksBox" class="marksElem">
+                                            <div id="studentReport" class="marksElem report">
+                                                <form action="/uploadMarks/teacher/studentReport" method="get" enctype="multipart/form-data">
+                                                    <div id="label">
+                                                        <label for="student_id">ID: </label>
+                                                        <input type="number" id="student_id" name="student_id"required><br><br>     
+                                                    </div>
+                                                    <input type="hidden" id="nameValue" name="nameValue" value="<%= nameValue %>" required><br><br>
+                                                    <input type="hidden" id="sectionValue" name="sectionValue" value="<%= sectionValue %>" required><br><br>
+                                                    <button type="submit">SHOW</button>
+                                                </form>
+                                            </div>
+                                            <div id="classReport" class="marksElem report">
+                                                <h2>Class Report</h2>
+                                                <form action="/uploadMarks/teacher/classReport" method="get">
+                                                    <div id="label">
+                                                        <label for="exam_type">EXAM TYPE:</label>
+                                                        <select name="exam_type" id="exam_type">
+                                                            <option value="Final">Final</option>
+                                                            <option value="Half_Yearly">Half Yearly</option>
+                                                            <option value="Montly">Montly</option>
+                                                            <option value="Test">Test</option>
+                                                        </select>
+                                                    </div>
+                                                    <div id="label">
+                                                        <label for="date">Date:</label>
+                                                        <input type="date" name="date" id="date">
+                                                    </div>
+                                                    <input type="hidden" id="nameValue" name="nameValue" value="<%= nameValue %>" required><br><br>
+                                                    <input type="hidden" id="sectionValue" name="sectionValue" value="<%= sectionValue %>" required><br><br>
+                                                    <button type="submit">Submit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="uploadMarks" class="marksElem">
+                                        <h2>Upload Marks</h2>
+                                        <form action="/uploadMarks" method="get">
+                                            <div id="label">
+                                                <label for="exam_type">EXAM TYPE:</label>
+                                                <select name="exam_type" id="exam_type">
+                                                    <option value="Final">Final</option>
+                                                    <option value="Half_Yearly">Half Yearly</option>
+                                                    <option value="Montly">Montly</option>
+                                                    <option value="Test">Test</option>
+                                                </select>
+                                            </div>
+                                            <div id="label">
+                                                <label for="total">Total Marks:</label>
+                                                <input type="number" id="total" name="total" required><br><br>
+                                            </div>
+                                            <div id="label">
+                                                <label for="date">Date (of first exam):</label>
+                                                <input type="date" id="date" name="date" required><br><br>
+                                            </div>
+                                            <input type="hidden" id="nameValue" name="nameValue" value="<%= nameValue %>" required><br><br>
+                                            <input type="hidden" id="sectionValue" name="sectionValue" value="<%= sectionValue %>" required><br><br>
+                                            <button type="submit">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="part" id="leaveRequest">
@@ -160,7 +232,7 @@
                                     <label for="reason">Reason: </label>
                                 <input type="text" id="reason" name="reason" value="<%= apply.reason %>" required><br><br>
                                 </div>
-                                <button type="submit">Update</button>
+                                <button type="submit">Submit</button>
                             </form>
                         </div>
                         <div id="approveLeave" class="request">

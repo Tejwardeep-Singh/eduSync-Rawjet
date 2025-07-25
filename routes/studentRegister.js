@@ -16,6 +16,7 @@ studentRegisterRouter.post("/", uploadStudent.single('image'), async function (r
             id,
             name,
             classId,
+            section,
             fatherName,
             motherName,
             city,
@@ -45,7 +46,8 @@ studentRegisterRouter.post("/", uploadStudent.single('image'), async function (r
         const student = new studentModel({
             id,
             name,
-            class: classDoc._id,
+            class:classId,
+            section,
             fatherName,
             motherName,
             city,

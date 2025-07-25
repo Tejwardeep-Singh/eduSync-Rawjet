@@ -1,8 +1,14 @@
 const mongoose = require("mongoose");
 
-const leaveRequestSchema = mongoose.Schema({
+const leaveRequestStudentSchema = mongoose.Schema({
     id:Number,
     name:{
+        type:String,
+    },
+    class:{
+        type:Number,
+    },
+    section:{
         type:String,
     },
     from_date:{
@@ -20,6 +26,5 @@ const leaveRequestSchema = mongoose.Schema({
     }
 });
 
-const leaveRequestTeacher=mongoose.model("leaveRequestTeacher",leaveRequestSchema);
-const leaveRequestStudent=mongoose.model("leaveRequestStudent",leaveRequestSchema);
-module.exports={leaveRequestTeacher,leaveRequestStudent};
+const leaveRequestStudent=mongoose.model("leaveRequestStudent",leaveRequestStudentSchema);
+module.exports=leaveRequestStudent;

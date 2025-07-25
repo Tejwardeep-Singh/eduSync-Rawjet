@@ -5,7 +5,8 @@ const multer = require("multer");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 const leaveRouter = express.Router();
-const { leaveRequestTeacher,leaveRequestStudent } = require("../models/leaveRequest");
+const leaveRequestTeacher= require("../models/leaveRequestTeacher");
+const leaveRequestStudent= require("../models/leaveRequestStudent");
 
 leaveRouter.post("/teacher", async function(req, res) {
     const { id, name, from_date, to_date, reason } = req.body;
@@ -23,12 +24,14 @@ leaveRouter.post("/teacher", async function(req, res) {
     res.redirect('/teacher');
 });
 leaveRouter.post("/student", async function(req, res) {
-    const { id, name, from_date, to_date, reason } = req.body;
+    const { id, name,kaksha,section, from_date, to_date, reason } = req.body;
     const fromFormatted = new Date(from_date).toISOString().split('T')[0];
     const toFormatted= new Date(to_date).toISOString().split('T')[0];
     const request = new leaveRequestStudent({
         id: id,
         name: name,
+        class:kaksha,
+        section:section,
         from_date: fromFormatted,
         to_date: toFormatted,
         reason: reason,

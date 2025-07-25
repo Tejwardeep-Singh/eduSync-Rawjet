@@ -1,11 +1,11 @@
 const express = require("express");
 const multer = require("multer");
-const path = require("path");
 const jwt = require("jsonwebtoken");
+
 
 const studentRouter = express.Router();
 const studentModel = require("../models/studentModel");
-const { leaveRequestStudent } = require("../models/leaveRequest");
+const leaveRequestStudent= require("../models/leaveRequestStudent");
 
 const {uploadStudent} = require("../config/cloudinaryupload"); // ✅ cloudinary storage
 
@@ -58,6 +58,8 @@ studentRouter.get("/", async (req, res) => {
         }
 
         const studentLeaveDetails = await leaveRequestStudent.find({ id: login_id });
+        const nameValue= student.class;
+        const sectionValue=student.section
 
         res.render("student", {
             user: student,
@@ -65,6 +67,8 @@ studentRouter.get("/", async (req, res) => {
             user2: {},
             apply: {},
             studentLeaveDetails,
+            nameValue,
+            sectionValue,
         });
     } catch (err) {
         console.error("JWT verification failed:", err.message);

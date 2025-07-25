@@ -1,6 +1,7 @@
 const express = require("express");
 const leaveRouter = express.Router();
-const { leaveRequestTeacher,leaveRequestStudent} = require("../models/leaveRequest");
+const leaveRequestTeacher= require("../models/leaveRequestTeacher");
+const leaveRequestStudent=require("../models/leaveRequestStudent")
 
 leaveRouter.post("/teacher", async function(req, res) {
     const { leaveId } = req.body; // Access leaveId from the query parameter

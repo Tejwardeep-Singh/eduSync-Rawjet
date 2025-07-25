@@ -2,9 +2,10 @@ const express = require("express");
 const headRouter = express.Router();
 const HeadDetails = require('../models/headDetails');
 const { uploadHead} = require("../config/cloudinaryupload");
-const { leaveRequestTeacher } = require("../models/leaveRequest");
+const leaveRequestTeacher= require("../models/leaveRequestTeacher");
 const subject = require("../models/subject");
 const section = require("../models/class");
+const isLoggedIn = require("../middlewares/isLoggedIn");
 
 // POST route with cloud upload
 
@@ -54,7 +55,7 @@ headRouter.post('/', uploadHead.single('image'), async function (req, res) {
 
 
 // GET route to show head details form
-headRouter.get('/', async function(req, res) {
+headRouter.get('/',isLoggedIn, async function(req, res) {
     try {
         const headDetails = await HeadDetails.findOne();
         const leave = await leaveRequestTeacher.find({status:"pending"}); 

@@ -185,20 +185,104 @@ function examPanel(){
             display:'flex',
             duration:0.5,
         })
-        gsap.to("#marksUpload",{
+        gsap.to("#marks",{
             display:'flex',
             duration:0.5,
         })
     })
 }
 examPanel()
-function approve(){
-var button = document.querySelector("#leaveInfo button");
-button.addEventListener("click",function(){
-    gsap.to("#leaveInfo button",{
-        innerText:"APPROVED",
-        backgroundColor:"green"
+function marksPanel(){
+    var mp1=document.querySelector("#mp1");
+    mp1.addEventListener("click",function(){
+        gsap.to("#marksPanel",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".marksElem",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#marksBox",{
+            display:"flex",
+            duration:0.5,
+        })
+        gsap.to("#viewMarks",{
+            display:'flex',
+            duration:0.5,
+        })
     })
-})
+    var mp2=document.querySelector("#mp2");
+    mp2.addEventListener("click",function(){
+        gsap.to("#marksPanel",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".marksElem",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#marksBox",{
+            display:"flex",
+            duration:0.5,
+        })
+        gsap.to("#uploadMarks",{
+            display:'flex',
+            duration:0.5,
+        })
+    })
+}
+function marksViewPanel(){
+    var vp1=document.querySelector("#vp1");
+    vp1.addEventListener("click",function(){
+        gsap.to("#marksViewPanel",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".report",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#viewMarksBox",{
+            display:"flex",
+            duration:0.5,
+        })
+        gsap.to("#classReport",{
+            display:'flex',
+            duration:0.5,
+        })
+    })
+    var vp2=document.querySelector("#vp2");
+    vp2.addEventListener("click",function(){
+        gsap.to("#marksViewPanel",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".report",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#viewMarksBox",{
+            display:"flex",
+            duration:0.5,
+        })
+        gsap.to("#studentReport",{
+            display:'flex',
+            duration:0.5,
+        })
+    })
+}
+marksPanel()
+marksViewPanel()
+function approve(){
+    var buttons = document.querySelectorAll("#leaveInfo button");
+    buttons.forEach(function(button){
+        button.addEventListener("click",function(){
+            gsap.to("#leaveInfo button",{
+                innerText:"APPROVED",
+                backgroundColor:"green"
+            })
+        })
+    })
 }
 approve()

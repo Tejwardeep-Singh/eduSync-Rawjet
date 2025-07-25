@@ -44,7 +44,6 @@ async function registerUser(id, plainPassword) {
         console.error("Error registering user:", error);
     }
 }
-registerUser("001","rawjet");
 
 // Export the model for use in other parts of the application
 module.exports = head;

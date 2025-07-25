@@ -38,6 +38,7 @@ const datesheetRouter = require("./routes/datesheet");
 const subjectRouter = require("./routes/subject");
 const classRouter = require("./routes/class");
 const changePasswordRouter = require("./routes/changePassword");
+const uploadMarksRouter=require("./routes/uploadMarks");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -62,6 +63,7 @@ app.use("/subject",subjectRouter);
 app.use("/subject/addSubject",subjectRouter);
 app.use("/class",classRouter);
 app.use("/changePassword",changePasswordRouter);
+app.use("/uploadMarks",uploadMarksRouter);
 
 
 app.use("/",teacherStudentRouter);

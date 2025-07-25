@@ -18,25 +18,25 @@ function studentPanel(){
             duration:0.5
         })
     })
-    var attendance=document.querySelector("#attendance")
-    attendance.addEventListener("click",function(){
-        gsap.to(".part",{
-            display:'none',
-            duration:0.5,
-        })
-        gsap.to("#panel h2",{
-            color:"#4E3629",
-            duration:0.5
-        })
-        gsap.to("#attendance",{
-            display:'flex',
-            duration:0.5,
-        })
-        gsap.to("#attendance ",{
-            color:"#111",
-            duration:0.5
-        })
-    })
+    // var attendance=document.querySelector("#attendance")
+    // attendance.addEventListener("click",function(){
+    //     gsap.to(".part",{
+    //         display:'none',
+    //         duration:0.5,
+    //     })
+    //     gsap.to("#panel h2",{
+    //         color:"#4E3629",
+    //         duration:0.5
+    //     })
+    //     gsap.to("#attendance",{
+    //         display:'flex',
+    //         duration:0.5,
+    //     })
+    //     gsap.to("#attendance ",{
+    //         color:"#111",
+    //         duration:0.5
+    //     })
+    // })
     var leaveRequest=document.querySelector("#leaveRequest")
     leaveRequest.addEventListener("click",function(){
         gsap.to(".part",{
@@ -56,8 +56,8 @@ function studentPanel(){
             duration:0.5
         })
     })
-    var marks=document.querySelector("#marks")
-    marks.addEventListener("click",function(){
+    var report=document.querySelector("#report")
+    report.addEventListener("click",function(){
         gsap.to(".part",{
             display:'none',
             duration:0.5,
@@ -66,11 +66,19 @@ function studentPanel(){
             color:"#4E3629",
             duration:0.5
         })
-        gsap.to("#marks",{
+        gsap.to("#marksBox",{
             display:'flex',
             duration:0.5,
         })
-        gsap.to("#marks",{
+        gsap.to("#viewMarks",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#viewMarksPanel",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#report",{
             color:"#111",
             duration:0.5
         })
@@ -140,3 +148,44 @@ function leavePanel(){
     })
 }
 leavePanel()
+function marksViewPanel(){
+    var vp1=document.querySelector("#vp1");
+    vp1.addEventListener("click",function(){
+        gsap.to("#marksViewPanel",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".report",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#viewMarksBox",{
+            display:"flex",
+            duration:0.5,
+        })
+        gsap.to("#fullReport",{
+            display:'flex',
+            duration:0.5,
+        })
+    })
+    var vp2=document.querySelector("#vp2");
+    vp2.addEventListener("click",function(){
+        gsap.to("#marksViewPanel",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to(".report",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#viewMarksBox",{
+            display:"flex",
+            duration:0.5,
+        })
+        gsap.to("#particularReport",{
+            display:'flex',
+            duration:0.5,
+        })
+    })
+}
+marksViewPanel();

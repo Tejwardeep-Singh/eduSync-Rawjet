@@ -7,5 +7,8 @@ const classInchargeSchema = mongoose.Schema({
     name:{
         type:Number,
     },
+    section:{
+        type:String
+    }
 });
 module.exports = mongoose.model("classIncharge",classInchargeSchema);

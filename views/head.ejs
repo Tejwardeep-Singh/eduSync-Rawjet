@@ -187,7 +187,7 @@
                             <h2 id="ep2">Marks</h2>
                         </div>
                         <div id="examBox">
-                            <div id="datesheet">
+                            <div id="datesheet" class="exams">
                                 <h2>Datesheet</h2>
                                 <div id="datesheetInput">
                                     <form action="/datesheet" method="get" enctype="multipart/form-data">
@@ -199,7 +199,60 @@
                                     </form>
                                 </div>
                             </div>
-                            
+                            <div id="marks" class="exams">
+                                <div id="viewMarks" class="marksElem">
+                                        <div id="viewMarksPanel">
+                                            <h2 id="vp1">Class Report</h2>
+                                            <h2 id="vp2">Student Report</h2>
+                                        </div>
+                                        <div id="viewMarksBox" class="marksElem">
+                                            <div id="studentReport" class="marksElem report">
+                                                <form action="/uploadMarks/head/studentReport" method="get" enctype="multipart/form-data">
+                                                    <div id="label">
+                                                        <label for="student_id">ID: </label>
+                                                        <input type="number" id="student_id" name="student_id"required><br><br>     
+                                                    </div>
+                                                    <div id="label">
+                                                        <label for="nameValue">Class: </label>
+                                                        <input type="number" id="nameValue" name="nameValue"required><br><br>     
+                                                    </div>
+                                                    <div id="label">
+                                                        <label for="sectionValue">Section: </label>
+                                                        <input type="text" id="sectionValue" name="sectionValue"required><br><br>     
+                                                    </div>
+                                                    <button type="submit">SHOW</button>
+                                                </form>
+                                            </div>
+                                            <div id="classReport" class="marksElem report">
+                                                <h2>Class Report</h2>
+                                                <form action="/uploadMarks/head/classReport" method="get">
+                                                    <div id="label">
+                                                        <label for="exam_type">EXAM TYPE:</label>
+                                                        <select name="exam_type" id="exam_type">
+                                                            <option value="Final">Final</option>
+                                                            <option value="Half_Yearly">Half Yearly</option>
+                                                            <option value="Montly">Montly</option>
+                                                            <option value="Test">Test</option>
+                                                        </select>
+                                                    </div>
+                                                    <div id="label">
+                                                        <label for="date">Date:</label>
+                                                        <input type="date" name="date" id="date">
+                                                    </div>
+                                                    <div id="label">
+                                                        <label for="nameValue">Class:</label>
+                                                        <input type="number" name="nameValue" id="nameValue">
+                                                    </div>
+                                                    <div id="label">
+                                                        <label for="sectionValue">Section:</label>
+                                                        <input type="text" name="sectionValue" id="sectionValue">
+                                                    </div>
+                                                    <button type="submit">Submit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                     <div class="part" id="leaveRequest">
@@ -274,18 +327,6 @@
                         <div id="horizontal-ruler"></div>
                         <div id="adminBlock">
                             <div id="subject" class="admin">
-                                <div id="subjectShow" class="show">
-                                    <div class="info" id="adminInfoPanel">
-                                        <div class="infoElem" id="subjectData"><h2>Id</h2></div>
-                                        <div class="infoElem" id="subjectData"><h2>Name</h2></div>
-                                    </div>      
-                                    <% subjects.forEach(subject=> { %>
-                                        <div class="info" id="adminInfoPanel">
-                                            <div class="infoElem" id="subjectData"><%=subject.id%></div>
-                                            <div class="infoElem" id="subjectData"><%=subject.name%></div>
-                                        </div>
-                                    <% }) %>
-                                </div>
                                 <div id="subjectAdd" class="add">
                                     <h2>Add Subject</h2>
                                     <form action="/subject" method="POST" >
@@ -299,6 +340,18 @@
                                         </div>
                                         <button type="submit">SUBMIT</button>
                                     </form>
+                                </div>
+                                 <div id="subjectShow" class="show">
+                                    <div class="info" id="adminInfoPanel">
+                                        <div class="infoElem" id="subjectData"><h2>Id</h2></div>
+                                        <div class="infoElem" id="subjectData"><h2>Name</h2></div>
+                                    </div>      
+                                    <% subjects.forEach(subject=> { %>
+                                        <div class="info" id="adminInfoPanel">
+                                            <div class="infoElem" id="subjectData"><%=subject.id%></div>
+                                            <div class="infoElem" id="subjectData"><%=subject.name%></div>
+                                        </div>
+                                    <% }) %>
                                 </div>
                             </div>
                             <div id="class" class="admin">
@@ -335,14 +388,18 @@
                             </div>
                             <div class="admin" id="addSubjectClass">
                                 <h2>Add Subject To Class</h2>
-                                    <form action="/class/assignTeacher" method="POST">
+                                    <form action="/subject/addSubject" method="POST">
                                         <div id="label">
-                                            <label for="name">Class: </label>
+                                            <label for="kaksha">Class: </label>
                                             <input type="number" id="kaksha" name="kaksha" value="<%= subjects.kaksha%>" required><br><br>
                                         </div>
                                         <div id="label">
+                                            <label for="section">Section: </label>
+                                            <input type="text" id="section" name="section" value="<%= subjects.section%>" required><br><br>
+                                        </div>
+                                        <div id="label">
                                             <label for="id">ID: </label>
-                                            <input type="number" id="id" name="id" value="<%= subjects.id %>" required><br><br>
+                                            <input type="text" id="id" name="id" value="<%= subjects.id %>" required><br><br>
                                         </div>
                                         <div id="label">
                                             <label for="name">Subject: </label>
@@ -359,8 +416,12 @@
                                         <input type="number" id="t_id" name="t_id" value="<%= subjects.t_id%>" required><br><br>
                                     </div>
                                     <div id="label">
-                                        <label for="name">Class: </label>
+                                        <label for="kaksha">Class: </label>
                                         <input type="number" id="kaksha" name="kaksha" value="<%= subjects.kaksha%>" required><br><br>
+                                    </div>
+                                    <div id="label">
+                                        <label for="section">Section: </label>
+                                        <input type="text" id="section" name="section" value="<%= subjects.section%>" required><br><br>
                                     </div>
                                     <button type="submit">SUBMIT</button>
                                 </form>

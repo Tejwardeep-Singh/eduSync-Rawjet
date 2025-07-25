@@ -248,7 +248,7 @@ function examPanel(){
     var ep2=document.querySelector("#ep2");
     ep2.addEventListener("click",function(){
         gsap.to("#examPanel h2",{
-            display:'none',
+            color:"#4E3629",
             duration:0.5,
         })
         gsap.to(".exams",{
@@ -260,6 +260,10 @@ function examPanel(){
             duration:0.5,
         })
         gsap.to("#marks",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#viewMarks",{
             display:'flex',
             duration:0.5,
         })
@@ -305,14 +309,49 @@ function admin(){
     })
 }
 admin()
-function approve(){
-var button = document.querySelector("#leaveInfo button");
-button.addEventListener("click",function(){
-    gsap.to("#leaveInfo button",{
-        innerText:"APPROVED",
-        backgroundColor:"green"
+function marksViewPanel(){
+    var vp1=document.querySelector("#vp1");
+    vp1.addEventListener("click",function(){
+        gsap.to(".report",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#viewMarksBox",{
+            display:"flex",
+            duration:0.5,
+        })
+        gsap.to("#classReport",{
+            display:'flex',
+            duration:0.5,
+        })
     })
-})
+    var vp2=document.querySelector("#vp2");
+    vp2.addEventListener("click",function(){
+        gsap.to(".report",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#viewMarksBox",{
+            display:"flex",
+            duration:0.5,
+        })
+        gsap.to("#studentReport",{
+            display:'flex',
+            duration:0.5,
+        })
+    })
+}
+marksViewPanel();
+function approve(){
+    var buttons = document.querySelectorAll("#leaveInfo button");
+    buttons.forEach(function(button){
+        button.addEventListener("click",function(){
+            gsap.to("#leaveInfo button",{
+                innerText:"APPROVED",
+                backgroundColor:"green"
+            })
+        })
+    })
 }
 approve()
 

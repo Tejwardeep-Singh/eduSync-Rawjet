@@ -1,0 +1,182 @@
+body {
+  background-color: #FFF5E1; /* Soft Cream */
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+#page1{
+    height: auto;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#pg1-container{
+    height: auto;
+    width:80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form{
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form button{
+    width: fit-content;
+    padding:1% 2%;
+}
+table {
+  width:100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #808000a1; /* Semi-transparent Olive Green */
+  color: white;
+}
+
+th, td {
+  padding: 12px 8px;
+  text-align: center;
+  min-width: 100px;
+  flex: 1;
+  border-right: solid 2px #4E3629;
+  border-bottom:solid 2px #4E3629 ;
+}
+
+tr {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+thead tr {
+  background-color: #808000;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f2e7; /* Slightly darker cream */
+}
+
+input[type="number"] {
+  width:100%;
+  height: 100%;
+  background-color: #FFF5E1;
+  color: #4E3629; /* Deep Brown */
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 14px;
+  outline: none;
+}
+
+input[type="number"]:focus {
+  border-bottom: 2px solid #808000;
+  background-color: #ffffff;
+}
+#page1 h1{
+  font-family: exo 2, sans-serif;
+  font-size: 10vh;
+  font-weight: 900;
+  color: #4E3629;
+}
+#sno{
+  border-left: 2px solid #4E3629;
+}
+#page1 h2{
+  font-family: exo 2, sans-serif;
+  width: 100%;
+  font-size: 2.5vh;
+  font-weight:700;
+  color:#6b4e3e;
+  text-align: start;
+}
+ form button {
+  background-color: #4E3629;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #6b4e3e;
+}
+
+@media (max-width: 768px) {
+    #page1{
+        margin-top: 10vh;
+    }
+    #page1 h1{
+      font-size: 4vh;
+  }
+    #pg1-container {
+        width: 95%;
+        padding: 10px 0;
+    }
+
+    table {
+        display: block;
+        width:100%;
+        overflow-x: auto;
+        border-spacing: 0;
+    }
+
+    thead,
+    tbody {
+        display:table;
+        width: max-content; /* force horizontal scroll */
+    }
+
+    thead tr,
+    tbody tr {
+        display: flex;
+        width: max-content;
+    }
+
+    thead tr {
+        align-items: stretch;
+        color: wheat;
+    }
+    thead th{
+        background-color:#4E3629;
+        border-right: 2px solid wheat;
+    }
+    th,
+    td {
+        flex: 0 0 120px;
+        width:100%;
+        box-sizing: border-box;
+        border-right: 2px solid wheat;
+        border-bottom: 2px solid wheat;
+    }
+    tbody td{
+        background-color: #cb997d;
+        font-size:1.5vh;
+    }
+    input[type="number"] {
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        background-color:#cb997d ;
+    }
+    input::placeholder{
+        color: #cb997d;
+    }
+
+    form button {
+        font-size: 14px;
+        padding: 6px 12px;
+        margin: 10px auto;
+        
+    }
+    #page1 h2{
+      font-size: 1.5vh;
+    }
+}
+

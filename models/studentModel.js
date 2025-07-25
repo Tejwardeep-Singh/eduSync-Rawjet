@@ -6,7 +6,10 @@ const studentDetailsSchema = mongoose.Schema({
         type:String,
     },
     class:{
-        type:mongoose.Schema.Types.ObjectId,ref:'class'
+        type:Number,
+    },
+    section:{
+        type:String,
     },
     fatherName:{
         type:String,

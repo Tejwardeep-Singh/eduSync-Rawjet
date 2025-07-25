@@ -4,7 +4,10 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const teacherRouter = express.Router();
 const teacherDetails = require("../models/teacherModel");
-const { leaveRequestStudent, leaveRequestTeacher } = require("../models/leaveRequest");
+const leaveRequestTeacher= require("../models/leaveRequestTeacher");
+const leaveRequestStudent=require("../models/leaveRequestStudent");
+const classIncharge=require("../models/classIncharge");
+const Marks=require("../models/marks")
 
 // Cloudinary upload setup
 const { uploadTeacher } = require("../config/cloudinaryupload");
@@ -59,7 +62,10 @@ teacherRouter.get("/", async (req, res) => {
         const login_id = decoded.login_id;
 
         const teacher = await teacherDetails.findOne({ login_id: login_id });
-        const leave = await leaveRequestStudent.find({status:"pending"});
+        const incharge=await classIncharge.findOne({id:login_id}).select('name section');
+        const nameValue = incharge?.name;
+        const sectionValue = incharge?.section;
+        const leave = await leaveRequestStudent.find({status:"pending",kaksha:nameValue,section:sectionValue});
         const teacherLeaveDetails = await leaveRequestTeacher.find({ id: login_id });
 
         if (!teacher) {
@@ -72,6 +78,8 @@ teacherRouter.get("/", async (req, res) => {
             user2: {},
             apply: {},
             leave,
+            nameValue,
+            sectionValue,
             teacherLeaveDetails,
             message: null,
             error: null,

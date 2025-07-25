@@ -11,11 +11,12 @@ sectionRouter.post("/",function(req,res){
 })
 
 sectionRouter.post("/assignTeacher", function(req,res){
-    const{t_id,kaksha}=req.body;
+    const{t_id,kaksha,section}=req.body;
     const teacher = new teacherDetails({
         id: t_id,
         name:kaksha,
-    });
+        section:section,
+    },{new:True});
     teacher.save();
     res.redirect('/head');
 })

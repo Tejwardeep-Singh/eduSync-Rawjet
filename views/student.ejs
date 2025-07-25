@@ -53,7 +53,7 @@
                         <div class="panel_elem" id="details"><a>Details</a></div>
                         <div class="panel_elem" id="attendance"><a>Attendance</a></div>
                         <div class="panel_elem" id="leaveRequest"><a>leaveRequest</a></div>
-                        <div class="panel_elem" id="marks"><a>Reports</a></div>
+                        <div class="panel_elem" id="report"><a>Reports</a></div>
                         <div class="panel_elem" id="editDetails"><a>Edit Details</a></div>
                         <div class="panel_elem" id="changePassword"><a>Change Password</a></div>
                     </div>
@@ -107,6 +107,47 @@
                             </div>
                         </div>
                     </div>
+                    <div class="part" id="marksBox">
+                        <div id="viewMarks" class="marksElem">
+                            <div id="viewMarksPanel">
+                                <h2 id="vp1">Full Report</h2>
+                                <h2 id="vp2">Particular Report</h2>
+                            </div>
+                            <div id="viewMarksBox" class="marksElem">
+                                <div id="fullReport" class="marksElem report">
+                                    <h2>Full Report</h2>
+                                    <form action="/uploadMarks/student/fullReport" method="get" enctype="multipart/form-data">
+                                        <input type="hidden" id="student_id" name="student_id" value="<%= user.id %>" required><br><br>
+                                        <input type="hidden" id="nameValue" name="nameValue" value="<%= nameValue %>" required><br><br>
+                                        <input type="hidden" id="sectionValue" name="sectionValue" value="<%= sectionValue %>" required><br><br>
+                                        <button type="submit">SHOW</button>
+                                    </form>
+                                </div>
+                                <div id="particularReport" class="marksElem report">
+                                    <h2>Particular Report</h2>
+                                    <form action="/uploadMarks/student/particularReport" method="get">
+                                        <div id="label">
+                                            <label for="exam_type">EXAM TYPE:</label>
+                                            <select name="exam_type" id="exam_type">
+                                                <option value="Final">Final</option>
+                                                <option value="Half_Yearly">Half Yearly</option>
+                                                <option value="Montly">Montly</option>
+                                                <option value="Test">Test</option>
+                                            </select>
+                                        </div>
+                                        <div id="label">
+                                            <label for="date">Date:</label>
+                                            <input type="date" name="date" id="date">
+                                        </div>
+                                        <input type="hidden" id="student_id" name="student_id" value="<%= user.id %>" required><br><br>
+                                        <input type="hidden" id="nameValue" name="nameValue" value="<%= nameValue %>" required><br><br>
+                                        <input type="hidden" id="sectionValue" name="sectionValue" value="<%= sectionValue %>" required><br><br>
+                                        <button type="submit">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="part" id="changePasswordBox">
                         <h2>Change Password</h2>
                         <form action="/changePassword/student" method="POST">
@@ -134,8 +175,16 @@
                                     <input type="number" id="id" name="id" value="<%= apply.id %>" required><br><br>
                                 </div>
                                 <div id="label">
-                                    <label for="name">Name</label>
+                                    <label for="name">Name:</label>
                                 <input type="text" id="name" name="name" value="<%= apply.name %>" required><br><br>
+                                </div>
+                                <div id="label">
+                                    <label for="kaksha">Class:</label>
+                                <input type="number" id="kaksha" name="kaksha" value="<%= apply.kaksha %>" required><br><br>
+                                </div>
+                                <div id="label">
+                                    <label for="section">Section:</label>
+                                <input type="text" id="section" section="section" value="<%= apply.section %>" required><br><br>
                                 </div>
                                 <div id="label"> 
                                     <label for="from_date">From Date : </label>
