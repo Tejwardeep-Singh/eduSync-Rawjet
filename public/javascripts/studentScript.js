@@ -18,25 +18,25 @@ function studentPanel(){
             duration:0.5
         })
     })
-    // var attendance=document.querySelector("#attendance")
-    // attendance.addEventListener("click",function(){
-    //     gsap.to(".part",{
-    //         display:'none',
-    //         duration:0.5,
-    //     })
-    //     gsap.to("#panel h2",{
-    //         color:"#4E3629",
-    //         duration:0.5
-    //     })
-    //     gsap.to("#attendance",{
-    //         display:'flex',
-    //         duration:0.5,
-    //     })
-    //     gsap.to("#attendance ",{
-    //         color:"#111",
-    //         duration:0.5
-    //     })
-    // })
+    var attendance=document.querySelector("#datesheetPanel")
+    attendance.addEventListener("click",function(){
+        gsap.to(".part",{
+            display:'none',
+            duration:0.5,
+        })
+        gsap.to("#panel h2",{
+            color:"#4E3629",
+            duration:0.5
+        })
+        gsap.to("#datesheetBox",{
+            display:'flex',
+            duration:0.5,
+        })
+        gsap.to("#datesheetPanel",{
+            color:"#111",
+            duration:0.5
+        })
+    })
     var leaveRequest=document.querySelector("#leaveRequest")
     leaveRequest.addEventListener("click",function(){
         gsap.to(".part",{

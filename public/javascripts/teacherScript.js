@@ -151,13 +151,30 @@ function leavePanel(){
     })
 }
 leavePanel()
+function studentPanel(){
+    var ts1=document.querySelector("#ts1");
+    ts1.addEventListener("click",function(){
+        gsap.to(".studentInfo2",{
+            display:"none"
+        })
+        gsap.to("#studentInfo",{
+            display:"flex"
+        })
+    })
+    var ts3=document.querySelector("#ts3");
+    ts3.addEventListener("click",function(){
+        gsap.to(".studentInfo2",{
+            display:"none"
+        })
+        gsap.to("#studentDelete",{
+            display:"flex"
+        })
+    })
+}
+studentPanel()
 function examPanel(){
     var ep1=document.querySelector("#ep1");
     ep1.addEventListener("click",function(){
-        gsap.to("#examPanel h2",{
-            display:'none',
-            duration:0.5,
-        })
         gsap.to(".exams",{
             display:'none',
             duration:0.5,
@@ -173,10 +190,6 @@ function examPanel(){
     })
     var ep2=document.querySelector("#ep2");
     ep2.addEventListener("click",function(){
-        gsap.to("#examPanel h2",{
-            display:'none',
-            duration:0.5,
-        })
         gsap.to(".exams",{
             display:'none',
             duration:0.5,

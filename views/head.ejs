@@ -56,6 +56,7 @@
                         <div class="panel_elem" id="hp8"><a href="#">Admin</a></div>
                         <div class="panel_elem" id="hp5"><a href="#">Edit Details</a></div>
                         <div class="panel_elem" id="hp6"><a href="#">Change Password</a></div>
+                        <div class="panel_elem" id="hp7"><a href="/head/logout">Logout</a></div>
                     </div>
                 </div>
                 <div id="data">
@@ -71,27 +72,27 @@
                             </div>
                             <div class="infoElem">
                                 <h2>Name:</h2>
-                                <h2><%=user.name%></h2>
+                                <h3><%=user.name%></h3>
                             </div>
                             <div class="infoElem">
                                 <h2>Father Name:</h2>
-                                <h3><%=user.fatherName%>
+                                <h3><%=user.fatherName%></h3>
                             </div>
                             <div class="infoElem">
                                 <h2>Date Of Birth:</h2>
-                                <h3><%=user.dob%></h2>
+                                <h3><%=user.dob%></h3>
                             </div>
                             <div class="infoElem">
                                 <h2>Date Of Joining:</h2>
-                                <h3><%=user.dateOfJoining%></h2>
+                                <h3><%=user.dateOfJoining%></h3>
                             </div>
                             <div class="infoElem">
                                 <h2>Mobile:</h2>
-                                <h3><%=user.mobile%></h2>
+                                <h3><%=user.mobile%></h3>
                             </div>
                             <div class="infoElem">
                                 <h2>Email:</h2>
-                                <h3><%=user.email%></h2>
+                                <h3><%=user.email%></h3>
                             </div>
                         </div>
                     </div>
@@ -187,13 +188,30 @@
                             <h2 id="ep2">Marks</h2>
                         </div>
                         <div id="examBox">
-                            <div id="datesheet" class="exams">
-                                <h2>Datesheet</h2>
-                                <div id="datesheetInput">
-                                    <form action="/datesheet" method="get" enctype="multipart/form-data">
+                            <div style="flex-direction: column;" id="datesheet" class="exams">
+                                <h2 style="text-align: center;">Datesheet</h2>
+                                <div id="datesheetInput" class="markselem">
+                                    <form style="width:100%;" action="/datesheet/show" method="get" enctype="multipart/form-data">
                                         <div id="label">
-                                            <label for="id">CLASS: </label>
-                                            <input type="number" id="id" name="id"required><br><br>     
+                                            <label for="kaksha">CLASS: </label>
+                                            <input type="number" id="kaksha" name="kaksha"required><br><br>     
+                                        </div>
+                                        <div id="label">
+                                            <label for="section">Section: </label>
+                                            <input type="text" id="section" name="section"required><br><br>     
+                                        </div>
+                                        <div id="label">
+                                            <label for="examType">EXAM TYPE:</label>
+                                            <select name="examType" id="examType">
+                                                <option value="Final">Final</option>
+                                                <option value="Half_Yearly">Half Yearly</option>
+                                                <option value="Montly">Montly</option>
+                                                <option value="Test">Test</option>
+                                            </select>
+                                        </div>
+                                        <div id="label">
+                                            <label for="month">month: </label>
+                                            <input type="month" id="month" name="month" placeholder="yyyy-mm"required><br><br>     
                                         </div>
                                         <button type="submit">SHOW</button>
                                     </form>
@@ -323,6 +341,7 @@
                             <h2 id="ap2">Add Class</h2>
                             <h2 id="ap3">Add Subject To Class</h2>
                             <h2 id="ap4">Assign Teacher</h2>
+                            <h2 id="ap5">Promote</h2>
                         </div>
                         <div id="horizontal-ruler"></div>
                         <div id="adminBlock">
@@ -426,6 +445,20 @@
                                     <button type="submit">SUBMIT</button>
                                 </form>
                             </div>
+                            <div class="admin" id="promoteClass">
+                                <h2>Promote Class</h2>
+                                <form action="/class/promote" method="POST"> 
+                                    <div id="label">
+                                        <label for="kaksha">Class: </label>
+                                        <input type="number" id="kaksha" name="kaksha"  required><br><br>
+                                    </div>
+                                    <div id="label">
+                                        <label for="section">Section: </label>
+                                        <input type="text" id="section" name="section"  required><br><br>
+                                    </div>
+                                    <button type="submit">Promote</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="part" id="changePassword">
@@ -475,7 +508,7 @@
         </div>
         <div id="horizontal-ruler"></div>
         <div id="copywright">
-            <h3>@2024 Team Rawjet. All Rights Reserved.</h3>
+            <h3>@2025 Team Rawjet. All Rights Reserved.</h3>
         </div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -53,7 +53,10 @@ headRouter.post('/', uploadHead.single('image'), async function (req, res) {
     }
 });
 
-
+headRouter.get('/logout', (req, res) => {
+  res.clearCookie('token'); // This removes the JWT cookie
+  res.redirect('/headLogin');   // Redirect to login or homepage
+});
 // GET route to show head details form
 headRouter.get('/',isLoggedIn, async function(req, res) {
     try {

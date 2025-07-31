@@ -48,7 +48,10 @@ teacherRouter.post("/", uploadTeacher.single("image"), async (req, res) => {
         return res.redirect("/teacherLogin");
     }
 });
-
+teacherRouter.get('/logout', (req, res) => {
+  res.clearCookie('token'); // This removes the JWT cookie
+  res.redirect('/teacherLogin');   // Redirect to login or homepage
+});
 // GET / — Fetch and render teacher details
 teacherRouter.get("/", async (req, res) => {
     const token = req.cookies.token;

@@ -601,7 +601,7 @@ nav{
         width: 80vw;
     }
     .nr a{
-        font-size: 3vw;
+        font-size: 4vw;
         -webkit-text-stroke: solid black 0.2px;
     }
     .nr{
@@ -615,6 +615,8 @@ nav{
         padding:0.5vw;
         justify-content: center;
         align-items: center;
+        height: 4vh;
+        width: 4vh;
     }
     .nr-l{
         transform: translateX(200%);
@@ -663,6 +665,9 @@ nav{
     #rh h1{
         font-size: xx-large;
     }
+    #page4 h1{
+        font-size:4vh;
+    }
     #footer{
         height: auto;
         width: 100%;
@@ -678,7 +683,7 @@ nav{
     }
 
     .fr{
-        width: 80%;
+        width: 90%;
         justify-content: start;
         align-items: start;
         padding: 2% 5%;
@@ -689,14 +694,14 @@ nav{
     }
 
     .fl{
-        width: 80%;
+        width: 90%;
         padding: 2% 5%;
         gap: 4%;
         overflow: scroll;
     }
 
     .fc{
-        width: 80%;
+        width: 90%;
         padding: 1%;
         padding: 2% 5%;
         gap: 4%;
@@ -732,7 +737,8 @@ nav{
         color: #111;
     }
     #login_items{
-        width: 20vw;
+        top:150%;
+        width: 40vw;
         border-radius: 10px;
     }
     #copywright{
@@ -741,14 +747,15 @@ nav{
     #copywright h3{
         font-size: 1.2vh;
         font-weight: 900;
-        color: #111;
+        color:#433326;
     }
     #map iframe{
-        width: 80vw;
+        width:90vw;
     }
-
     #page4a{
         height: auto;
     }
-    
+    .fr{
+        border: none;
+    }
 }

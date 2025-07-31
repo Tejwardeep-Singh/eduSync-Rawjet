@@ -240,10 +240,6 @@ function examPanel(){
             display:'flex',
             duration:0.5,
         })
-        gsap.to("#examPanel h2",{
-            color:"white",
-            duration:0.5,
-        })
     })
     var ep2=document.querySelector("#ep2");
     ep2.addEventListener("click",function(){
@@ -304,6 +300,15 @@ function admin(){
             display:"none",
         })
         gsap.to("#assignTeacher",{
+            display:"flex",
+        })
+    })
+    var ap5= document.querySelector("#ap5");
+    ap5.addEventListener("click",function(){
+        gsap.to(".admin",{
+            display:"none",
+        })
+        gsap.to("#promoteClass",{
             display:"flex",
         })
     })

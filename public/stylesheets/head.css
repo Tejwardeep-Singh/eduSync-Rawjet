@@ -36,7 +36,7 @@
 
     #pg1-container{
         height: auto;
-        width:80%;
+        width:90%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -72,8 +72,8 @@
     }
     .panel_elem a{
         font-family:'fjalla-one-regular';
-        font-size: large;
-        font-weight: 600;
+        font-size:larger;
+        font-weight:900;
         color: #4E3629;
         transition: .5s all ease;
         text-decoration: underline;
@@ -367,6 +367,7 @@
         display: flex;
         justify-content:space-around;
         align-items: center;
+        flex-wrap: wrap;
         width: 100%;
         height: auto;
     }
@@ -424,7 +425,9 @@
     }
     @media only screen and (max-width: 800px)
     {
-        
+        .part h2{
+            font-size: 2vh;
+        }
         #panel a{
             font-size: medium;
         }
@@ -487,13 +490,19 @@
             align-self: center;
         }
         .infoElem h2{
-            font-size: 1vh;
+            font-size: 0.5vh;
         }
         .infoElem h3{
             font-size: 0.5vh;
         }
+        #adminPanel{
+            justify-content: space-around;
+            flex-direction: column;
+            align-items: start;
+        }
         #adminPanel h2{
-            font-size: 1.5vh;
+            font-size: 3vh;
+            line-height: 5vh;
         }
         .part form{
             width: 100%;
@@ -517,5 +526,8 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
+        }
+        .part h2{
+            font-size: small;
         }
     }

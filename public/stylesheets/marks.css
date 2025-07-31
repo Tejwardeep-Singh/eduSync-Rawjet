@@ -32,6 +32,8 @@ form button{
 table {
   width:100%;
   border-collapse: collapse;
+  border-top: 2px solid #4E3629;
+  border-left: 2px solid #4E3629;
 }
 
 thead {

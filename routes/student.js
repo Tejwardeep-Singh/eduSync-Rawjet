@@ -37,7 +37,10 @@ studentRouter.post('/editDetails', uploadStudent.single('image'), async function
         res.status(500).send("Error occurred while updating student details.");
     }
 });
-
+studentRouter.get('/logout', (req, res) => {
+  res.clearCookie('token'); // This removes the JWT cookie
+  res.redirect('/studentLogin');   // Redirect to login or homepage
+});
 // GET student dashboard
 studentRouter.get("/", async (req, res) => {
     const token = req.cookies.token;

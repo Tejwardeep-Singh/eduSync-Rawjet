@@ -36,49 +36,13 @@ main{
 
 #pg1-container{
     height: auto;
-    width:80%;
+    width:90%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     padding: 10vh 0 0 0;
 }
-#panel{
-    height: 10vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #D2B48C;
-    border-radius: 50px;
-    border: solid #4E3629 2px;
-    overflow-x: scroll;
-    flex-wrap: nowrap;
-    gap: 2vh;
-}
-.panel_elem{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.panel_elem a{
-    font-family:'fjalla-one-regular';
-    font-size: large;
-    font-weight: 600;
-    color: #4E3629;
-    transition: .5s all ease;
-    text-decoration: underline;
-}
-.panel_elem a:hover{
-    color:white;
-    text-decoration: overline;
-}
-#panel-menu{
-    display: none;
-}
-
 #data{
     height: 100%;
     width: 100%;
@@ -174,7 +138,7 @@ form button{
 }
 #studentPanel{
     height: 5vh;
-    width: 50%;
+    width: 80%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -185,12 +149,17 @@ form button{
     flex-wrap: nowrap;
     gap: 2vh;
 }
-#studentPanel h2{
+#studentPanel h2,#studentPanel a{
     text-decoration: underline;
     cursor: pointer;
     transition: .5s all ease;
+    font-size: 3vh;
+    color: #4E3629;
 }
 #studentPanel h2:hover{
+    text-decoration: overline;
+}
+#studentPanel a:hover{
     text-decoration: overline;
 }
 #studentShow{
@@ -376,6 +345,9 @@ display: none;
 #marksBox{
     display: none;
 }
+.studentInfo2{
+    display: none;
+}
 @media only screen and (max-width: 800px)
 {
     #panel{
@@ -385,6 +357,8 @@ display: none;
         border-radius: 0;
         height: auto;
         border: none;
+        justify-content: space-around;
+        gap: 2vh;
         text-align: end;
         transform: translateX(200%);
         background-color: transparent;
@@ -405,7 +379,7 @@ display: none;
         align-items: flex-end;
         position: absolute;
         right: 2%;
-        top: 6%;
+        top: 8%;
         z-index: 998;
         height:fit-content;
         backdrop-filter: blur(10px);
@@ -418,12 +392,12 @@ display: none;
     }
     #studentPanel{
         overflow: visible;
-        width: 80%;
-
+        width: 100%;
+        padding: 0 5% ;
     }
     #studentPanel h2,#studentPanel a
     {
-        font-size: 2vh;
+        font-size: 1.5vh;
     }
     #studentInput form{
         width: 100%;
@@ -444,5 +418,16 @@ display: none;
         height: 100%;
         width: 100%;
         overflow: hidden;
+    }
+    .part h2{
+        font-size:3vh;
+    }
+    .infoElem h2{
+        font-size: 1.5vh;
+        font-weight: 800;
+    }
+    .infoElem h3{
+        font-size: 1.5vh;
+        font-weight: 400;
     }
 }

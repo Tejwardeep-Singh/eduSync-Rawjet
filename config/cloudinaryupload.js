@@ -32,12 +32,25 @@ const storageStudents = new CloudinaryStorage({
         allowed_formats: ["jpg", "png", "jpeg"]
     }
 });
+const storageDatesheet = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: "datesheet", // Optional folder name in Cloudinary
+        resource_type: "raw", 
+        format: async (req, file) => "xlsx", // force format
+        public_id: (req, file) => file.originalname.split('.')[0], // keeps the original name without extension
+        
+        // allowed_formats: ["xls", "xlsx","csv","pdf"]
+    }
+});
 const uploadHead = multer({ storage: storageHead });
 const uploadTeacher = multer({ storage: storageTeachers });
 const uploadStudent = multer({ storage: storageStudents })
+const uploadFile = multer({ storage: storageDatesheet })
 
 module.exports = {
     uploadHead,
     uploadTeacher,
-    uploadStudent
+    uploadStudent,
+    uploadFile
 };

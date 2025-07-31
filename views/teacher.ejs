@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/ico/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/ico/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/ico/favicon-32x32.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="manifest" href="/images/ico/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -54,6 +54,7 @@
                         <div class="panel_elem" id="tp4"><a href="#">Leave Request</a></div>
                         <div class="panel_elem" id="tp5"><a href="#">Edit Details</a></div>
                         <div class="panel_elem" id="tp6"><a href="#">Change Password</a></div>
+                        <div class="panel_elem" id="tp7"><a href="/teacher/logout">Logout</a></div>
                     </div>
                 </div>
                 <div id="data">
@@ -95,11 +96,12 @@
                     </div>
                     <div class="part" id="studentInformation">
                         <div id="studentPanel">
-                            <h2 class="tp1">Search student</h2>
-                            <a class="tp2" href="/studentRegister">Add student</a>
+                            <h2 id="ts1">Search student</h2>
+                            <a id="ts2" style="color:#4E3629" href="/studentRegister">Add student</a>
+                            <h2 id="ts3">Remove Student</h2>
                         </div>
                         <div id="studentBox">
-                            <div id="studentInfo" class="studentInfo">
+                            <div id="studentInfo" class="studentInfo2">
                                 <div id="studentInput">
                                     <form action="/teacherStudent" method="get" enctype="multipart/form-data">
                                         <div id="label">
@@ -110,6 +112,18 @@
                                     </form>
                                 </div>
                             </div>
+                            <div id="studentDelete" class="studentInfo2">
+                                <div id="studentDelete">
+                                    <form action="/teacherStudent/remove" method="post">
+                                        <div id="label">
+                                            <label for="id">ID: </label>
+                                            <input type="number" id="id" name="id"required><br><br>     
+                                        </div>
+                                        <button type="submit">DELETE</button>
+                                    </form>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="part" id="exams">
@@ -119,12 +133,31 @@
                         </div>
                         <div id="examBox">
                             <div id="datesheetUpload" class="exams">
-                                <form action="/datesheet" method="post" enctype="multipart/form-data">
+                                <form action="/datesheet/upload" method="post" enctype="multipart/form-data">
                                     <div id="label">
-                                        <label for="id">CLASS: </label>
-                                        <input type="number" id="id" name="id"required><br><br>
-                                        <label for="Photo">Photo: </label>
-                                        <input type="file" name="image" accept="image/*" />
+                                        <label for="kaksha">CLASS: </label>
+                                        <input type="number" id="kaksha" name="kaksha"required><br><br>
+                                    </div>
+                                    <div id="label">
+                                        <label for="section">Section: </label>
+                                        <input type="text" id="section" name="section" required />
+                                    </div>
+                                    <div id="label">
+                                        <label for="examType">EXAM TYPE:</label>
+                                        <select name="examType" id="examType">
+                                            <option value="Final">Final</option>
+                                            <option value="Half_Yearly">Half Yearly</option>
+                                            <option value="Montly">Montly</option>
+                                            <option value="Test">Test</option>
+                                        </select>
+                                    </div>
+                                    <div id="label">
+                                        <label for="month">Month: </label>
+                                        <input type="month" id="month" name="month" placeholder="yyyy-mm" required/>
+                                    </div>
+                                    <div id="label">
+                                        <label for="excel">Upload Excel File: </label>
+                                        <input type="file" name="excel" accept=".xls,.xlsx" required>
                                     </div>
                                     <button type="submit">SUBMIT</button>
                                 </form>
@@ -364,7 +397,7 @@
         </div>
         <div id="horizontal-ruler"></div>
         <div id="copywright">
-            <h3>@2024 Team Rawjet. All Rights Reserved.</h3>
+            <h3>@2025 Team Rawjet. All Rights Reserved.</h3>
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

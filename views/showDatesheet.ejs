@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/stylesheets/head.css">
     <link rel="stylesheet" href="/stylesheets/teacher.css">
     <link rel="stylesheet" href="/stylesheets/marks.css">
-    <title>GPS PANDORI WARAICH | Teacher | Marks Enter </title>
+    <title>GPS PANDORI WARAICH | showDatesheet </title>
 </head>
 <body>
     <main>
@@ -25,7 +25,7 @@
             </div>
             <div class="nr">
                 <div class="nr-l">
-                    <a href="/">Home</a>    
+                    <a href="/">Home</a>
                     <div id="login">
                         <a href="#" id="log_button">Login</a>
                         <div id="login_items">
@@ -41,57 +41,25 @@
                     <i class="ri-menu-line"></i>
                 </div>
             </div>
-        </nav>  
+        </nav> 
         <div id="page1">
             <div id="pg1-container">
-                <h1>Marks Entry Portal</h1>
-                <h2><%= exam_type %> Exams</h2>
-                <form action="/uploadMarks/upload" method="POST">
-                    <input type="hidden" name="nameValue" value="<%= nameValue %>">
-                    <input type="hidden" name="sectionValue" value="<%= sectionValue %>">
-                    <input type="hidden" name="exam_type" value="<%= exam_type %>">
-                    <input type="hidden" name="total" value="<%= total %>">
-                    <input type="hidden" name="date" value="<%= date %>">
-
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Student ID</th>
-                            <th >Student Name</th>
-                            <th>Father Name</th>
-                            <% subjects.forEach(subject => { %>
-                            <th><%= subject.name %></th>
-                            <% }); %>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <% students.forEach(function(student,index){
-                            const studentStr = 'id_' + student.id.toString();
-                            %>
-                            <tr>
-                                <td id="sno"><%= index + 1 %></td>
-                                <td><%= student.id %></td>
-                                <td id="name"><%= student.name %></td>
-                                <td><%= student.fatherName %></td>
-                                <% subjects.forEach(subject => {
-                                const mark = (marksMap[studentStr] && marksMap[studentStr][subject.name]) || '00';
-                                %>
-                                <td>
-                                    <input 
-                                    type="number" 
-                                    name="marks[<%= studentStr %>][<%= subject.name %>]" 
-                                    value="<%= mark %>" 
-                                    >
-                                </td>
-                                <% }) %>
-                            </tr>
-                        <% }) %>
-                        </tbody>
-                    </table>
-
-                    <button type="submit">Submit Marks</button>
-                </form>
+                <h1><%= examType %> Datesheet</h1>
+                <h2>For class:  <%= kaksha%><%= section%></h2>
+                <h2>year-month: <%=month%></h2>
+                <table>
+                    <% tableData.forEach((row, rowIndex) => { %>
+                    <tr>
+                        <% row.forEach(cell => { %>
+                        <% if (rowIndex === 0) { %>
+                            <th><%= cell %></th>
+                        <% } else { %>
+                            <td><%= cell %></td>
+                        <% } %>
+                        <% }); %>
+                    </tr>
+                    <% }); %>
+                </table>
             </div>
         </div>
         <div id="footer">
@@ -128,8 +96,8 @@
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/javascripts/teacherScript.js"></script>
-<script src="/javascripts/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/javascripts/headScript.js"></script>
+    <script src="/javascripts/script.js"></script>
 </body>
 </html>

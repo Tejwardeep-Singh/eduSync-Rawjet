@@ -5,6 +5,15 @@ const datesheetSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    section:{
+        type:String,
+    },
+    month:{
+        type:String,
+    },
+    examType:{
+        type:String,
+    },
     image:{
         type:String
     }

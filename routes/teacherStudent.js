@@ -1,25 +1,23 @@
 const express = require("express");
-const multer = require('multer');
-const path = require('path');
 const teacherStudentRouter = express.Router();
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
 const studentDetails = require('../models/studentModel');
-const teacherDetails = require('../models/teacherModel');
 
-// Set up multer storage configuration
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Make sure this directory exists
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+
+teacherStudentRouter.post('/remove', async function(req, res) {
+    const { id } = req.body;
+    try {
+        const student = id ? await studentDetails.findOne({ id: id }) : null;
+        if (student) {
+            await student.deleteOne(); 
+            res.redirect("/teacher");
+        } else {
+            res.status(404).send("Student not found");
+        }
+
+    } catch (err) {
+        res.status(500).send('Error fetching data: ' + err.message);
     }
 });
-
-const upload = multer({ storage: storage });
-
-
 teacherStudentRouter.get('/', async function(req, res) {
     const { id, message, error } = req.query;
 

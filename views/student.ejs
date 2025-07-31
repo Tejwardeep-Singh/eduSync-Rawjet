@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/ico/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/ico/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/ico/favicon-32x32.png">
-    <link rel="manifest" href="favicorn/site.webmanifest">
+    <link rel="manifest" href="/images/ico/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -51,11 +51,12 @@
                     </div>
                     <div id="panel">
                         <div class="panel_elem" id="details"><a>Details</a></div>
-                        <div class="panel_elem" id="attendance"><a>Attendance</a></div>
+                        <div class="panel_elem" id="datesheetPanel"><a>Datesheet</a></div>
                         <div class="panel_elem" id="leaveRequest"><a>leaveRequest</a></div>
                         <div class="panel_elem" id="report"><a>Reports</a></div>
                         <div class="panel_elem" id="editDetails"><a>Edit Details</a></div>
                         <div class="panel_elem" id="changePassword"><a>Change Password</a></div>
+                        <div class="panel_elem" id="logout"><a href="/student/logout">Logout</a></div>
                     </div>
                 </div>
                 <div id="data">
@@ -266,6 +267,29 @@
                             <button type="submit">SUBMIT</button>
                         </form>
                     </div>
+                    <div class="part" id="datesheetBox">
+                        <h2 style="text-align: center;">Datesheet</h2>
+                        <div id="datesheetInput">
+                            <form style="width:100%;" action="/datesheet/showStudent" method="get" enctype="multipart/form-data">
+                                <input type="hidden" id="nameValue" name="nameValue" value="<%= nameValue %>" required><br><br>
+                                <input type="hidden" id="sectionValue" name="sectionValue" value="<%= sectionValue %>" required><br><br>
+                                <div id="label">
+                                    <label for="examType">EXAM TYPE:</label>
+                                    <select name="examType" id="examType">
+                                        <option value="Final">Final</option>
+                                        <option value="Half_Yearly">Half Yearly</option>
+                                        <option value="Montly">Montly</option>
+                                        <option value="Test">Test</option>
+                                    </select>
+                                </div>
+                                <div id="label">
+                                    <label for="month">month: </label>
+                                    <input type="month" id="month" name="month" placeholder="yyyy-mm"required><br><br>     
+                                </div>
+                                <button type="submit">SHOW</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -299,7 +323,7 @@
         </div>
         <div id="horizontal-ruler"></div>
         <div id="copywright">
-            <h3>@2024 Team Rawjet. All Rights Reserved.</h3>
+            <h3>@2025 Team Rawjet. All Rights Reserved.</h3>
         </div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

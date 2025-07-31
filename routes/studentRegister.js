@@ -1,6 +1,8 @@
 require('dotenv').config(); // Load environment variables at the top
 
-const express = require("express");
+const express = require('express');
+const multer = require('multer');
+const XLSX = require('xlsx');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const studentRegisterRouter = express.Router();
@@ -9,6 +11,8 @@ const { uploadStudent } = require("../config/cloudinaryupload"); // Cloudinary u
 const saltRounds = 10;
 const ClassModel = require("../models/class"); // <-- Add this line
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 studentRegisterRouter.post("/", uploadStudent.single('image'), async function (req, res) {
     try {
@@ -68,7 +72,40 @@ studentRegisterRouter.post("/", uploadStudent.single('image'), async function (r
         res.status(500).send("An error occurred during registration.");
     }
 });
+studentRegisterRouter.post('/uploadExcel', upload.single('file'), async (req, res) => {
+  try {
+    const file = req.file;
+    if (!file) return res.status(400).send('No file uploaded.');
 
+    // Read Excel from memory buffer
+    const workbook = XLSX.read(file.buffer, { type: 'buffer' });
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+    const data = XLSX.utils.sheet_to_json(worksheet);
+    const studentsToInsert = data.map((student) => ({
+      id: student.id,
+      name: student.name,
+      class: student.class,
+      section: student.section,
+      fatherName: student.fatherName,
+      motherName: student.motherName,
+      city: student.city,
+      state: student.state,
+      dob: new Date(student.dob),
+      age: student.age,
+      mobile: student.mobile,
+      email: student.email,
+      password: student.id ? bcrypt.hashSync(student.id.toString(), saltRounds) : null // Hash the ID for password
+    }));
+
+    await studentModel.insertMany(studentsToInsert);
+
+    res.redirect("/teacher")
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error processing the Excel file.');
+  }
+});
 studentRegisterRouter.get("/", function (req, res) {
     res.render("studentRegister", {
         user1: {},
