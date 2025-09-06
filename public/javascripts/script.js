@@ -102,6 +102,18 @@ function nav(){
     var log=document.querySelector("#log_button")
     var nav2=0
     var login=0
+    
+    // Restore navigation state
+    nav2 = localStorage.getItem('navOpen') === 'true' ? 1 : 0;
+    login = localStorage.getItem('loginOpen') === 'true' ? 1 : 0;
+    
+    if (nav2) {
+        gsap.set(".nr-l", { transform: "translateX(0)" });
+    }
+    if (login) {
+        gsap.set("#login_items", { display: "flex" });
+    }
+    
     nav.addEventListener("click",function(){
         if(nav2==0){
             gsap.to(".nr-l",{
@@ -119,6 +131,8 @@ function nav(){
             })
             nav2=0
         }
+        // Save navigation state
+        localStorage.setItem('navOpen', nav2.toString());
     })
     log.addEventListener("click",function(){
         if(login==0){
@@ -137,6 +151,9 @@ function nav(){
             })
             login=0
         }
+        // Save login state
+        localStorage.setItem('loginOpen', login.toString());
+        
         gsap.to("#login_items",{
             display:"none",
             duration:0.5,
@@ -148,6 +165,18 @@ nav()
 function panel2(){
     var nav=document.querySelector("#panel-logo i")
     var nav2=0
+    
+    // Restore panel state
+    nav2 = localStorage.getItem('panelOpen') === 'true' ? 1 : 0;
+    
+    if (nav2) {
+        gsap.set("#panel", { 
+            transform: "translateX(0)",
+            display: "flex"
+        });
+        gsap.set('#panel-container', { backgroundColor: "#d2b48c96" });
+    }
+    
     nav.addEventListener("click",function(){
         if(nav2==0){
             gsap.to("#panel",{
@@ -173,29 +202,8 @@ function panel2(){
             })
             nav2=0
         }
-    })
-    log.addEventListener("click",function(){
-        if(login==0){
-            gsap.to("#login_items",{
-                display:"flex",
-                duration:0.5,
-                stagger:-0.5
-            })
-            login=1
-        }
-        else{
-            gsap.to("#login_items",{
-                display:"none",
-                duration:0.5,
-                stagger:0.5
-            })
-            login=0
-        }
-        gsap.to("#login_items",{
-            display:"none",
-            duration:0.5,
-            delay:2,
-            stagger:0.5})
+        // Save panel state
+        localStorage.setItem('panelOpen', nav2.toString());
     })
 }
 panel2()

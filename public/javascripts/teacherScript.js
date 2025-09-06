@@ -17,6 +17,9 @@ function teacherPanel(){
             color:"#111",
             duration:0.5
         })
+        // Save state to localStorage
+        localStorage.setItem('teacherActivePanel', 'personalInformation');
+        localStorage.setItem('teacherActiveButton', 'tp1');
     })
     var tp2=document.querySelector("#tp2")
     tp2.addEventListener("click",function(){
@@ -36,6 +39,9 @@ function teacherPanel(){
             color:"#111",
             duration:0.5
         })
+        // Save state to localStorage
+        localStorage.setItem('teacherActivePanel', 'studentInformation');
+        localStorage.setItem('teacherActiveButton', 'tp2');
     })
     var tp3=document.querySelector("#tp3")
     tp3.addEventListener("click",function(){
@@ -55,6 +61,9 @@ function teacherPanel(){
             color:"#111",
             duration:0.5
         })
+        // Save state to localStorage
+        localStorage.setItem('teacherActivePanel', 'exams');
+        localStorage.setItem('teacherActiveButton', 'tp3');
     })
     var tp4=document.querySelector("#tp4")
     tp4.addEventListener("click",function(){
@@ -74,6 +83,9 @@ function teacherPanel(){
             color:"#111",
             duration:0.5
         })
+        // Save state to localStorage
+        localStorage.setItem('teacherActivePanel', 'leaveRequest');
+        localStorage.setItem('teacherActiveButton', 'tp4');
     })
     var tp5=document.querySelector("#tp5")
     tp5.addEventListener("click",function(){
@@ -93,6 +105,9 @@ function teacherPanel(){
             color:"#111",
             duration:0.5
         })
+        // Save state to localStorage
+        localStorage.setItem('teacherActivePanel', 'editDetails');
+        localStorage.setItem('teacherActiveButton', 'tp5');
     })
     var tp6=document.querySelector("#tp6")
     tp6.addEventListener("click",function(){
@@ -112,6 +127,9 @@ function teacherPanel(){
             color:"#111",
             duration:0.5
         })
+        // Save state to localStorage
+        localStorage.setItem('teacherActivePanel', 'changePassword');
+        localStorage.setItem('teacherActiveButton', 'tp6');
     })
 }
 teacherPanel()
@@ -126,6 +144,8 @@ function leavePanel(){
             display:'flex',
             duration:0.5,
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'applyLeave');
     })
     var view=document.querySelector("#view")
     view.addEventListener("click",function(){
@@ -137,6 +157,8 @@ function leavePanel(){
             display:'flex',
             duration:0.5,
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'viewLeave');
     })
     var approve=document.querySelector("#approve")
     approve.addEventListener("click",function(){
@@ -148,6 +170,8 @@ function leavePanel(){
             display:'flex',
             duration:0.5,
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'approveLeave');
     })
 }
 leavePanel()
@@ -160,6 +184,8 @@ function studentPanel(){
         gsap.to("#studentInfo",{
             display:"flex"
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'studentInfo');
     })
     var ts3=document.querySelector("#ts3");
     ts3.addEventListener("click",function(){
@@ -169,6 +195,8 @@ function studentPanel(){
         gsap.to("#studentDelete",{
             display:"flex"
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'studentDelete');
     })
 }
 studentPanel()
@@ -187,6 +215,8 @@ function examPanel(){
             display:'flex',
             duration:0.5,
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'datesheetUpload');
     })
     var ep2=document.querySelector("#ep2");
     ep2.addEventListener("click",function(){
@@ -202,6 +232,8 @@ function examPanel(){
             display:'flex',
             duration:0.5,
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'marks');
     })
 }
 examPanel()
@@ -224,6 +256,8 @@ function marksPanel(){
             display:'flex',
             duration:0.5,
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'viewMarks');
     })
     var mp2=document.querySelector("#mp2");
     mp2.addEventListener("click",function(){
@@ -243,6 +277,8 @@ function marksPanel(){
             display:'flex',
             duration:0.5,
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'uploadMarks');
     })
 }
 function marksViewPanel(){
@@ -264,6 +300,8 @@ function marksViewPanel(){
             display:'flex',
             duration:0.5,
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'classReport');
     })
     var vp2=document.querySelector("#vp2");
     vp2.addEventListener("click",function(){
@@ -283,6 +321,8 @@ function marksViewPanel(){
             display:'flex',
             duration:0.5,
         })
+        // Save sub-panel state
+        localStorage.setItem('teacherActiveSubPanel', 'studentReport');
     })
 }
 marksPanel()
@@ -299,3 +339,57 @@ function approve(){
     })
 }
 approve()
+
+// State restoration function
+function restoreTeacherState() {
+    // Restore main panel state
+    var activePanel = localStorage.getItem('teacherActivePanel');
+    var activeButton = localStorage.getItem('teacherActiveButton');
+    
+    if (activePanel && activeButton) {
+        // Hide all parts first
+        gsap.set(".part", { display: 'none' });
+        gsap.set("#panel h2", { color: "#4E3629" });
+        
+        // Show the active panel
+        gsap.set(`#${activePanel}`, { display: 'flex' });
+        gsap.set(`#${activeButton}`, { color: "#111" });
+    }
+    
+    // Restore sub-panel state
+    var activeSubPanel = localStorage.getItem('teacherActiveSubPanel');
+    if (activeSubPanel) {
+        // Hide all sub-panels first
+        gsap.set(".request", { display: 'none' });
+        gsap.set(".studentInfo2", { display: 'none' });
+        gsap.set(".exams", { display: 'none' });
+        gsap.set(".marksElem", { display: 'none' });
+        gsap.set("#marksViewPanel", { display: 'none' });
+        gsap.set(".report", { display: 'none' });
+        gsap.set("#marksBox", { display: 'none' });
+        gsap.set("#viewMarksBox", { display: 'none' });
+        
+        // Show the active sub-panel
+        gsap.set(`#${activeSubPanel}`, { display: 'flex' });
+        
+        // Special handling for exam panels
+        if (activeSubPanel === 'datesheetUpload' || activeSubPanel === 'marks') {
+            gsap.set("#examBox", { display: 'flex' });
+        }
+        
+        // Special handling for marks panels
+        if (activeSubPanel === 'viewMarks' || activeSubPanel === 'uploadMarks') {
+            gsap.set("#marksBox", { display: 'flex' });
+        }
+        
+        // Special handling for marks view panels
+        if (activeSubPanel === 'classReport' || activeSubPanel === 'studentReport') {
+            gsap.set("#viewMarksBox", { display: 'flex' });
+        }
+    }
+}
+
+// Restore state when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    restoreTeacherState();
+});

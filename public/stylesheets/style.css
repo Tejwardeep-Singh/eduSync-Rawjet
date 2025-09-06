@@ -816,6 +816,9 @@ nav{
     .fr{
         border: none;
     }
+    #login-page{
+        margin-top: 5vh;
+    }
     #login-page-container{
         flex-direction: column;
     }
@@ -825,5 +828,8 @@ nav{
     }
     .login h2, .login i{
         font-size: 3vh;
+    }
+    #login-page h1{
+        font-size: 6vh;
     }
 }
