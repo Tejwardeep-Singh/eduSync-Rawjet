@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/ico/favicon-32x32.png">
+    <link rel="manifest" href="/images/ico/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
@@ -44,11 +48,27 @@
 
             </div>
 
-            <div class="nr-r">
+        <div class="nr-r">
 
-                <i class="ri-menu-line"></i>
+            <i class="ri-menu-line" id="menu-btn"></i>
+
+            <div class="mobile-menu" id="mobile-menu">
+
+                <a href="/">Home</a>
+
+                <a href="/images">Gallery</a>
+
+                <a href="/studentlogin">Student Portal</a>
+
+                <a href="/teacherlogin">Teacher Portal</a>
+
+                <a href="/headlogin">Admin Portal</a>
 
             </div>
+
+        </div>
+
+
 
         </div>
 
@@ -111,6 +131,7 @@
                 <img src="/images/images/p5.jpg" alt="">
 
             </div>
+            
 
         </div>
 
@@ -216,7 +237,7 @@
 
             <div class="footer-brand">
 
-                <img src="/images/images/LOGO.webp" alt="">
+                <img src="/images/images/logo.png" alt="">
 
                 <h2>EduSync</h2>
 
@@ -245,11 +266,6 @@
                 <h3>Administration</h3>
 
                 <a href="/headlogin">Admin Login</a>
-
-                <a href="#">Support</a>
-
-                <a href="#">Institution Access</a>
-
             </div>
 
         </div>
@@ -266,6 +282,6 @@
 
 </div>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
+<script src="/javascripts/script.js"></script>
 </body>
 </html>

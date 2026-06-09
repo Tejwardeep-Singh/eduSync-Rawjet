@@ -1,3 +1,4 @@
+
 *{
     margin:0;
     padding:0;
@@ -8,9 +9,9 @@
 html,body{
     width:100%;
     overflow-x:hidden;
+    scroll-behavior:smooth;
     background:#F5EFE0;
     color:#4E342E;
-    scroll-behavior:smooth;
 }
 
 body::-webkit-scrollbar{
@@ -27,12 +28,15 @@ a{
     color:inherit;
 }
 
+img{
+    max-width:100%;
+    display:block;
+}
+
 #main{
     width:100%;
     overflow:hidden;
 }
-
-/* ================= NAVBAR ================= */
 
 nav{
     width:100%;
@@ -58,8 +62,6 @@ nav{
     1px solid rgba(255,255,255,0.08);
 }
 
-/* LEFT */
-
 .nl{
     display:flex;
     align-items:center;
@@ -78,8 +80,6 @@ nav{
     color:#fff;
 }
 
-/* RIGHT */
-
 .nr{
     display:flex;
     align-items:center;
@@ -92,26 +92,114 @@ nav{
 }
 
 .nr-l a{
+    position:relative;
+
     color:#fff;
+
     font-size:1rem;
     font-weight:500;
+
     transition:0.3s;
+}
+
+.nr-l a::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-6px;
+
+    width:0%;
+    height:2px;
+
+    background:#D4A017;
+
+    transition:0.4s;
 }
 
 .nr-l a:hover{
     color:#D4A017;
 }
 
+.nr-l a:hover::after{
+    width:100%;
+}
+
 .nr-r{
     display:none;
+
+    position:relative;
+    align-items:center;
+    justify-content:center;
 }
 
 .nr-r i{
+    font-size:2rem;
     color:#fff;
-    font-size:1.8rem;
+    cursor:pointer;
+
+    transition:0.3s;
 }
 
-/* ================= HERO SECTION ================= */
+.nr-r i:hover{
+    color:#D4A017;
+}
+
+.mobile-menu{
+    position:absolute;
+
+    top:140%;
+    right:0;
+
+    width:260px;
+
+    background:#F5EFE0;
+
+    border-radius:24px;
+
+    padding:1rem;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:0.5rem;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.15);
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(15px);
+
+    transition:0.3s;
+
+    z-index:99999;
+}
+
+.mobile-menu.active{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.mobile-menu a{
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    color:#4E342E;
+
+    font-weight:500;
+
+    transition:0.3s;
+}
+
+.mobile-menu a:hover{
+    background:#D2B48C;
+    transform:translateX(6px);
+}
 
 #images-shery{
     width:100%;
@@ -156,8 +244,6 @@ nav{
     object-position:center;
 }
 
-/* HERO TEXT */
-
 .hero-text{
     position:absolute;
 
@@ -196,8 +282,6 @@ nav{
     width:80%;
 }
 
-/* ================= TITLES ================= */
-
 .gallery-title,
 .masonry-title{
     text-align:center;
@@ -217,13 +301,9 @@ nav{
     margin-top:1rem;
 }
 
-/* ================= FEATURED GALLERY ================= */
-
 #images-shery-pg2{
     width:100%;
-
     padding:8rem 8%;
-
     background:#F5EFE0;
 }
 
@@ -256,13 +336,9 @@ nav{
     scale(1.02);
 }
 
-/* ================= MASONRY ================= */
-
 #images-shery-pg3{
     width:100%;
-
     padding:8rem 8%;
-
     background:#D2B48C;
 }
 
@@ -287,13 +363,9 @@ nav{
     transform:scale(1.03);
 }
 
-/* ================= VIDEO SECTION ================= */
-
 #video-section{
     width:100%;
-
     padding:8rem 8%;
-
     background:#F5EFE0;
 }
 
@@ -315,8 +387,6 @@ nav{
     0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* ================= FOOTER ================= */
-
 footer{
     width:100%;
 
@@ -334,8 +404,6 @@ footer{
 
     gap:3rem;
 }
-
-/* BRAND */
 
 .footer-brand{
     width:300px;
@@ -355,8 +423,6 @@ footer{
     color:#ddd;
     line-height:1.8;
 }
-
-/* LINKS */
 
 .footer-links{
     display:flex;
@@ -378,8 +444,6 @@ footer{
     color:#fff;
 }
 
-/* FOOTER BOTTOM */
-
 .footer-bottom{
     margin-top:4rem;
     padding-top:2rem;
@@ -391,8 +455,6 @@ footer{
 
     color:#bbb;
 }
-
-/* ================= RESPONSIVE ================= */
 
 @media(max-width:1000px){
 
@@ -410,6 +472,11 @@ footer{
     nav{
         height:80px;
         padding:0 5%;
+    }
+
+    .nl img{
+        width:50px;
+        height:50px;
     }
 
     .nl h2{
