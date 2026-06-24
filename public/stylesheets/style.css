@@ -379,7 +379,7 @@ nav{
 }
 
 #videos{
-    height: 80%;
+    height:auto;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -388,7 +388,6 @@ nav{
     overflow: hidden;
     position: relative;
     padding: 5vh;
-    border-top: solid wheat;
 }
 
 #videos img{
