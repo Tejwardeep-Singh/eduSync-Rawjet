@@ -14,41 +14,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/stylesheets/loginStyle.css">
-    <title>EduSync | Teacher Login</title>
+    <title>EduSync| Head Login</title>
 </head>
 
 <body>
-
-<div id="login-page">
-
-    <div class="overlay"></div>
-
-    <div class="login-container">
-
-        <div class="login-header">
-
-            <img src="/images/images/logo.png" alt="">
-
-            <h1>EduSync</h1>
-
-            <p>
-                Teacher Portal Access
-            </p>
-
-        </div>
-
-        <form action="/teacherLogin" method="POST">
-
-            <div class="input-group">
-
-                <i class="ri-user-settings-line"></i>
-
-                <input
-                type="number"
-                name="id"
-                placeholder="Teacher ID"
-                required>
-
+    <main>
+        <nav>
+            <div class="nl">
+                <img src="/images/images/LOGO.png" alt="">
+            </div>
+            <div class="nr">
+                <div class="nr-l">
+                    <a href="/">Home</a>
+                    <div id="login">
+                        <a href="#" id="log_button">Login</a>
+                        <div id="login_items">
+                            <a href="/studentLogin">Student Login</a>
+                            <a href="/teacherLogin">Teacher Login</a>
+                            <a href="/headLogin">Head Login</a>
+                        </div>
+                    </div>
+                    
+                    <a href="/images">Images</a>
+                </div>
+                <div class="nr-r">
+                    <i class="ri-menu-line"></i>
+                </div>
             </div>
 
             <div class="input-group">
@@ -62,27 +53,44 @@
                 required>
 
             </div>
-
-            <button type="submit">
-
-                Access Portal
-
-            </button>
-            <a href="/" class="back-btn">
-
-                <i class="ri-arrow-left-line"></i>
-
-                Back
-
-            </a>
-
-
-        </form>
-
-    </div>
-
-</div>
-
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footer-container">
+                <div class="fl">
+                    <h2>CONTACT US</h2>
+                    <div class="contact">
+                        <h4>9780914581 (Head)</h4>
+                        <h4>sandeepsinghsohian@gmail.com</h4>
+                    </div>
+                </div>
+                <div class="fc">
+                    <div class="quick-links">
+                        <h2>Quick Links</h2>
+                        <div class="contact">
+                            <a href="/">Home</a>
+                            <a href="/images">Images</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="fr">
+                    <h2>Location</h2>
+                    <div class="contact">
+                        <div id="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d548.6914284465247!2d74.90983231549603!3d31.690628893253695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919638655ecf77d%3A0x482bc38508456636!2sGovernment%20Elementary%20Smart%20School!5e1!3m2!1sen!2sin!4v1711472732719!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div id="horizontal-ruler"></div>
+        <div id="copywright">
+            <h3>@2026 Team Rawjet. All Rights Reserved.</h3>
+        </div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/javascripts/script.js"></script>
 </body>
 </html>
 
