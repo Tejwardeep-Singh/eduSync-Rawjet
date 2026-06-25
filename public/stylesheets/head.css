@@ -258,6 +258,7 @@
         border: solid #4E3629 2px;
         border-radius: 20px;
         padding:1%;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
     #image{
         height: 30vh;
@@ -535,3 +536,4 @@
             font-weight: 400;
         }
     }
+
