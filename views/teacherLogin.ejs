@@ -1,22 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="apple-touch-icon" sizes="180x180" href="/images/ico/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/ico/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/ico/favicon-32x32.png">
     <link rel="manifest" href="/images/ico/site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Fjalla+One&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/loginStyle.css">
     <title>EduSync| Head Login</title>
 </head>
-
 <body>
     <main>
         <nav>
@@ -41,17 +40,19 @@
                     <i class="ri-menu-line"></i>
                 </div>
             </div>
-
-            <div class="input-group">
-
-                <i class="ri-lock-line"></i>
-
-                <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required>
-
+        </nav>  
+        <div id="page1">
+            <div id="pg1-container">
+                <h1>Teacher Login</h1>
+            <div id="contact-pg4">
+                <div class="contact-container">
+                    <form action="/teacherLogin" method="POST" class="contact-left">
+                        <input type="hidden" name="access_key" value="dd60566d-3f46-4912-b6f3-2b7e6d1ba018">
+                        <input type="text" name="id" placeholder="id" class="contact-inputs" required >
+                        <input type="password" name="password" placeholder="password" class="contact-inputs" required >
+                        <button type="submit">SUBMIT</button>
+                    </form>
+                </div>
             </div>
             </div>
         </div>
@@ -93,4 +94,3 @@
 <script src="/javascripts/script.js"></script>
 </body>
 </html>
-
