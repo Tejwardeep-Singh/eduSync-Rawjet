@@ -9,32 +9,52 @@ const Marks = require("../models/marks");
 const {uploadStudent} = require("../config/cloudinaryupload");
 
 // POST route to update or create student details with cloudinary image upload
-studentRouter.post('/editDetails', uploadStudent.single('image'), async function(req, res) {
-    const { name, fatherName, motherName, city, state, dob, age, mobile, email, id } = req.body;
+studentRouter.post('/editDetails', uploadStudent.single('image'), async (req, res) => {
+
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.redirect("/studentLogin");
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_KEY);
+    const login_id = decoded.id;
+
+    const {
+        name,
+        fatherName,
+        motherName,
+        city,
+        state,
+        dob,
+        age,
+        mobile,
+        email
+    } = req.body;
+
     const image = req.file ? req.file.path : null;
 
-    try {
-        const updatedUser = await studentModel.findOneAndUpdate(
-            {id},
-            {
-                name,
-                fatherName,
-                motherName,
-                city,
-                state,
-                dob,
-                age,
-                mobile,
-                email,
-                image
-            },
-            { new: true, upsert: true }
-        );
-        res.redirect('/student');
-    } catch (err) {
-        console.error("Error updating student:", err);
-        res.status(500).send("Error occurred while updating student details.");
-    }
+    await studentModel.findOneAndUpdate(
+        { id: login_id },
+        {
+            name,
+            fatherName,
+            motherName,
+            city,
+            state,
+            dob,
+            age,
+            mobile,
+            email,
+            ...(image && { image })
+        },
+        {
+            new: true
+        }
+    );
+
+    res.redirect("/student");
+
 });
 studentRouter.get('/logout', (req, res) => {
   res.clearCookie('token'); // This removes the JWT cookie

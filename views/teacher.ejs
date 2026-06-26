@@ -78,11 +78,19 @@
                             </div>
                             <div class="infoElem">
                                 <h2>Date Of Birth:</h2>
-                                <h3><%= user ? user.dob : 'N/A' %></h3>
+                                <h3><%=  user ? new Date(user.dob).toLocaleDateString('en-GB', {
+                                    day: '2-digit',
+                                    month: 'long',
+                                    year: 'numeric'
+                                    }) : "NA" %></h3>
                             </div>
                             <div class="infoElem">
                                 <h2>Date Of Joining:</h2>
-                                <h3><%= user ? user.dateOfJoining : 'N/A' %></h3>
+                                <h3><%=  user ? new Date(user.dateOfJoining).toLocaleDateString('en-GB', {
+                                    day: '2-digit',
+                                    month: 'long',
+                                    year: 'numeric'
+                                    }) : "NA" %></h3>
                             </div>
                             <div class="infoElem">
                                 <h2>Mobile:</h2>
