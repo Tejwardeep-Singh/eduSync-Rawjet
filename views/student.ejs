@@ -107,6 +107,38 @@
                                 <h3><%=user.email%></h2>
                             </div>
                         </div>
+                        <div class="stats">
+                            <div class="stat-card">
+                                <span>Class</span>
+                                <h2><%= dashboard.classAssigned %></h2>
+                            </div>
+
+                            <div class="stat-card">
+                                <span>Section</span>
+                                <h2><%= dashboard.sectionAssigned %></h2>
+                            </div>
+
+                            <div class="stat-card">
+                                <span>Subjects</span>
+                                <h2><%= dashboard.totalSubjects %></h2>
+                            </div>
+
+                            <div class="stat-card">
+                                <span>Leave Requests</span>
+                                <h2><%= dashboard.totalLeaves %></h2>
+                            </div>
+
+                            <div class="stat-card">
+                                <span>Approved Leaves</span>
+                                <h2><%= dashboard.approvedLeaves %></h2>
+                            </div>
+
+                            <div class="stat-card">
+                                <span>Pending Leaves</span>
+                                <h2><%= dashboard.pendingLeaves %></h2>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="part" id="marksBox">
                         <div id="viewMarks" class="marksElem">
@@ -264,6 +296,7 @@
                                 <label for="Photo">Photo: </label>
                                 <input type="file" name="image" accept="image/*" />
                             </div>
+                            <input type="number" hidden value="<%= user.id %>" name="id">
                             <button type="submit">SUBMIT</button>
                         </form>
                     </div>

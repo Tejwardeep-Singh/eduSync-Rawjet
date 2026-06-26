@@ -1,22 +1,21 @@
 const express = require("express");
 const multer = require("multer");
 const jwt = require("jsonwebtoken");
-
-
 const studentRouter = express.Router();
 const studentModel = require("../models/studentModel");
 const leaveRequestStudent= require("../models/leaveRequestStudent");
+const Marks = require("../models/marks");
 
-const {uploadStudent} = require("../config/cloudinaryupload"); // ✅ cloudinary storage
+const {uploadStudent} = require("../config/cloudinaryupload");
 
 // POST route to update or create student details with cloudinary image upload
 studentRouter.post('/editDetails', uploadStudent.single('image'), async function(req, res) {
-    const { name, fatherName, motherName, city, state, dob, age, mobile, email } = req.body;
+    const { name, fatherName, motherName, city, state, dob, age, mobile, email, id } = req.body;
     const image = req.file ? req.file.path : null;
 
     try {
         const updatedUser = await studentModel.findOneAndUpdate(
-            { name },
+            {id},
             {
                 name,
                 fatherName,
@@ -63,6 +62,22 @@ studentRouter.get("/", async (req, res) => {
         const studentLeaveDetails = await leaveRequestStudent.find({ id: login_id });
         const nameValue= student.class;
         const sectionValue=student.section
+        const approvedLeaves = studentLeaveDetails.filter(
+            leave => leave.status === "approved"
+        ).length;
+
+        const totalSubjects = student.subjects ? student.subjects.length : 0;
+
+        const dashboard = {
+            classAssigned: nameValue,
+            sectionAssigned: sectionValue,
+            totalSubjects,
+            totalLeaves: studentLeaveDetails.length,
+            approvedLeaves,
+            pendingLeaves: studentLeaveDetails.filter(
+                leave => leave.status === "pending"
+            ).length
+        };
 
         res.render("student", {
             user: student,
@@ -70,8 +85,9 @@ studentRouter.get("/", async (req, res) => {
             user2: {},
             apply: {},
             studentLeaveDetails,
+            dashboard,
             nameValue,
-            sectionValue,
+            sectionValue
         });
     } catch (err) {
         console.error("JWT verification failed:", err.message);
