@@ -5,6 +5,8 @@ const { uploadHead} = require("../config/cloudinaryupload");
 const leaveRequestTeacher= require("../models/leaveRequestTeacher");
 const subject = require("../models/subject");
 const section = require("../models/class");
+const student = require("../models/studentModel");
+const teacher = require("../models/teacherModel");
 const isLoggedIn = require("../middlewares/isLoggedIn");
 
 // POST route with cloud upload
@@ -58,28 +60,50 @@ headRouter.get('/logout', (req, res) => {
   res.redirect('/headLogin');   // Redirect to login or homepage
 });
 // GET route to show head details form
-headRouter.get('/',isLoggedIn, async function(req, res) {
+headRouter.get('/', isLoggedIn, async function(req, res) {
     try {
-        const headDetails = await HeadDetails.findOne();
-        const leave = await leaveRequestTeacher.find({status:"pending"}); 
-        const subjects = await subject.find();
-        const sections= await section.find();
-        if (!headDetails) {
-            return res.status(404).send('Head Details not found');
-        }
 
-        res.render('head', {
+        const [
+            headDetails,
+            leave,
+            subjects,
+            sections,
+            totalStudents,
+            totalTeachers,
+            totalSubjects,
+            uniqueClasses
+        ] = await Promise.all([
+            HeadDetails.findOne(),
+            leaveRequestTeacher.find({ status: "pending" }),
+            subject.find(),
+            section.find(),
+            student.countDocuments(),
+            teacher.countDocuments(),
+            subject.countDocuments(),
+            section.distinct("name")
+        ]);
+
+        if (!headDetails) {
+            return res.status(404).send("Head Details not found");
+        }
+        res.render("head", {
             user: headDetails,
             user1: {},
             user2: {},
             leave,
             subjects,
             sections,
+            totalStudents,
+            totalTeachers,
+            totalSubjects,
+            totalSections: sections.length,
+            totalClasses: uniqueClasses.length,
             error: null,
             message: null
         });
+
     } catch (err) {
-        res.status(500).send('Error fetching headDetails: ' + err.message);
+        res.status(500).send("Error fetching headDetails: " + err.message);
     }
 });
 
