@@ -171,7 +171,8 @@ main{
         margin-top: 15vh;
     }
     #pg1-container{
-        height: auto;
+        height:60vh;
+        justify-content: flex-start;
     }
     #page1 h1{
         font-size: 3.5vh;
@@ -264,4 +265,8 @@ main{
         height: 3vh;
         padding: 2%;
     }
+}
+
+#pg1-container{
+    height: 100vh;
 }
