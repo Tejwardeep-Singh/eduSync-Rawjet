@@ -90,9 +90,9 @@ main{
     justify-content: center;
     align-items: center;
     padding: 2%;
-    background-color: #808000;
+    /* border-bottom: 4px solid #808000; */
     border-radius: 10px;
-    box-shadow: 0 8px 16px 0 rgba(140, 79, 0, 0.647);
+    /* box-shadow: 0 8px 16px 0 rgba(140, 79, 0, 0.647); */
     z-index: 996;
 }
 .registerStudent{
@@ -133,6 +133,8 @@ main{
     color: #4E3629;
     border-radius: 10px;
     padding: 2%;
+    background-color: transparent;
+    border-bottom: 2px solid #808000;
 }
 
 .contact-inputs:focus{
@@ -143,8 +145,8 @@ main{
 .contact-left button{
     display:flex;
     align-items: center;
-    padding: 2%;
-    font-size: 2vw;
+    padding: 2% 6%;
+    font-size: 1vw;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 900;
     gap: 10px;
