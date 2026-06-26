@@ -8,6 +8,7 @@ const leaveRequestTeacher= require("../models/leaveRequestTeacher");
 const leaveRequestStudent=require("../models/leaveRequestStudent");
 const classIncharge=require("../models/classIncharge");
 const Marks=require("../models/marks")
+const Student = require("../models/studentModel");
 
 // Cloudinary upload setup
 const { uploadTeacher } = require("../config/cloudinaryupload");
@@ -70,6 +71,36 @@ teacherRouter.get("/", async (req, res) => {
         const sectionValue = incharge?.section;
         const leave = await leaveRequestStudent.find({status:"pending",kaksha:nameValue,section:sectionValue});
         const teacherLeaveDetails = await leaveRequestTeacher.find({ id: login_id });
+        let dashboard = {
+                students: 0,
+                pendingLeaves: 0,
+                approvedLeaves: 0,
+                totalLeaves: 0,
+                classAssigned: "N/A",
+                sectionAssigned: "N/A"
+            };
+
+            if (incharge) {
+
+                const totalStudents = await Student.countDocuments({
+                    name: nameValue,
+                    section: sectionValue
+                });
+
+                const approvedLeaves = teacherLeaveDetails.filter(
+                    leave => leave.status === "approved"
+                ).length;
+
+                dashboard = {
+                    students: totalStudents,
+                    pendingLeaves: leave.length,
+                    approvedLeaves,
+                    totalLeaves: teacherLeaveDetails.length,
+                    classAssigned: nameValue,
+                    sectionAssigned: sectionValue
+                };
+            }
+        
 
         if (!teacher) {
             return res.status(404).send("Teacher not found");
@@ -84,6 +115,7 @@ teacherRouter.get("/", async (req, res) => {
             nameValue,
             sectionValue,
             teacherLeaveDetails,
+            dashboard,
             message: null,
             error: null,
         });
