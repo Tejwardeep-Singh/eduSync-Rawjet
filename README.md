@@ -8,9 +8,9 @@
 EduSync is a full-stack school management system designed to simplify and automate administrative tasks such as student management, attendance tracking, marks management, and more. The platform provides role-based dashboards for Head, Teacher, and Student to ensure efficient and organized school operations.
 </p>
 <p align="center">
-  <img src="https://img.shields.io/github/stars/Tejwardeep-Singh/EduSyncRawjet?style=for-the-badge" />
-  <img src="https://img.shields.io/github/forks/Tejwardeep-Singh/EduSyncRawjet?style=for-the-badge" />
-  <img src="https://img.shields.io/github/issues/Tejwardeep-Singh/EduSyncRawjet?style=for-the-badge" />
+  <img src="https://img.shields.io/github/stars/Tejwardeep-Singh/EduSync-Rawjet?style=for-the-badge" />
+  <img src="https://img.shields.io/github/forks/Tejwardeep-Singh/EduSync-Rawjet?style=for-the-badge" />
+  <img src="https://img.shields.io/github/issues/Tejwardeep-Singh/EduSync-Rawjet?style=for-the-badge" />
 </p>
 <p align="center">
   <a href="https://EduSyncwaraich.onrender.com/">🔗Live Link</a>
