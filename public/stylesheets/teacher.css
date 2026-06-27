@@ -377,15 +377,19 @@ display: none;
         align-self: flex-end;
         flex-direction: column;
         align-items: flex-end;
-        position: absolute;
-        right: 2%;
-        top: 15%;
         z-index: 998;
         height:fit-content;
         backdrop-filter: blur(10px);
+        position:static;
+        align-items:flex-end;
+        margin:0.5rem 0;
+        padding: 1rem 0;
+        /* position:absolute;
+        right:2%;
+        top:5%; */
     }   
     #data{
-        margin-top: 50%;
+        margin-top:5%;
     }
     .panel h2{
         font-size: 2vh;

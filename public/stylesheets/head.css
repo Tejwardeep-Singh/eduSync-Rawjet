@@ -535,5 +535,25 @@
             font-size: 1vh;
             font-weight: 400;
         }
+        #pg1-container{
+            justify-content: center;
+        }
+        @media only screen and (max-width: 800px){
+
+    #pg1-container{
+        width: 95%;
+        padding-top: 1rem;   /* instead of 10vh */
     }
 
+    #panel-container{
+        height: auto;
+        margin-bottom: .5rem;
+    }
+
+    #data{
+        margin: 0;
+        width: 100%;
+    }
+
+}
+    }

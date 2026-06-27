@@ -4,7 +4,7 @@
 
 <h1 align="center">📚 EduSync – Smart School Management System</h1>
 
-<p align="center">
+<p align="justify">
 EduSync is a full-stack school management system designed to simplify and automate administrative tasks such as student management, attendance tracking, marks management, and more. The platform provides role-based dashboards for Head, Teacher, and Student to ensure efficient and organized school operations.
 </p>
 <p align="center">
