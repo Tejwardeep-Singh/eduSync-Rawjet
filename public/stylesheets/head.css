@@ -424,7 +424,7 @@
     #personalInformation{
         display:flex;
     }
-    @media only screen and (max-width: 800px)
+    @media only screen and (max-width: 1200px)
     {
         .part h2{
             font-size: 2vh;
@@ -538,7 +538,7 @@
         #pg1-container{
             justify-content: center;
         }
-        @media only screen and (max-width: 800px){
+        @media only screen and (max-width: 1200px){
 
     #pg1-container{
         width: 95%;

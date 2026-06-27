@@ -160,7 +160,7 @@ nav{
   height: 4vh;
   background:linear-gradient(to bottom,black,transparent);
 }
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 1200px){
 
   #images-shery{
     height: auto;

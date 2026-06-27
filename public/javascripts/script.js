@@ -134,7 +134,9 @@ function nav(){
         // Save navigation state
         localStorage.setItem('navOpen', nav2.toString());
     })
-    log.addEventListener("click",function(){
+    if(log)
+    {
+        log.addEventListener("click",function(){
         if(login==0){
             gsap.to("#login_items",{
                 display:"flex",
@@ -160,6 +162,7 @@ function nav(){
             delay:2,
             stagger:0.5})
     })
+    }
 }
 nav()
 function panel2(){

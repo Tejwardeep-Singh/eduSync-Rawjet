@@ -274,73 +274,168 @@
                             <h2 id="approve">Approve Leave</h2>
                         </div>
                         <div id="applyLeave" class="request">
-                            <h2>Apply Leave</h2>
-                            <form action="/leave/teacher" method="POST">
-                                <div id="label">
-                                    <label for="id">ID: </label>
-                                    <input type="number" id="id" name="id" value="<%= apply.id %>" required><br><br>
-                                </div>
-                                <div id="label">
-                                    <label for="name">Name</label>
-                                <input type="text" id="name" name="name" value="<%= apply.name %>" required><br><br>
-                                </div>
-                                <div id="label"> 
-                                    <label for="from_date">From Date : </label>
-                                    <input type="date" id="from_date" name="from_date" value="<%= user.from_date %>" required><br><br></div>
-                                <div id="label">
-                                    <label for="to_late">Till Date :</label>
-                                <input type="date" id="to_date" name="to_date" value="<%= apply.to_date %>" required><br><br>
-                                </div>
-                                <div id="label">
-                                    <label for="reason">Reason: </label>
-                                <input type="text" id="reason" name="reason" value="<%= apply.reason %>" required><br><br>
-                                </div>
-                                <button type="submit">Submit</button>
-                            </form>
+                            <div class="form-card">
+                                <h2>Apply Leave</h2>
+
+                                <form action="/leave/teacher" method="POST" class="leave-form">
+
+                                    <div class="form-group">
+                                        <label for="id">Employee ID</label>
+                                        <input
+                                            type="number"
+                                            id="id"
+                                            name="id"
+                                            value="<%= apply.id %>"
+                                            readonly
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            name="name"
+                                            value="<%= apply.name %>"
+                                            readonly
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="from_date">From Date</label>
+                                        <input
+                                            type="date"
+                                            id="from_date"
+                                            name="from_date"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="to_date">Till Date</label>
+                                        <input
+                                            type="date"
+                                            id="to_date"
+                                            name="to_date"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="form-group full-width">
+                                        <label for="reason">Reason</label>
+                                        <textarea
+                                            id="reason"
+                                            name="reason"
+                                            rows="5"
+                                            placeholder="Write your reason for leave..."
+                                            required
+                                        ></textarea>
+                                    </div>
+
+                                    <button class="submit-btn" type="submit">
+                                        Submit Leave Request
+                                    </button>
+
+                                </form>
+                            </div>
+
                         </div>
                         <div id="approveLeave" class="request">
-                            <div class="info" id="leaveInfoPanel">
-                                <div class="infoElem"><h2>Id</h2></div>
-                                <div class="infoElem"><h2>Name</h2></div>
-                                <div class="infoElem"><h2>from Date</h2></div>
-                                <div class="infoElem"><h2>Till Date</h2></div>
-                                <div class="infoElem"><h2>Reason</h2></div>
-                                <div class="infoElem"><h2>Approve</h2></div>
-                            </div>
-                            <% leave.forEach(leaves=> { %>
-                                <div class="info" id="leaveInfo">
-                                    <div class="infoElem"><%=leaves.id%></div>
-                                    <div class="infoElem"><%=leaves.name%></div>
-                                    <div class="infoElem"><%=leaves.from_date%></div>
-                                    <div class="infoElem"><%=leaves.to_date%></div>
-                                    <div class="infoElem"><%=leaves.reason%></div>
-                                    <form action="/approve/student" method="post">
-                                        <input type="hidden" name="leaveId" value="<%= leaves._id %>">
-                                        <button type="submit">APPROVE</button>
-                                    </form>
+                            <% if (leave.length === 0) { %>
+
+                                <div class="no-request">
+                                    <h2>No Pending Leave Requests Yet</h2>
+                                    <p>All leave requests have been processed.</p>
                                 </div>
-                            <% }) %>
+
+                            <% } else { %>
+
+                                <div class="table-wrapper">
+                                    <table class="leave-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>From Date</th>
+                                            <th>Till Date</th>
+                                            <th>Reason</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <% leave.forEach(leaves => { %>
+                                            <tr>
+                                                <td><%= leaves.id %></td>
+
+                                                <td><%= leaves.name %></td>
+
+                                                <td>
+                                                    <%= new Date(leaves.from_date).toLocaleDateString("en-IN", {
+                                                        day: "2-digit",
+                                                        month: "short",
+                                                        year: "numeric"
+                                                    }) %>
+                                                </td>
+
+                                                <td>
+                                                    <%= new Date(leaves.to_date).toLocaleDateString("en-IN", {
+                                                        day: "2-digit",
+                                                        month: "short",
+                                                        year: "numeric"
+                                                    }) %>
+                                                </td>
+
+                                                <td><%= leaves.reason %></td>
+
+                                                <td>
+                                                    <form action="/approve/student" method="post">
+                                                        <input type="hidden" name="leaveId" value="<%= leaves._id %>">
+                                                        <button class="approve-btn" type="submit">
+                                                            Approve
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                                </div>
+
+                            <% } %>
+
                         </div>
                         <div id="viewLeave" class="request">
-                            <div class="info" id="leaveInfoPanel">
-                                <div class="infoElem"><h2>Id</h2></div>
-                                <div class="infoElem"><h2>Name</h2></div>
-                                <div class="infoElem"><h2>from Date</h2></div>
-                                <div class="infoElem"><h2>Till Date</h2></div>
-                                <div class="infoElem"><h2>Reason</h2></div>
-                                <div class="infoElem"><h2>Status</h2></div>
+                            <div class="table-wrapper">
+                                <table class="leave-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>From Date</th>
+                                        <th>Till Date</th>
+                                        <th>Reason</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <% teacherLeaveDetails.forEach(view => { %>
+                                        <tr>
+                                            <td><%= view.id %></td>
+                                            <td><%= new Date(view.from_date).toLocaleDateString("en-IN") %></td>
+                                            <td><%= new Date(view.to_date).toLocaleDateString("en-IN") %></td>
+                                            <td><%= view.reason %></td>
+                                            <td>
+                                                <span class="status <%= view.status.toLowerCase() %>">
+                                                    <%= view.status %>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
                             </div>
-                            <% teacherLeaveDetails.forEach(view=> { %>
-                                <div class="info" id="leaveInfo">
-                                    <div class="infoElem"><%=view.id%></div>
-                                    <div class="infoElem"><%=view.name%></div>
-                                    <div class="infoElem"><%=view.from_date%></div>
-                                    <div class="infoElem"><%=view.to_date%></div>
-                                    <div class="infoElem"><%=view.reason%></div>
-                                    <div class="infoElem"><%=view.status%></div>
-                                </div>
-                            <% }) %>
-                        </div>  
+                        </div> 
                     </div>
                     <div class="part" id="changePassword">
                         <h2>Change Password</h2>

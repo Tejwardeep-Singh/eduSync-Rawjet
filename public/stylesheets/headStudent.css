@@ -10,7 +10,7 @@
     height: 6vh;
 }
 
-@media only screen and (max-width: 800px)
+@media only screen and (max-width: 1200px)
 {
     .info h1{
         font-size: 3vh;

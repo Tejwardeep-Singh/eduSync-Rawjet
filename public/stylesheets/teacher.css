@@ -234,7 +234,7 @@ form button{
     background-color: #D2B48C;
     border: solid 2px #4E3629;
     border-radius: 25px;
-    padding: 2%;
+    overflow: hidden;
 }
 .request{
 display: none;
@@ -524,7 +524,7 @@ display: none;
     width: 100%;
 }
 
-@media only screen and (max-width: 800px)
+@media only screen and (max-width: 1200px)
 {
     .infoElem{
         width: 100%;
@@ -539,4 +539,261 @@ display: none;
     #personalInformation{
         flex-direction: column;
     }
+}
+
+.leave-table{
+    width:100%;
+    border-collapse:collapse;
+    background:#FFF5E1;
+    overflow:hidden;
+}
+
+.leave-table th,
+.leave-table td{
+    padding:1rem;
+    border-bottom:2px solid #D2B48C;
+    text-align:center;
+}
+
+.leave-table th{
+    background:#D2B48C;
+    color:#4E3629;
+    font-size:1.1rem;
+    font-weight:700;
+}
+
+.leave-table tr:last-child td{
+    border-bottom:none;
+}
+
+.leave-table tr:hover{
+    background:#f9ebcf;
+}
+
+.status{
+    padding:0.35rem 0.8rem;
+    border-radius:20px;
+    font-weight:700;
+}
+
+.status.approved{
+    background:#d4edda;
+    color:#155724;
+}
+
+.status.pending{
+    background:#fff3cd;
+    color:#856404;
+}
+
+.status.rejected{
+    background:#f8d7da;
+    color:#721c24;
+}
+
+
+.leave-table th{
+    background:#D2B48C;
+    color:#4E3629;
+    padding:1rem;
+    text-align:center;
+    font-size:1rem;
+}
+
+.leave-table td{
+    padding:1rem;
+    text-align:center;
+    border-bottom:1px solid #D2B48C;
+}
+
+.leave-table tr:last-child td{
+    border-bottom:none;
+}
+
+.leave-table tr:hover{
+    background:#f9ebcf;
+}
+
+.approve-btn{
+    padding:.6rem 1rem;
+    background:#4E3629;
+    color:#FFF5E1;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.approve-btn:hover{
+    background:#2d1f18;
+}
+
+.no-request{
+    width:100%;
+    padding:4rem 2rem;
+    text-align:center;
+    background:#FFF5E1;
+}
+
+.no-request h2{
+    color:#4E3629;
+    margin-bottom:.5rem;
+}
+
+.no-request p{
+    color:#666;
+}
+.form-card{
+    width:100%;
+    background:#FFF5E1;
+    padding:2rem;
+}
+
+.form-card h2{
+    text-align:center;
+    margin-bottom:2rem;
+    color:#4E3629;
+}
+
+.leave-form{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1.5rem;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    margin-bottom:.5rem;
+    font-weight:700;
+    color:#4E3629;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:.9rem;
+    border:2px solid #D2B48C;
+    border-radius:10px;
+    font-size:1rem;
+    background:#fff;
+    outline:none;
+    transition:.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#4E3629;
+}
+
+.form-group textarea{
+    resize:vertical;
+}
+
+.full-width{
+    grid-column:1 / -1;
+}
+
+.submit-btn{
+    grid-column:1 / -1;
+    padding:1rem;
+    background:#4E3629;
+    color:#FFF5E1;
+    border:none;
+    border-radius:25px;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    background:#2f2118;
+}
+.approve-btn{
+    padding:.45rem .8rem;
+    font-size:.85rem;
+    border-radius:20px;
+}
+.leave-table td:nth-child(5){
+    white-space:normal;
+    min-width:150px;
+}
+.leave-table td:nth-child(2),
+.leave-table td:nth-child(3){
+    white-space:nowrap;
+    min-width:110px;
+}
+
+@media only screen and (max-width:1200px){
+
+    .form-card{
+        width:100%;
+        padding:1rem;
+    }
+
+    .leave-form{
+        width:100% !important;
+        display:grid !important;
+        grid-template-columns:1fr;
+        gap:1rem;
+    }
+
+    .form-group{
+        width:100%;
+    }
+
+    .form-group input,
+    .form-group textarea{
+        width:100%;
+    }
+
+    .submit-btn{
+        width:100%;
+        padding:.8rem;
+    }
+    .panel{
+        padding: 0.8rem 1rem;
+        gap: 1rem;
+    }
+
+    .panel h2{
+        font-size: 1rem;      /* or 1.1rem */
+        font-weight: 700;
+        white-space: nowrap;
+        text-align: center;
+    }
+    .panel{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.table-wrapper{
+        width:100%;
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    .leave-table{
+        min-width:700px;
+        width:100%;
+        border-collapse:collapse;
+    }
+
+    .leave-table th,
+    .leave-table td{
+        padding:0.8rem;
+        font-size:.9rem;
+        white-space:nowrap;
+        vertical-align:middle;
+    }
+
+    .leave-table th{
+        font-size:1rem;
+    }
+
 }
