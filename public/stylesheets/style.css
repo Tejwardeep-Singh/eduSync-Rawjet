@@ -80,7 +80,7 @@ nav{
     font-size: 1vw;
     color: #201713;
     padding: 0.5vw;
-    -webkit-text-stroke: #201713 2px
+    -webkit-text-stroke: #201713 2px;
 }
 #login{
     display: flex;
@@ -668,12 +668,13 @@ nav{
     }
     .nr-r i{
         display: flex;
-        font-size: 3vw;
+        font-size: 2.5vw;
         padding:0.5vw;
         justify-content: center;
         align-items: center;
         height: 4vh;
         width: 4vh;
+        -webkit-text-stroke: #201713 0.5px;
     }
     .nr-l{
         transform: translateX(200%);

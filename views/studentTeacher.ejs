@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/stylesheets/head.css">
     <link rel="stylesheet" href="/stylesheets/teacher.css">
 
-    <title>EduSync| Student Information </title>
+    <title>Student Information | <%= user2.name %> </title>
 </head>
 <body>
     <main>
@@ -45,7 +45,7 @@
         <div id="page1">
             <div id="pg1-container">
                 <div id="panel">
-                    <div class="panel_elem" id="hp1"><a href="/teacher">Personal Information</a></div>
+                    <div class="panel_elem" id="hp1"><a href="/teacher">Back</a></div>
                 </div>
                 <div id="data">
                     <div class="part" id="studentInformation1">
@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="infoElem">
                                         <h2>Date Of Birth:</h2>
-                                        <h3><%=user2.dob%></h2>
+                                        <h3><%= user2.dob ? new Date(user2.dob).toISOString().split('T')[0] : '' %></h2>
                                     </div>
                                     <div class="infoElem">
                                         <h2>Mobile:</h2>

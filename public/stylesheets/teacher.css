@@ -149,13 +149,6 @@ form button{
     flex-wrap: nowrap;
     gap: 2vh;
 }
-#studentPanel h2,#studentPanel a{
-    text-decoration: underline;
-    cursor: pointer;
-    transition: .5s all ease;
-    font-size: 3vh;
-    color: #4E3629;
-}
 #studentPanel h2:hover{
     text-decoration: overline;
 }
@@ -348,7 +341,7 @@ display: none;
 .studentInfo2{
     display: none;
 }
-@media only screen and (max-width: 800px)
+@media only screen and (max-width: 1200px)
 {
     #panel{
         display: none;
@@ -399,9 +392,10 @@ display: none;
         width: 100%;
         padding: 0 5% ;
     }
-    #studentPanel h2,#studentPanel a
+    #studentPanel h2, #studentPanel a
     {
         font-size: 1.5vh;
+        font-weight:200;
     }
     #studentInput form{
         width: 100%;
@@ -728,7 +722,46 @@ display: none;
     white-space:nowrap;
     min-width:110px;
 }
+#studentInformation1 .info{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+    border:2px solid #4E3629;
+    border-radius:20px;
+    padding:2rem;
+    background:#FFF5E1;
+}
+#studentInformation1 .infoElem{
+    padding:1rem 1.5rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
+#studentDelete label{
+    width: 100%;
+}
+#ts2{
+    -webkit-text-stroke: 0px ;
+}
+#studentPanel h2,#studentPanel a{
+    text-decoration: underline;
+    cursor: pointer;
+    transition: .5s all ease;
+    font-size: 3vh;
+    color: #4E3629;
+    font-weight: 600;
+    -webkit-text-stroke: 0px;
+}
+#studentDelete{
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+}
+#studentDelete input{
+    width: 100%;
+    padding:8px;
+}
 @media only screen and (max-width:1200px){
 
     .form-card{
@@ -768,11 +801,11 @@ display: none;
         text-align: center;
     }
     .panel{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.table-wrapper{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .table-wrapper{
         width:100%;
         overflow-x:auto;
         -webkit-overflow-scrolling:touch;
@@ -795,5 +828,7 @@ display: none;
     .leave-table th{
         font-size:1rem;
     }
-
+    #studentPanel h2,#studentPanel a{
+        font-size: 3vw;
+    }
 }

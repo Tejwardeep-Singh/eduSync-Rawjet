@@ -127,7 +127,7 @@
                     <div class="part" id="studentInformation">
                         <div id="studentPanel">
                             <h2 id="ts1">Search student</h2>
-                            <a id="ts2" style="color:#4E3629" href="/studentRegister">Add student</a>
+                            <a id="ts2" href="/studentRegister">Add student</a>
                             <h2 id="ts3">Remove Student</h2>
                         </div>
                         <div id="studentBox">
@@ -285,18 +285,17 @@
                                             type="number"
                                             id="id"
                                             name="id"
-                                            value="<%= apply.id %>"
+                                            value="<%= user.login_id %>"
                                             readonly
                                         >
                                     </div>
-
                                     <div class="form-group">
                                         <label for="name">Name</label>
                                         <input
                                             type="text"
                                             id="name"
                                             name="name"
-                                            value="<%= apply.name %>"
+                                            value="<%= user.name %>"
                                             readonly
                                         >
                                     </div>
