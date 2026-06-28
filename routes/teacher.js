@@ -71,6 +71,31 @@ teacherRouter.get("/", async (req, res) => {
         const sectionValue = incharge?.section;
         const leave = await leaveRequestStudent.find({status:"pending",kaksha:nameValue,section:sectionValue});
         const teacherLeaveDetails = await leaveRequestTeacher.find({ id: login_id });
+       const exams = await Marks.aggregate([
+    {
+        $match: {
+            class: String(nameValue),
+            section: String(sectionValue)
+        }
+    },
+    {
+        $group: {
+            _id: {
+                exam_type: "$exam_type",
+                date: "$date"
+            }
+        }
+    },
+    {
+        $sort: {
+            "_id.date": -1
+        }
+    }
+]);
+
+        
+
+console.log(exams);
         let dashboard = {
                 students: 0,
                 pendingLeaves: 0,
@@ -116,6 +141,7 @@ teacherRouter.get("/", async (req, res) => {
             sectionValue,
             teacherLeaveDetails,
             dashboard,
+            exams,
             message: null,
             error: null,
         });

@@ -41,7 +41,46 @@ marksRouter.post('/upload', async (req, res) => {
 });
 
 
+marksRouter.get("/availableExams", async (req, res) => {
+    const { nameValue, sectionValue } = req.query;
 
+    try {
+
+        const exams = await Marks.aggregate([
+            {
+                $match: {
+                    class: nameValue,
+                    section: sectionValue
+                }
+            },
+            {
+                $group: {
+                    _id: {
+                        exam_type: "$exam_type",
+                        date: "$date"
+                    }
+                }
+            },
+            {
+                $sort: {
+                    "_id.date": -1
+                }
+            }
+        ]);
+
+        res.json(exams);
+
+    } catch(err){
+
+        console.log(err);
+
+        res.status(500).json({
+            error:"Unable to fetch exams."
+        });
+
+    }
+
+});
 marksRouter.get("/head/classReport",async(req,res)=>{
   const { nameValue, sectionValue, exam_type,date} = req.query;
 
@@ -76,7 +115,8 @@ marksRouter.get("/head/classReport",async(req,res)=>{
   }
 })
 marksRouter.get("/teacher/classReport",async(req,res)=>{
-  const { nameValue, sectionValue, exam_type,date} = req.query;
+  const { nameValue, sectionValue, exam } = req.query;
+  const [exam_type, date] = exam.split("|");
 
   try {
     const students = await studentDetails.find({ class: nameValue, section: sectionValue });

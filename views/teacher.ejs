@@ -220,17 +220,25 @@
                                                 <form action="/uploadMarks/teacher/classReport" method="get">
                                                     <div id="label">
                                                         <label for="exam_type">EXAM TYPE:</label>
-                                                        <select name="exam_type" id="exam_type">
-                                                            <option value="Final">Final</option>
-                                                            <option value="Half_Yearly">Half Yearly</option>
-                                                            <option value="Montly">Montly</option>
-                                                            <option value="Test">Test</option>
+                                                        <select name="exam">
+                                                            <% exams.forEach(exam=>{ %>
+
+                                                                <option
+                                                                    value="<%= exam._id.exam_type %>|<%= exam._id.date %>">
+
+                                                                    <%= exam._id.exam_type %>
+                                                                    (<%= exam._id.date %>)
+
+                                                                </option>
+
+                                                            <% }) %>
+
                                                         </select>
                                                     </div>
-                                                    <div id="label">
+                                                    <!-- <div id="label">
                                                         <label for="date">Date:</label>
                                                         <input type="date" name="date" id="date">
-                                                    </div>
+                                                    </div> -->
                                                     <input type="hidden" id="nameValue" name="nameValue" value="<%= nameValue %>" required><br><br>
                                                     <input type="hidden" id="sectionValue" name="sectionValue" value="<%= sectionValue %>" required><br><br>
                                                     <button type="submit">Submit</button>
