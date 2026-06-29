@@ -228,24 +228,44 @@
                             </form>
                         </div>
                         <div id="viewLeave" class="request">
-                            <div class="info" id="leaveInfoPanel">
-                                <div class="infoElem"><h2>Id</h2></div>
-                                <div class="infoElem"><h2>Name</h2></div>
-                                <div class="infoElem"><h2>from Date</h2></div>
-                                <div class="infoElem"><h2>Till Date</h2></div>
-                                <div class="infoElem"><h2>Reason</h2></div>
-                                <div class="infoElem"><h2>Status</h2></div>
-                            </div>
-                            <% studentLeaveDetails.forEach(view=> { %>
-                                <div class="info" id="leaveInfo">
-                                    <div class="infoElem"><%=view.id%></div>
-                                    <div class="infoElem"><%=view.name%></div>
-                                    <div class="infoElem"><%=view.from_date%></div>
-                                    <div class="infoElem"><%=view.to_date%></div>
-                                    <div class="infoElem"><%=view.reason%></div>
-                                    <div class="infoElem"><%=view.status%></div>
+                            <div class="table-wrapper">
+                                <% if (studentLeaveDetails.length === 0) { %>
+
+                                <div class="no-request">
+                                    <h2>No Pending Leave Requests Yet</h2>
+                                    <p>All leave requests have been processed.</p>
                                 </div>
-                            <% }) %>
+
+                            <% } else { %>
+                                <table class="leave-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>From Date</th>
+                                        <th>Till Date</th>
+                                        <th>Reason</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <% studentLeaveDetails.forEach(view => { %>
+                                        <tr>
+                                            <td><%= view.id %></td>
+                                            <td><%= new Date(view.from_date).toLocaleDateString("en-IN") %></td>
+                                            <td><%= new Date(view.to_date).toLocaleDateString("en-IN") %></td>
+                                            <td><%= view.reason %></td>
+                                            <td>
+                                                <span class="status <%= view.status.toLowerCase() %>">
+                                                    <%= view.status %>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                            <% }%>
+                            </div>
                         </div> 
                     </div>
                     <div class="part" id="editDetails">

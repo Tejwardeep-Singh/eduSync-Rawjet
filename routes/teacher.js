@@ -94,8 +94,6 @@ teacherRouter.get("/", async (req, res) => {
 ]);
 
         
-
-console.log(exams);
         let dashboard = {
                 students: 0,
                 pendingLeaves: 0,

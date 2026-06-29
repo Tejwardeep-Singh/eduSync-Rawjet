@@ -762,6 +762,12 @@ display: none;
     width: 100%;
     padding:8px;
 }
+#viewleave{
+    width: 100%;
+}
+#viewLeave table{
+    width:100%;
+}
 @media only screen and (max-width:1200px){
 
     .form-card{
@@ -831,4 +837,13 @@ display: none;
     #studentPanel h2,#studentPanel a{
         font-size: 3vw;
     }
+}
+#viewLeave{
+    border: none;
+}
+#viewLeave table{
+    border: 2px solid #2d1f18;
+}
+#viewLeave table th{
+    border-bottom: none;
 }
