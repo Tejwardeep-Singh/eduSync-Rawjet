@@ -248,7 +248,12 @@ marksRouter.get("/student/fullReport", async (req, res) => {
   }
 });
 marksRouter.get("/student/particularReport", async (req, res) => {
-  const { nameValue, sectionValue, student_id,exam_type,date} = req.query;
+  const {
+    exam,
+    student_id,sectionValue,nameValue
+} = req.query;
+
+const [exam_type, date] = exam.split("|");
 
   try {
     const student = await studentDetails.findOne({ id: student_id });
@@ -259,13 +264,12 @@ marksRouter.get("/student/particularReport", async (req, res) => {
       section: sectionValue,
     });
 
-    const marksDoc= await Marks.findOne({
-      class: nameValue,
-      section: sectionValue,
-      student_id: student_id,
-      exam_type:exam_type,
-      date:newDate,
-    });
+    const marksDoc = await Marks.findOne({
+    student_id,
+    exam_type,
+    date
+
+});
     const marks = marksDoc ? {
       ...marksDoc.toObject(),
       marks: Object.fromEntries(marksDoc.marks)  // Convert Map to plain object

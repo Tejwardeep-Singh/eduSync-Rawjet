@@ -10,10 +10,10 @@ const classIncharge=require("../models/classIncharge");
 const Marks=require("../models/marks")
 const Student = require("../models/studentModel");
 
-// Cloudinary upload setup
+
 const { uploadTeacher } = require("../config/cloudinaryupload");
 
-// POST / — Update or create teacher details with image upload
+
 teacherRouter.post("/", uploadTeacher.single("image"), async (req, res) => {
     const token = req.cookies.token;
 

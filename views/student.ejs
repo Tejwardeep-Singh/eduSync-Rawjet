@@ -154,17 +154,24 @@
                                     <h2>Particular Report</h2>
                                     <form action="/uploadMarks/student/particularReport" method="get">
                                         <div id="label">
-                                            <label for="exam_type">EXAM TYPE:</label>
-                                            <select name="exam_type" id="exam_type">
-                                                <option value="Final">Final</option>
-                                                <option value="Half_Yearly">Half Yearly</option>
-                                                <option value="Montly">Montly</option>
-                                                <option value="Test">Test</option>
+                                            <label>Select Exam</label>
+
+                                            <select name="exam">
+
+                                                <% exams.forEach(exam => { %>
+
+                                                    <option
+                                                        value="<%= exam._id.exam_type %>|<%= exam._id.date %>">
+
+                                                        <%= exam._id.exam_type %>
+                                                        (<%= exam._id.date %>)
+
+                                                    </option>
+
+                                                <% }) %>
+
                                             </select>
-                                        </div>
-                                        <div id="label">
-                                            <label for="date">Date:</label>
-                                            <input type="date" name="date" id="date">
+
                                         </div>
                                         <input type="hidden" id="student_id" name="student_id" value="<%= user.id %>" required><br><br>
                                         <input type="hidden" id="nameValue" name="nameValue" value="<%= nameValue %>" required><br><br>

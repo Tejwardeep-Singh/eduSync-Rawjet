@@ -74,6 +74,26 @@ studentRouter.get("/", async (req, res) => {
         const login_id = decoded.id;
 
         const student = await studentModel.findOne({ id: login_id });
+        const exams = await Marks.aggregate([
+            {
+                $match: {
+                    student_id: login_id
+                }
+            },
+            {
+                $group: {
+                    _id: {
+                        exam_type: "$exam_type",
+                        date: "$date"
+                    }
+                }
+            },
+            {
+                $sort: {
+                    "_id.date": -1
+                }
+            }
+        ]);
 
         if (!student) {
             return res.status(404).send("Student not found");
@@ -107,6 +127,7 @@ studentRouter.get("/", async (req, res) => {
             studentLeaveDetails,
             dashboard,
             nameValue,
+            exams,
             sectionValue
         });
     } catch (err) {
