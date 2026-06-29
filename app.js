@@ -45,6 +45,7 @@ const subjectRouter = require("./routes/subject");
 const classRouter = require("./routes/class");
 const changePasswordRouter = require("./routes/changePassword");
 const uploadMarksRouter=require("./routes/uploadMarks");
+const attendanceRouter=require("./routes/attendance");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -70,6 +71,7 @@ app.use("/subject/addSubject",subjectRouter);
 app.use("/class",classRouter);
 app.use("/changePassword",changePasswordRouter);
 app.use("/uploadMarks",uploadMarksRouter);
+app.use("/attendance",attendanceRouter);
 
 
 app.use("/",teacherStudentRouter);
@@ -77,6 +79,7 @@ app.use("/",headRouter);
 app.use("/",authRouter);
 app.use("/",teacherControllerRouter);
 app.use("/",studentControllerRouter);
+
 
 app.use('/uploads', express.static('uploads'));
 

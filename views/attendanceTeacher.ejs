@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/ico/favicon-32x32.png">
+    <link rel="manifest" href="/images/ico/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/attendence.css">
+    <title>Student Attendence</title>
+</head>
+<body>
+    <main>
+<nav>
+            <div class="nl">
+                <img src="/images/images/LOGO.png" alt="Logo here">
+            </div>
+            <div class="nr">
+                <div class="nr-l">
+                    <a href="/" id="homeSymbol"><i class="ri-home-line"></i></a>    
+                    <!-- <div id="login">
+                        <a href="#" id="log_button">Login</a>
+                        <div id="login_items">
+                            <a href="/studentlogin">Student Login</a>
+                            <a href="/studentlogin">student Login</a>
+                            <a href="/headlogin">Head Login</a>
+                        </div>
+                    </div>
+                    
+                    <a href="/images">Images</a> -->
+                </div>
+                <!-- <div class="nr-r">
+                    <i class="ri-menu-line"></i>
+                </div> -->
+            </div>
+        </nav>
+<div class="attendance-container">
+
+<h1>Daily Attendance</h1>
+
+<div class="attendance-header">
+
+<div>
+
+<h3>Class</h3>
+
+<p><%= className %></p>
+
+</div>
+
+<div>
+
+<h3>Section</h3>
+
+<p><%= section %></p>
+
+</div>
+
+
+
+</div>
+
+<div class="controls">
+
+<button
+type="button"
+id="presentAll">
+
+Mark All Present
+
+</button>
+
+<button
+type="button"
+id="absentAll">
+
+Mark All Absent
+
+</button>
+
+</div>
+
+<form action="/attendance/teacher" method="POST">
+
+    <div class="attendance-date">
+
+    <label for="date">
+        <i class="ri-calendar-line"></i>
+        Attendance Date
+    </label>
+
+    <input
+        type="date"
+        id="date"
+        name="date"
+        value="<%= today %>"
+        required>
+
+</div>
+    <input
+        type="hidden"
+        name="className"
+        value="<%= className %>">
+
+    <input
+        type="hidden"
+        name="section"
+        value="<%= section %>">
+    
+
+    <div class="table-wrapper">
+        <table>
+
+        <tbody>
+
+        <% students.forEach(student=>{ %>
+
+            <tr>
+
+                <td><%= student.id %></td>
+
+                <td><%= student.name %></td>
+
+                <td>
+
+                    <input
+                        type="checkbox"
+                        class="attendance"
+                        name="presentStudents"
+                        value="<%= student.id %>"
+                        checked>
+
+                </td>
+
+            </tr>
+
+        <% }) %>
+
+        </tbody>
+
+    </table>
+    </div>
+
+    <button class="save-btn">
+
+    <i class="ri-save-3-line"></i>
+
+    Save Attendance
+
+</button>
+
+</form>
+
+</div>
+<div id="horizontal-ruler"></div>
+        <div id="copywright">
+            <h3>@2026 Team Rawjet. All Rights Reserved.</h3>
+        </div>
+
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/javascripts/attendence.js"></script>
+<script src="/javascripts/script.js"></script>
+</body>
+</html>

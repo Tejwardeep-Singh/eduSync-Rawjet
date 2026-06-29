@@ -250,7 +250,7 @@ marksRouter.get("/student/fullReport", async (req, res) => {
 marksRouter.get("/student/particularReport", async (req, res) => {
   const {
     exam,
-    student_id,sectionValue,nameValue
+    student_id,sectionValue,nameValue   
 } = req.query;
 
 const [exam_type, date] = exam.split("|");
