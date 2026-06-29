@@ -619,7 +619,15 @@ nav{
     color: #433326;
 }
 
-
+#homeSymbol{
+    text-decoration: none;
+}
+.nr-l i{
+    text-decoration: none;
+    font-weight: 800px;
+    font-size: 25px;
+    color: #433326;
+}
 @keyframes mobe{
     0%{
         transform:translateX(0);
@@ -832,4 +840,12 @@ nav{
     #login-page h1{
         font-size: 6vh;
     }
+    #homeSymbol{
+        align-self: flex-end;
+        width: 50vw;
+        transform: translateX(-110%);
+    }
+    .nr-l i{
+    font-size:18px;
+}
 }
