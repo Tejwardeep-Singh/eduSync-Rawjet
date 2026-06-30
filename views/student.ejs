@@ -102,34 +102,77 @@
                             </div>
                         </div>
                         <div class="stats">
-                            <div class="stat-card">
-                                <span>Class</span>
-                                <h2><%= dashboard.classAssigned %></h2>
+                            <!-- Attendance -->
+
+                            <div class="dashboard-card attendance-card">
+
+                                <h4>Attendance</h4>
+
+                                <h1><%= attendance.percentage %>%</h1>
+
+                                <div class="progress">
+
+                                    <div class="progress-fill"
+                                        style="width:<%= attendance.percentage %>%">
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="dashboard-card">
+
+                                <h4>Class</h4>
+
+                                <h1><%=nameValue%> <%=sectionValue%></h1>
+
+                            </div>
+                            <div class="dashboard-card">
+
+                                <h4>Total Working Days</h4>
+
+                                <h1><%= attendance.working%></h1>
+
                             </div>
 
-                            <div class="stat-card">
-                                <span>Section</span>
-                                <h2><%= dashboard.sectionAssigned %></h2>
+                            <!-- Present -->
+
+                            <div class="dashboard-card">
+
+                                <h4>Present Days</h4>
+
+                                <h1><%= attendance.present %></h1>
+
                             </div>
 
-                            <div class="stat-card">
-                                <span>Subjects</span>
-                                <h2><%= dashboard.totalSubjects %></h2>
+                            <!-- Absent -->
+
+                            <div class="dashboard-card">
+
+                                <h4>Absent Days</h4>
+
+                                <h1><%= attendance.absent %></h1>
+
                             </div>
 
-                            <div class="stat-card">
-                                <span>Leave Requests</span>
-                                <h2><%= dashboard.totalLeaves %></h2>
+
+                            <!-- Overall Marks -->
+
+                            <div class="dashboard-card">
+
+                                <h4>Overall Percentage</h4>
+
+                                <h1><%= overallPercentage || "--" %>%</h1>
+
                             </div>
 
-                            <div class="stat-card">
-                                <span>Approved Leaves</span>
-                                <h2><%= dashboard.approvedLeaves %></h2>
-                            </div>
+                            <!-- Leave -->
 
-                            <div class="stat-card">
-                                <span>Pending Leaves</span>
-                                <h2><%= dashboard.pendingLeaves %></h2>
+                            <div class="dashboard-card">
+
+                                <h4>Leave Requests</h4>
+
+                                <h1><%= dashboard.totalLeaves %></h1>
+
                             </div>
 
                         </div>

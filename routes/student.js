@@ -5,6 +5,7 @@ const studentRouter = express.Router();
 const studentModel = require("../models/studentModel");
 const leaveRequestStudent= require("../models/leaveRequestStudent");
 const Marks = require("../models/marks");
+const Attendance = require("../models/attendance");
 
 const {uploadStudent} = require("../config/cloudinaryupload");
 
@@ -72,7 +73,32 @@ studentRouter.get("/", async (req, res) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_KEY);
         const login_id = decoded.id;
+        const totalWorkingDays = await Attendance.countDocuments({student_id: login_id});
+        const presentDays = await Attendance.countDocuments({student_id: login_id,status: "Present"});
+        const attendancePercentage = totalWorkingDays > 0 ? ((presentDays / totalWorkingDays) * 100).toFixed(1) : 0;
+        const marksDocs = await Marks.find({ student_id: login_id });
+        let overallPercentage = "--";
 
+        if (marksDocs.length > 0) {
+
+            let totalObtained = 0;
+            let totalMaximum = 0;
+
+            marksDocs.forEach(doc => {
+
+                const obtained = [...doc.marks.values()].reduce((a, b) => a + b, 0);
+
+                totalObtained += obtained;
+
+                const subjectCount = doc.marks.size;
+                totalMaximum += subjectCount * 100;
+
+            });
+
+            overallPercentage =
+                ((totalObtained / totalMaximum) * 100).toFixed(1);
+
+        }
         const student = await studentModel.findOne({ id: login_id });
         const exams = await Marks.aggregate([
             {
@@ -118,7 +144,7 @@ studentRouter.get("/", async (req, res) => {
                 leave => leave.status === "pending"
             ).length
         };
-
+        const absentDays = totalWorkingDays - presentDays;
         res.render("student", {
             user: student,
             user1: {},
@@ -128,6 +154,13 @@ studentRouter.get("/", async (req, res) => {
             dashboard,
             nameValue,
             exams,
+            overallPercentage,
+            attendance: {
+                percentage: attendancePercentage,
+                present: presentDays,
+                working: totalWorkingDays,
+                absent: absentDays
+            },
             sectionValue
         });
     } catch (err) {
