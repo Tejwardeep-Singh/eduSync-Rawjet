@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/ico/favicon-32x32.png">
+    <link rel="manifest" href="/images/ico/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/datesheet.css">
+    <title>EduSync | Datesheet</title>
+
+</head>
+
+<body>
+
+<main>
+    <nav>
+            <div class="nl">
+                <img src="/images/images/LOGO.png" alt="Logo here">
+            </div>
+            <div class="nr">
+                <div class="nr-l">
+                    <a href="/">Home</a>
+                    <a href="/head/logout">Logout</a>
+                </div>
+                <div class="nr-r">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </nav>
+
+    <div id="page1">
+
+    <div id="datesheet-container">
+
+        <h1>DATESHEET MANAGEMENT</h1>
+
+        <div id="tab-panel">
+
+            <button class="tab-btn active" data-target="generate">
+                Generate
+            </button>
+
+            <button class="tab-btn" data-target="view">
+                View
+            </button>
+
+            <button class="tab-btn" data-target="edit">
+                Edit
+            </button>
+
+            <button class="tab-btn" data-target="delete">
+                Delete
+            </button>
+
+        </div>
+
+        <!-- ================= GENERATE ================= -->
+
+        <div class="tab-content active" id="generate">
+
+            <div class="card">
+
+                <h2>Generate Datesheet</h2>
+
+                <form action="/datesheet/loadSubjects" method="GET">
+
+                    <div class="input-grid">
+
+                        <div class="input-box">
+
+                            <label>Class</label>
+
+                            <input
+                                type="number"
+                                name="class"
+                                required>
+
+                        </div>
+
+                        <div class="input-box">
+
+                            <label>Section</label>
+
+                            <input
+                                type="text"
+                                name="section"
+                                required>
+
+                        </div>
+
+                        <div class="input-box">
+
+                            <label>Exam Type</label>
+
+                            <select
+                                name="exam_type"
+                                required>
+
+                                <option value="">Select</option>
+
+                                <option value="Test">Test</option>
+
+                                <option value="Monthly">Monthly</option>
+
+                                <option value="Half_Yearly">Half Yearly</option>
+
+                                <option value="Final">Final</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <button class="primary-btn">
+
+                        Load Subjects
+
+                    </button>
+
+                </form>
+
+            </div>
+            <h2>Subjects Length: <%= subjects.length %></h2>
+            <% if(subjects.length>0){ %>
+
+            <div class="card">
+
+                <h2>Exam Schedule</h2>
+
+                <form action="/datesheet/generate" method="POST">
+
+                    <input
+                        type="hidden"
+                        name="class"
+                        value="<%= className %>">
+
+                    <input
+                        type="hidden"
+                        name="section"
+                        value="<%= section %>">
+
+                    <input
+                        type="hidden"
+                        name="exam_type"
+                        value="<%= exam_type %>">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Subject</th>
+
+                                <th>Date</th>
+
+                                <th>Start</th>
+
+                                <th>End</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <% subjects.forEach(subject=>{ %>
+
+                        <tr>
+
+                            <td>
+
+                                <%= subject.name %>
+
+                                <input
+                                    type="hidden"
+                                    name="subject"
+                                    value="<%= subject.name %>">
+
+                            </td>
+
+                            <td>
+
+                                <input
+                                    type="date"
+                                    name="exam_date"
+                                    required>
+
+                            </td>
+
+                            <td>
+
+                                <input
+                                    type="time"
+                                    name="start_time"
+                                    required>
+
+                            </td>
+
+                            <td>
+
+                                <input
+                                    type="time"
+                                    name="end_time"
+                                    required>
+
+                            </td>
+
+                        </tr>
+
+                        <% }) %>
+
+                        </tbody>
+
+                    </table>
+
+                    <button class="primary-btn">
+
+                        Generate Datesheet
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            <% } %>
+
+        </div>
+
+        <!-- Empty for now -->
+
+        <div class="tab-content" id="view"></div>
+
+        <div class="tab-content" id="edit"></div>
+
+        <div class="tab-content" id="delete"></div>
+
+    </div>
+
+</div>
+
+
+<div id="horizontal-ruler"></div>
+        <div id="copywright">
+            <h3>@2026 Team Rawjet. All Rights Reserved.</h3>
+        </div>
+
+</main>
+<!-- <script src="/javascripts/datesheet.js"></script> -->
+</body>
+
+</html>

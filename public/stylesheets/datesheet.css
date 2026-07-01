@@ -1,41 +1,249 @@
-#examBoxDatesheet{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1vh;
-    background-color: #D2B48C;
-    border-radius: 25px;
-    padding: 2%;
+body{
+
+    background:#FFF5E1;
+
+    margin:0;
+
+    font-family:"Exo 2",sans-serif;
+
 }
-#datesheetHead{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+
+#page1{
+
+    width:100%;
+
+    height: auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:50px 20px;
+    margin-top:10vh;
+
 }
-#datesheetInputHead{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+#datesheet-container{
+
+    width:min(1200px,95%);
+
 }
-#datesheetShow{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+#datesheet-container h1{
+
+    text-align:center;
+
+    color:#4E3629;
+
+    margin-bottom:40px;
+
 }
-#datesheetShow img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 20px;
+
+#tab-panel{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    margin-bottom:40px;
+
+    flex-wrap:wrap;
+
+}
+
+.tab-btn{
+
+    border:none;
+
+    background:#808000;
+
+    color:white;
+
+    padding:14px 35px;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.tab-btn:hover{
+
+    background:#4E3629;
+
+}
+
+.tab-btn.active{
+
+    background:#4E3629;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    margin-bottom:35px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.card h2{
+
+    color:#4E3629;
+
+    margin-bottom:30px;
+
+}
+
+.input-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+.input-box{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.input-box label{
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#4E3629;
+
+}
+
+.input-box input,
+
+.input-box select{
+
+    padding:12px;
+
+    border:2px solid #808000;
+
+    border-radius:10px;
+
+    outline:none;
+
+}
+
+.primary-btn{
+
+    margin-top:30px;
+
+    padding:14px 40px;
+
+    background:#4E3629;
+
+    color:white;
+
+    border:none;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.primary-btn:hover{
+
+    background:#808000;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#4E3629;
+
+    color:white;
+
+    padding:15px;
+
+}
+
+td{
+
+    border:1px solid #ddd;
+
+    padding:15px;
+
+    text-align:center;
+
+}
+
+td input{
+
+    width:100%;
+
+    padding:10px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+}
+
+@media(max-width:900px){
+
+    .input-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    table{
+
+        display:block;
+
+        overflow-x:auto;
+
+        white-space:nowrap;
+
+    }
+
+    .tab-btn{
+
+        flex:1;
+
+    }
+
+}
+.tab-content{
+    display:none;
+}
+
+.tab-content.active{
+    display:block;
 }

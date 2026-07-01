@@ -1,131 +1,198 @@
-const express = require('express');
-const multer = require('multer');
-const XLSX= require('xlsx');
-const path = require('path');
-const fs = require('fs');
-const Datesheet = require('../models/datesheet');
-const datesheetRouter = express.Router();
-const axios = require("axios");
+const express = require("express");
+const router = express.Router();
+const SubjectClass = require("../models/subjectClass");
+const Datesheet = require("../models/datesheet");
 
+// ==============================
+// Datesheet Home
+// ==============================
 
-const {uploadFile} = require("../config/cloudinaryupload");
-const datesheet = require('../models/datesheet');
+router.get("/", (req, res) => {
 
+    res.render("datesheet", {
+        subjects: [],
+        className: "",
+        section: "",
+        exam_type: "",
+        message: null,
+        error: null
+    });
 
-// Route
-datesheetRouter.post('/upload', uploadFile.single('excel'), async (req, res) => {
+});
+
+router.post("/generate", async (req, res) => {
+
     try {
-        const { kaksha, section,examType,month } = req.body;
-        const excel = req.file.path;
-        // Save to MongoDB
-        const newDatesheet = new Datesheet({
-            id: kaksha,
+
+        const {
+            class: className,
             section,
-            month,
-            examType,
-            image: excel
+            exam_type,
+            subject,
+            exam_date,
+            start_time,
+            end_time
+        } = req.body;
+
+        // Convert to arrays if only one subject exists
+        const subjects = Array.isArray(subject) ? subject : [subject];
+        const examDates = Array.isArray(exam_date) ? exam_date : [exam_date];
+        const startTimes = Array.isArray(start_time) ? start_time : [start_time];
+        const endTimes = Array.isArray(end_time) ? end_time : [end_time];
+
+        // Check if this datesheet already exists
+        const existing = await Datesheet.findOne({
+            class: className,
+            section,
+            exam_type
         });
 
-        await newDatesheet.save();
-        res.redirect("/teacher");
-    } catch (err) {
-        console.error("Upload failed:", err);
-        console.error("Error in /datesheet route:", err);  // Shows exact issue in console
-        res.status(500).send("Server Error: " + err.message); 
-    }
-});
-datesheetRouter.get("/show", async (req, res) => {
-    const { kaksha,examType,section,month } = req.query;
-  
-    try {
-      const sheet = await Datesheet.findOne({ id: kaksha, section,month,examType });
-  
-      if (!sheet) {
-        return res.send("No datesheet found for given class and section.");
-      }
-      function excelDateToJSDate(serial) {
-        const utc_days = Math.floor(serial - 25569);
-        const utc_value = utc_days * 86400; // seconds
-        const date_info = new Date(utc_value * 1000); // milliseconds
-        return date_info.toISOString().split('T')[0]; // "YYYY-MM-DD"
-    }
-    
-  
-      // Download the .xlsx file from Cloudinary
-      const response = await axios.get(sheet.image, { responseType: "arraybuffer" });
-  
-      // Read workbook from buffer
-      const workbook = XLSX.read(response.data, { type: "buffer" });
-  
-      const sheetName = workbook.SheetNames[0];
-      const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
-      const processedRows = sheetData.map(row => {
-        if (typeof row[3] === 'number') {
-            row[3] = excelDateToJSDate(row[3]);
-        }
-        return row;
-    });
-    
-  
-      res.render("showDatesheet", {
-        examType: sheet.examType,
-        tableData: processedRows,
-        month,
-        kaksha,
-        section
-      });
-  
-    } catch (err) {
-      console.error("🔥 Full Error:", err);
-      res.status(500).send("Error displaying datesheet.");
-    }
-  });
-datesheetRouter.get("/showStudent", async (req, res) => {
-    const { nameValue,examType,sectionValue,month } = req.query;
-  
-    try {
-      const sheet = await Datesheet.findOne({ id: nameValue, section:sectionValue,month,examType });
-  
-      if (!sheet) {
-        return res.send("No datesheet found for given class and sectionValue.");
-      }
-      function excelDateToJSDate(serial) {
-        const utc_days = Math.floor(serial - 25569);
-        const utc_value = utc_days * 86400; // seconds
-        const date_info = new Date(utc_value * 1000); // milliseconds
-        return date_info.toISOString().split('T')[0]; // "YYYY-MM-DD"
-    }
-    
-  
-      // Download the .xlsx file from Cloudinary
-      const response = await axios.get(sheet.image, { responseType: "arraybuffer" });
-  
-      // Read workbook from buffer
-      const workbook = XLSX.read(response.data, { type: "buffer" });
-  
-      const sheetName = workbook.SheetNames[0];
-      const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
-      const processedRows = sheetData.map(row => {
-        if (typeof row[3] === 'number') {
-            row[3] = excelDateToJSDate(row[3]);
-        }
-        return row;
-    });
-    
-  
-      res.render("showDatesheet", {
-        examType: sheet.examType,
-        tableData: processedRows,
-        month,
-        kaksha:nameValue,
-        section:sectionValue
-      });
-  
-    } catch (err) {
-      console.error("🔥 Full Error:", err);
-      res.status(500).send("Error displaying datesheet.");
-    }
-  });
-  
+        if (existing) {
 
-module.exports=datesheetRouter;
+            return res.render("datesheet", {
+                subjects: [],
+                className: "",
+                section: "",
+                exam_type: "",
+                message: null,
+                error: "Datesheet already exists for this examination."
+            });
+
+        }
+
+        const docs = [];
+
+        for (let i = 0; i < subjects.length; i++) {
+
+            // Validate empty fields
+            if (
+                !examDates[i] ||
+                !startTimes[i] ||
+                !endTimes[i]
+            ) {
+
+                return res.send("Please fill all dates and timings.");
+
+            }
+
+            // End time must be after start time
+            if (startTimes[i] >= endTimes[i]) {
+
+                return res.send(
+                    `End time must be greater than start time for ${subjects[i]}.`
+                );
+
+            }
+
+            // Same day cannot have two exams
+            const sameDay = await Datesheet.findOne({
+
+                class: className,
+                section,
+                exam_type,
+                exam_date: examDates[i]
+
+            });
+
+            if (sameDay) {
+
+                return res.send(
+                    `${examDates[i]} already has an exam scheduled.`
+                );
+
+            }
+
+            docs.push({
+
+                class: className,
+                section,
+                exam_type,
+                subject: subjects[i],
+                exam_date: examDates[i],
+                start_time: startTimes[i],
+                end_time: endTimes[i]
+
+            });
+
+        }
+
+        await Datesheet.insertMany(docs);
+
+        res.redirect("/datesheet?message=Datesheet generated successfully");
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        res.status(500).send(err.message);
+
+    }
+
+});
+// ==============================
+// Load Subjects
+// ==============================
+
+router.get("/loadSubjects", async (req, res) => {
+    try {
+
+        const {
+            class: className,
+            section,
+            exam_type
+        } = req.query;
+
+        const subjects = await SubjectClass.find({
+            class: Number(className),
+            section: section
+        });
+                if (subjects.length === 0) {
+
+            return res.render("datesheet", {
+
+                subjects: [],
+                className,
+                section,
+                exam_type,
+                message: null,
+                error: "No subjects found for this class."
+
+            });
+
+        }
+
+        res.render("datesheet", {
+
+            subjects,
+            className,
+            section,
+            exam_type,
+            message: null,
+            error: null
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        res.render("datesheet", {
+
+            subjects: [],
+            className: "",
+            section: "",
+            exam_type: "",
+            message: null,
+            error: "Something went wrong."
+
+        });
+
+    }
+
+});
+
+module.exports = router;

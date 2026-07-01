@@ -1,22 +1,42 @@
 const mongoose = require("mongoose");
 
-const datesheetSchema = mongoose.Schema({
-    id: {
-        type: Number,
-        required: true
+const datesheetSchema = new mongoose.Schema({
+
+    class:{
+        type:String,
+        required:true
     },
+
     section:{
         type:String,
+        required:true
     },
-    month:{
+
+    exam_type:{
         type:String,
+        required:true
     },
-    examType:{
+
+    subject:{
         type:String,
+        required:true
     },
-    image:{
-        type:String
+
+    exam_date:{
+        type:String,
+        required:true
+    },
+
+    start_time:{
+        type:String,
+        required:true
+    },
+
+    end_time:{
+        type:String,
+        required:true
     }
+
 });
 
-module.exports = mongoose.model("datesheet", datesheetSchema);
+module.exports = mongoose.model("Datesheet", datesheetSchema);
