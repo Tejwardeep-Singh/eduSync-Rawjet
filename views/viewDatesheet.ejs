@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/stylesheets/head.css">
     <link rel="stylesheet" href="/stylesheets/teacher.css">
     <link rel="stylesheet" href="/stylesheets/datesheet.css">
-    <title>EduSync| Head </title>
+    <title>EduSync | View Datesheets</title>
 </head>
 <body>
     <main>
@@ -23,7 +23,7 @@
             <div class="nl">
                 <img src="/images/images/LOGO.png" alt="Logo here">
             </div>
-            <!-- <div class="nr">
+            <div class="nr">
                 <div class="nr-l">
                     <a href="/">Home</a>
                     <a href="/images">Images</a>
@@ -31,31 +31,79 @@
                 <div class="nr-r">
                     <i class="ri-menu-line"></i>
                 </div>
-            </div> -->
+            </div>
         </nav>  
         <div id="page1">
             <div id="pg1-container">
-                <h2>Datesheet for Class <%= class %> - Section <%= section %> (Uploaded on: <%= date %>)</h2>
-                <h2></h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <% Object.keys(datesheetData[0]).forEach(col => { %>
-                                <th><%= col %></th>
-                            <% }); %>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% datesheetData.forEach(row => { %>
-                            <tr>
-                                <% Object.values(row).forEach(cell => { %>
-                                    <td><%= cell %></td>
-                                <% }); %>
-                            </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
-            </div>
+
+    <h1><%= datesheet.exam_type %> Examination</h1>
+
+    <div class="details">
+
+        <div class="detail-box">
+            <h3>Class</h3>
+            <p><%= datesheet.class %></p>
+        </div>
+
+        <div class="detail-box">
+            <h3>Section</h3>
+            <p><%= datesheet.section %></p>
+        </div>
+
+        <div class="detail-box">
+            <h3>Total Subjects</h3>
+            <p><%= datesheet.exams.length %></p>
+        </div>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table class="datesheet-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>S.No</th>
+                    <th>Subject</th>
+                    <th>Exam Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <% datesheet.exams.forEach((exam, index) => { %>
+
+                    <tr>
+
+                        <td><%= index + 1 %></td>
+
+                        <td><%= exam.subject %></td>
+
+                        <td>
+                            <%= new Date(exam.exam_date).toLocaleDateString("en-IN") %>
+                        </td>
+
+                        <td><%= exam.start_time %></td>
+
+                        <td><%= exam.end_time %></td>
+
+                    </tr>
+
+                <% }) %>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
         </div>
         <!-- <div id="footer">
             <div id="footer-container">

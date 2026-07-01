@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/ico/favicon-32x32.png">
+    <link rel="manifest" href="/images/ico/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/datesheet.css">
+    <title>View Datesheet </title>
+
+</head>
+
+<body>
+
+<main>
+    <nav>
+            <div class="nl">
+                <img src="/images/images/LOGO.png" alt="Logo here">
+            </div>
+            <div class="nr">
+                <div class="nr-l">
+                    <a href="/">Home</a>    
+                    <a href="/teacher/logout">Logout</a>
+                </div>
+                <div class="nr-r">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </nav>
+
+<div id="page1">
+
+<div id="datesheet-container">
+
+<h1>Available Datesheets</h1>
+
+<h3>
+
+Class <%= className %> -
+Section <%= section %>
+
+</h3>
+
+<% if(datesheets.length===0){ %>
+
+<div class="card">
+
+<h2>No Datesheets Published Yet</h2>
+
+</div>
+
+<% } else { %>
+
+<% datesheets.forEach(ds=>{ %>
+
+<div class="datesheet-card">
+
+<div>
+
+<h2>
+
+<%= ds.exam_type %>
+
+</h2>
+
+<p>
+
+Class <%= ds.class %> -
+Section <%= ds.section %>
+
+</p>
+
+<p>
+    <%= ds.exams.length %> Subjects
+</p>
+
+</div>
+
+<div>
+
+<a
+href="/datesheet/view/<%= ds._id %>"
+class="primary-btn">
+
+View Datesheet
+
+</a>
+
+</div>
+
+</div>
+
+<% }) %>
+
+<% } %>
+
+</div>
+
+</div>
+<div id="horizontal-ruler"></div>
+        <div id="copywright">
+            <h3>@2026 Team Rawjet. All Rights Reserved.</h3>
+        </div>
+</main>
+
+</body>
+
+</html>

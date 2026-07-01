@@ -247,3 +247,333 @@ td input{
 .tab-content.active{
     display:block;
 }
+
+.datesheet-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+
+}
+
+.datesheet-card h2{
+
+    color:#4E3629;
+
+    margin-bottom:8px;
+
+}
+
+.datesheet-card p{
+
+    color:#666;
+
+}
+
+.primary-btn{
+
+    background:#808000;
+
+    color:white;
+
+    padding:12px 24px;
+
+    border-radius:30px;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.primary-btn:hover{
+
+    background:#4E3629;
+
+}
+#pg1-container{
+
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:40px 0;
+
+}
+
+#pg1-container h1{
+
+    text-align:center;
+    color:#4E3629;
+    font-size:3rem;
+    margin-bottom:40px;
+
+}
+
+.details{
+
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+
+}
+
+.detail-box{
+
+    background:#fff;
+    padding:20px 30px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    text-align:center;
+    min-width:180px;
+
+}
+
+.detail-box h3{
+
+    color:#808000;
+    margin-bottom:10px;
+
+}
+
+.detail-box p{
+
+    font-size:1.3rem;
+    color:#4E3629;
+    font-weight:700;
+
+}
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+
+}
+
+thead{
+
+    background:#808000;
+    color:white;
+
+}
+
+th,
+td{
+
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+
+}
+
+tbody tr:hover{
+
+    background:#f7f7f7;
+
+}
+
+@media(max-width:768px){
+
+    #pg1-container h1{
+
+        font-size:2rem;
+
+    }
+
+    .details{
+
+        flex-direction:column;
+        align-items:center;
+
+    }
+
+    .detail-box{
+
+        width:90%;
+
+    }
+
+}
+.table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    margin-top:35px;
+
+    border-radius:15px;
+
+    background:#fff;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.table-wrapper::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.table-wrapper::-webkit-scrollbar-thumb{
+
+    background:#808000;
+
+    border-radius:20px;
+
+}
+
+.datesheet-table{
+
+    width:100%;
+
+    min-width:720px;
+
+    border-collapse:collapse;
+
+}
+
+.datesheet-table thead{
+
+    background:#5A3D2B;
+
+}
+
+.datesheet-table th{
+
+    color:#fff;
+
+    padding:18px;
+
+    font-size:1.05rem;
+
+    white-space:nowrap;
+
+}
+
+.datesheet-table td{
+
+    padding:18px;
+
+    text-align:center;
+
+    border-bottom:1px solid #ddd;
+
+    white-space:nowrap;
+
+}
+
+.datesheet-table tbody tr:nth-child(even){
+
+    background:#fafafa;
+
+}
+
+.datesheet-table tbody tr:hover{
+
+    background:#f5f5e8;
+
+}
+@media(max-width:768px){
+
+    #pg1-container{
+
+        width:95%;
+
+    }
+
+    .details{
+
+        flex-direction:column;
+
+        align-items:center;
+
+        gap:18px;
+
+    }
+
+    .detail-box{
+
+        width:100%;
+
+        max-width:280px;
+
+    }
+
+    .table-wrapper{
+
+        margin-top:25px;
+
+    }
+
+}
+.table-wrapper{
+
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    margin-top:30px;
+
+    border-radius:15px;
+}
+
+.datesheet-table{
+
+    border-collapse:collapse;
+
+    min-width:900px;      /* IMPORTANT */
+
+    width:100%;
+
+    background:#fff;
+}
+
+.datesheet-table th{
+
+    background:#5A3D2B;
+    color:#fff;
+    padding:18px;
+    white-space:nowrap;
+}
+
+.datesheet-table td{
+
+    padding:16px;
+    text-align:center;
+    white-space:nowrap;
+}
+.table-wrapper{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+}
+
+.datesheet-table{
+    width:max-content;
+    min-width:100%;
+    border-collapse:collapse;
+}

@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const SubjectClass = require("../models/subjectClass");
 const Datesheet = require("../models/datesheet");
+const jwt = require("jsonwebtoken");
+const Teacher = require("../models/teacherModel");
+const ClassIncharge = require("../models/classIncharge");
+
 
 // ==============================
 // Datesheet Home
@@ -20,6 +24,64 @@ router.get("/", (req, res) => {
 
 });
 
+
+
+router.get("/teacher", async (req, res) => {
+
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.redirect("/teacherLogin");
+    }
+
+    try {
+
+        const decoded = jwt.verify(
+            token,
+            process.env.JWT_KEY
+        );
+
+        const login_id = decoded.login_id;
+
+        const teacher = await Teacher.findOne({
+            login_id
+        });
+
+        const incharge = await ClassIncharge.findOne({
+            id: login_id
+        });
+
+        if (!incharge) {
+            return res.send("No class assigned.");
+        }
+
+        const datesheets = await Datesheet.find({
+
+            class: String(incharge.name),
+            section: incharge.section
+
+        }).sort({ createdAt: -1 });
+
+        res.render("teacherDatesheets", {
+
+            teacher,
+            className: incharge.name,
+            section: incharge.section,
+            datesheets
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        res.status(500).send(err.message);
+
+    }
+
+});
 router.post("/generate", async (req, res) => {
 
     try {
@@ -197,5 +259,76 @@ router.get("/loadSubjects", async (req, res) => {
     }
 
 });
+router.get("/view", async (req, res) => {
 
+    try {
+
+        const {
+            class: className,
+            section,
+            exam_type
+        } = req.query;
+
+        const datesheet = await Datesheet.findOne({
+
+            class: className,
+            section,
+            exam_type
+
+        });
+
+        if (!datesheet) {
+
+            return res.send("Datesheet not found.");
+
+        }
+
+        res.render("showDatesheet", {
+
+            datesheet
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        res.send(err.message);
+
+    }
+
+});
+router.get("/view/:id", async (req, res) => {
+
+    try {
+
+        const datesheet = await Datesheet.findById(
+            req.params.id
+        );
+
+        if (!datesheet) {
+
+            return res.send("Datesheet not found.");
+
+        }
+
+        res.render("viewDatesheet", {
+
+            datesheet
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        res.status(500).send(err.message);
+
+    }
+
+});
 module.exports = router;
