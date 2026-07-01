@@ -34,13 +34,12 @@ router.post("/generate", async (req, res) => {
             end_time
         } = req.body;
 
-        // Convert to arrays if only one subject exists
         const subjects = Array.isArray(subject) ? subject : [subject];
         const examDates = Array.isArray(exam_date) ? exam_date : [exam_date];
         const startTimes = Array.isArray(start_time) ? start_time : [start_time];
         const endTimes = Array.isArray(end_time) ? end_time : [end_time];
 
-        // Check if this datesheet already exists
+        // Check if datesheet already exists
         const existing = await Datesheet.findOne({
             class: className,
             section,
@@ -50,75 +49,79 @@ router.post("/generate", async (req, res) => {
         if (existing) {
 
             return res.render("datesheet", {
+
                 subjects: [],
                 className: "",
                 section: "",
                 exam_type: "",
                 message: null,
-                error: "Datesheet already exists for this examination."
+                error: "Datesheet already exists."
+
             });
 
         }
 
-        const docs = [];
+        const uniqueDates = new Set();
+
+        const exams = [];
 
         for (let i = 0; i < subjects.length; i++) {
 
-            // Validate empty fields
             if (
                 !examDates[i] ||
                 !startTimes[i] ||
                 !endTimes[i]
             ) {
 
-                return res.send("Please fill all dates and timings.");
+                return res.send("Please fill all fields.");
 
             }
 
-            // End time must be after start time
             if (startTimes[i] >= endTimes[i]) {
 
                 return res.send(
-                    `End time must be greater than start time for ${subjects[i]}.`
+                    `End Time must be greater than Start Time for ${subjects[i]}.`
                 );
 
             }
 
-            // Same day cannot have two exams
-            const sameDay = await Datesheet.findOne({
-
-                class: className,
-                section,
-                exam_type,
-                exam_date: examDates[i]
-
-            });
-
-            if (sameDay) {
+            if (uniqueDates.has(examDates[i])) {
 
                 return res.send(
-                    `${examDates[i]} already has an exam scheduled.`
+                    `Two exams cannot be on ${examDates[i]}.`
                 );
 
             }
 
-            docs.push({
+            uniqueDates.add(examDates[i]);
 
-                class: className,
-                section,
-                exam_type,
+            exams.push({
+
                 subject: subjects[i],
+
                 exam_date: examDates[i],
+
                 start_time: startTimes[i],
+
                 end_time: endTimes[i]
 
             });
 
         }
 
-        await Datesheet.insertMany(docs);
+        await Datesheet.create({
 
-        res.redirect("/datesheet?message=Datesheet generated successfully");
+            class: className,
+
+            section,
+
+            exam_type,
+
+            exams
+
+        });
+
+        res.redirect("/datesheet");
 
     }
 
