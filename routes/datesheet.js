@@ -335,4 +335,72 @@ router.get("/view/:id", async (req, res) => {
     }
 
 });
+router.get("/edit/:id", async(req,res)=>{
+
+    const datesheet = await Datesheet.findById(req.params.id);
+
+    if(!datesheet){
+
+        return res.send("Datesheet not found");
+
+    }
+
+    res.render("editDatesheet",{
+
+        datesheet
+
+    });
+
+});
+router.post("/update/:id",async(req,res)=>{
+
+const{
+
+subject,
+
+exam_date,
+
+start_time,
+
+end_time
+
+}=req.body;
+
+const exams=[];
+
+for(let i=0;i<subject.length;i++){
+
+exams.push({
+
+subject:subject[i],
+
+exam_date:exam_date[i],
+
+start_time:start_time[i],
+
+end_time:end_time[i]
+
+});
+
+}
+
+await Datesheet.findByIdAndUpdate(
+
+req.params.id,
+
+{
+
+$set:{
+
+exams
+
+}
+
+}
+
+);
+
+res.redirect("/datesheet");
+
+});
 module.exports = router;

@@ -301,7 +301,69 @@
 
         </div>
 
-        <div class="tab-content" id="edit"></div>
+        <div class="tab-content" id="edit">
+
+<% if(datesheets.length===0){ %>
+
+<div class="card">
+
+<h2>No Datesheets Available</h2>
+
+</div>
+
+<% } else { %>
+
+<% datesheets.forEach(ds=>{ %>
+
+<div class="datesheet-card">
+
+<div>
+
+<div class="exam-badge">
+
+<%= ds.exam_type %>
+
+</div>
+
+<h2>
+
+Class <%= ds.class %> • Section <%= ds.section %>
+
+</h2>
+
+<p>
+
+<i class="ri-book-open-line"></i>
+
+<%= ds.exams.length %> Subjects
+
+</p>
+
+</div>
+
+<div>
+
+<a
+
+href="/datesheet/edit/<%= ds._id %>"
+
+class="primary-btn">
+
+<i class="ri-edit-line"></i>
+
+Edit
+
+</a>
+
+</div>
+
+</div>
+
+<% }) %>
+
+<% } %>
+
+</div>
 
         <div class="tab-content" id="delete"></div>
 

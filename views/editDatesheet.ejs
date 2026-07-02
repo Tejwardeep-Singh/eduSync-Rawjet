@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/ico/favicon-32x32.png">
+    <link rel="manifest" href="/images/ico/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/datesheet.css">
+    <title>EduSync | Edit Datesheets</title>
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="nl">
+                <img src="/images/images/LOGO.png" alt="Logo here">
+            </div>
+            <div class="nr">
+                <div class="nr-l">
+                    <a href="/">Home</a>
+                    <a href="/images">Images</a>
+                </div>
+                <div class="nr-r">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </nav>  
+        <div id="page1">
+            <div id="pg1-container">
+
+    <h1><%= datesheet.exam_type %> Examination</h1>
+
+    <div class="details">
+
+        <div class="detail-box">
+            <h3>Class</h3>
+            <p><%= datesheet.class %></p>
+        </div>
+
+        <div class="detail-box">
+            <h3>Section</h3>
+            <p><%= datesheet.section %></p>
+        </div>
+
+        <div class="detail-box">
+            <h3>Total Subjects</h3>
+            <p><%= datesheet.exams.length %></p>
+        </div>
+
+    </div>
+
+    <div>
+
+        <form
+    action="/datesheet/update/<%= datesheet._id %>"
+    method="POST"
+    id="edit-datesheet-form">
+
+    <input type="hidden" name="class" value="<%= datesheet.class %>">
+    <input type="hidden" name="section" value="<%= datesheet.section %>">
+    <input type="hidden" name="exam_type" value="<%= datesheet.exam_type %>">
+
+    <div id="edit-table-wrapper">
+
+        <table id="edit-datesheet-table">
+
+            <thead>
+
+                <tr>
+                    <th>Subject</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            <% datesheet.exams.forEach(exam=>{ %>
+
+                <tr>
+
+                    <td>
+                        <%= exam.subject %>
+
+                        <input
+                            type="hidden"
+                            name="subject"
+                            value="<%= exam.subject %>">
+                    </td>
+
+                    <td>
+                        <input
+                            type="date"
+                            name="exam_date"
+                            value="<%= exam.exam_date %>"
+                            required>
+                    </td>
+
+                    <td>
+                        <input
+                            type="time"
+                            name="start_time"
+                            value="<%= exam.start_time %>"
+                            required>
+                    </td>
+
+                    <td>
+                        <input
+                            type="time"
+                            name="end_time"
+                            value="<%= exam.end_time %>"
+                            required>
+                    </td>
+
+                </tr>
+
+            <% }) %>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <button class="primary-btn">
+        Update Datesheet
+    </button>
+
+</form>
+
+    </div>
+
+</div>
+        </div>
+        <!-- <div id="footer">
+            <div id="footer-container">
+                <div class="fl">
+                    <h2>CONTACT US</h2>
+                    <div class="contact">
+                        <h4>1234567895 (Head)</h4>
+                        <h4>head@gmail.com</h4>
+                    </div>
+                </div>
+                <div class="fc">
+                    <div class="quick-links">
+                        <h2>Quick Links</h2>
+                        <div class="contact">
+                            <a href="/">Home</a>
+                            <a href="/images">Images</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="fr">
+                    <h2>Location</h2>
+                    <div class="contact">
+                        <div id="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d548.6914284465247!2d74.90983231549603!3d31.690628893253695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919638655ecf77d%3A0x482bc38508456636!2sGovernment%20Elementary%20Smart%20School!5e1!3m2!1sen!2sin!4v1711472732719!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div> -->
+        <div id="horizontal-ruler"></div>
+        <div id="copywright">
+            <h3>@2026 Team Rawjet. All Rights Reserved.</h3>
+        </div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/javascripts/headScript.js"></script>
+<script src="/javascripts/script.js"></script>
+</body>
+</html>
