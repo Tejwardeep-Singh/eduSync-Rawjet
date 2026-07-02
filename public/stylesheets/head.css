@@ -123,7 +123,7 @@
         font-size: 4vh;
         font-family:'fjalla-one-regular';
         color: #4E3629;
-        -webkit-text-stroke: #111  2px;
+        text-decoration: none;
     }
     
     form{
@@ -342,6 +342,7 @@
         align-items: center;
         justify-content: space-around;
         width: 100%;
+        height: auto;
     }
     #examPanel h2{
         cursor: pointer;
@@ -431,6 +432,9 @@
         }
         #panel a{
             font-size: medium;
+        }
+        .part a{
+            font-size: 3vh;
         }
         .info{
             justify-content: center;
