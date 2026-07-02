@@ -239,9 +239,67 @@
 
         </div>
 
-        <!-- Empty for now -->
+        <div class="tab-content" id="view">
 
-        <div class="tab-content" id="view"></div>
+            <% if(datesheets.length===0){ %>
+
+                <div class="card">
+
+                    <h2>No Datesheets Available</h2>
+
+                </div>
+
+            <% } else { %>
+
+                <% datesheets.forEach(ds=>{ %>
+
+                    <div class="datesheet-card">
+
+                        <div>
+
+                            <div class="exam-badge">
+
+                                <%= ds.exam_type %>
+
+                            </div>
+
+                            <h2>
+
+                                Class <%= ds.class %> • Section <%= ds.section %>
+
+                            </h2>
+
+                            <p>
+
+                                <i class="ri-book-open-line"></i>
+
+                                <%= ds.exams.length %> Subjects
+
+                            </p>
+
+                        </div>
+
+                        <div>
+
+                            <a
+
+                            href="/datesheet/view/<%= ds._id %>"
+
+                            class="primary-btn">
+
+                                <i class="ri-eye-line"></i>  View
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                <% }) %>
+
+            <% } %>
+
+        </div>
 
         <div class="tab-content" id="edit"></div>
 
@@ -261,6 +319,7 @@
 <!-- <script src="/javascripts/datesheet.js"></script> -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/javascripts/datesheet.js"></script>
 <script src="/javascripts/script.js"></script>
 </body>
 

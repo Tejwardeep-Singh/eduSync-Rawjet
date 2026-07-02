@@ -1,21 +1,34 @@
 const tabs = document.querySelectorAll(".tab-btn");
-
 const contents = document.querySelectorAll(".tab-content");
 
-tabs.forEach(tab=>{
+function activateTab(name){
 
-    tab.onclick=()=>{
+    tabs.forEach(tab => {
 
-        tabs.forEach(t=>t.classList.remove("active"));
+        tab.classList.toggle("active", tab.dataset.target === name);
 
-        contents.forEach(c=>c.classList.remove("active"));
+    });
 
-        tab.classList.add("active");
+    contents.forEach(content => {
 
-        document
-        .getElementById(tab.dataset.target)
-        .classList.add("active");
+        content.classList.toggle("active", content.id === name);
 
-    }
+    });
+
+    localStorage.setItem("datesheetTab", name);
+
+}
+
+tabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        activateTab(tab.dataset.target);
+
+    });
 
 });
+
+const savedTab = localStorage.getItem("datesheetTab") || "generate";
+
+activateTab(savedTab);

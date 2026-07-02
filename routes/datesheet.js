@@ -11,7 +11,8 @@ const ClassIncharge = require("../models/classIncharge");
 // Datesheet Home
 // ==============================
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+    const datesheets = await Datesheet.find();
 
     res.render("datesheet", {
         subjects: [],
@@ -19,6 +20,7 @@ router.get("/", (req, res) => {
         section: "",
         exam_type: "",
         message: null,
+        datesheets,
         error: null
     });
 
@@ -100,6 +102,7 @@ router.post("/generate", async (req, res) => {
         const examDates = Array.isArray(exam_date) ? exam_date : [exam_date];
         const startTimes = Array.isArray(start_time) ? start_time : [start_time];
         const endTimes = Array.isArray(end_time) ? end_time : [end_time];
+        const datesheets = await Datesheet.find();
 
         // Check if datesheet already exists
         const existing = await Datesheet.findOne({
@@ -116,6 +119,7 @@ router.post("/generate", async (req, res) => {
                 className: "",
                 section: "",
                 exam_type: "",
+                datesheets,
                 message: null,
                 error: "Datesheet already exists."
 
