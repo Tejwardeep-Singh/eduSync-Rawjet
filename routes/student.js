@@ -6,6 +6,7 @@ const studentModel = require("../models/studentModel");
 const leaveRequestStudent= require("../models/leaveRequestStudent");
 const Marks = require("../models/marks");
 const Attendance = require("../models/attendance");
+const Datesheet = require("../models/datesheet");
 
 const {uploadStudent} = require("../config/cloudinaryupload");
 
@@ -133,7 +134,28 @@ studentRouter.get("/", async (req, res) => {
         ).length;
 
         const totalSubjects = student.subjects ? student.subjects.length : 0;
+        const datesheet = await Datesheet.findOne({
+            class: student.class,
+            section: student.section
 
+        });
+        let nextExam = null;
+
+if (datesheet) {
+
+    const today = new Date();
+
+    const upcoming = datesheet.exams
+        .filter(exam => new Date(exam.exam_date) >= today)
+        .sort((a, b) => new Date(a.exam_date) - new Date(b.exam_date));
+
+    if (upcoming.length > 0) {
+
+        nextExam = upcoming[0];
+
+    }
+
+}
         const dashboard = {
             classAssigned: nameValue,
             sectionAssigned: sectionValue,
@@ -161,12 +183,71 @@ studentRouter.get("/", async (req, res) => {
                 working: totalWorkingDays,
                 absent: absentDays
             },
-            sectionValue
+            sectionValue,
+            datesheet,
+            nextExam
         });
     } catch (err) {
         console.error("JWT verification failed:", err.message);
         return res.redirect("/studentLogin");
     }
+});
+studentRouter.get("/datesheets", async (req, res) => {
+
+    const token = req.cookies.token;
+
+    if (!token) {
+
+        return res.redirect("/studentLogin");
+
+    }
+
+    try {
+
+        const decoded = jwt.verify(token, process.env.JWT_KEY);
+
+        const login_id = decoded.id;
+
+        const student = await studentModel.findOne({
+
+            id: login_id
+
+        });
+
+        if (!student) {
+
+            return res.status(404).send("Student not found");
+
+        }
+
+        const datesheets = await Datesheet.find({
+
+            class: student.class,
+
+            section: student.section
+
+        });
+
+        res.render("studentDatesheets", {
+
+            datesheets,
+
+            className: student.class,
+
+            section: student.section
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        res.redirect("/studentLogin");
+
+    }
+
 });
 
 module.exports = studentRouter;

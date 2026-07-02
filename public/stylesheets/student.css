@@ -118,6 +118,132 @@ main{
     border-radius:20px;
 
 }
+.exam-card{
+    width: 100%;
+    background:#fff;
+    padding: 30px;
+    border-radius:20px;
+    border-left:6px solid #808000;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.exam-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.exam-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#808000;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+.exam-title i{
+
+    font-size:1.5rem;
+
+}
+
+.exam-countdown{
+
+    background:#80800020;
+
+    color:#808000;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+.exam-card h2{
+
+    color:#4E3629;
+
+    font-size:2.2rem;
+
+    margin-bottom:25px;
+
+    text-transform:capitalize;
+
+}
+
+.exam-meta{
+
+    display:flex;
+
+    gap:35px;
+
+    margin-bottom:30px;
+
+    flex-wrap:wrap;
+
+}
+
+.exam-meta div{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#555;
+
+}
+
+.exam-meta i{
+
+    color:#808000;
+
+}
+
+.exam-btn{
+
+    display:inline-block;
+
+    padding:12px 30px;
+
+    background:#FFF5E1;
+    color:white;
+    border-radius:35px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.exam-btn:hover{
+
+    background:#4E3629;
+
+}
+
 @media(max-width:1200px){
 
 .info{
@@ -146,6 +272,12 @@ main{
 
     font-size:2.4rem;
 
+}
+.exam-countdown{
+    border-radius: 10px;
+    font-size:1.5vh;
+    padding: 5px 10px;
+    align-self: center;
 }
 
 }

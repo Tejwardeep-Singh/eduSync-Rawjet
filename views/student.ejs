@@ -43,7 +43,7 @@
                     <div id="panel">
                         <div class="panel_elem" id="details"><a>Details</a></div>
                         <div class="panel_elem" id="datesheetPanel"><a>Datesheet</a></div>
-                        <div class="panel_elem" id="leaveRequest"><a>leaveRequest</a></div>
+                        <div class="panel_elem" id="leaveRequest"><a>leave</a></div>
                         <div class="panel_elem" id="report"><a>Reports</a></div>
                         <div class="panel_elem" id="editDetails"><a>Edit Details</a></div>
                         <div class="panel_elem" id="changePassword"><a>Change Password</a></div>
@@ -364,27 +364,55 @@
                         </form>
                     </div>
                     <div class="part" id="datesheetBox">
-                        <h2 style="text-align: center;">Datesheet</h2>
-                        <div id="datesheetInput">
-                            <form style="width:100%;" action="/datesheet/showStudent" method="get" enctype="multipart/form-data">
-                                <input type="hidden" id="nameValue" name="nameValue" value="<%= nameValue %>" required><br><br>
-                                <input type="hidden" id="sectionValue" name="sectionValue" value="<%= sectionValue %>" required><br><br>
-                                <div id="label">
-                                    <label for="examType">EXAM TYPE:</label>
-                                    <select name="examType" id="examType">
-                                        <option value="Final">Final</option>
-                                        <option value="Half_Yearly">Half Yearly</option>
-                                        <option value="Montly">Montly</option>
-                                        <option value="Test">Test</option>
-                                    </select>
-                                </div>
-                                <div id="label">
-                                    <label for="month">month: </label>
-                                    <input type="month" id="month" name="month" placeholder="yyyy-mm"required><br><br>     
-                                </div>
-                                <button type="submit">SHOW</button>
-                            </form>
-                        </div>
+                        <div class="exam-card">
+
+    <div class="exam-top">
+
+        <div class="exam-title">
+
+            <i class="ri-calendar-check-line"></i>
+
+            <span>Upcoming Examination</span>
+
+        </div>
+
+        <div class="exam-countdown">
+
+            Next Exam
+
+        </div>
+
+    </div>
+
+    <h2><%= nextExam.subject %></h2>
+
+    <div class="exam-meta">
+
+        <div>
+
+            <i class="ri-calendar-line"></i>
+
+            <%= new Date(nextExam.exam_date).toLocaleDateString("en-IN") %>
+
+        </div>
+
+        <div>
+
+            <i class="ri-time-line"></i>
+
+            <%= nextExam.start_time %> - <%= nextExam.end_time %>
+
+        </div>
+
+    </div>
+
+    <a href="/student/datesheets" class="exam-btn">
+
+        View Datesheet
+
+    </a>
+
+</div>
                     </div>
                 </div>
             </div>
