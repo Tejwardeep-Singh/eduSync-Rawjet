@@ -217,6 +217,9 @@ router.get("/loadSubjects", async (req, res) => {
             class: Number(className),
             section: section
         });
+        const datesheets = await Datesheet.find().sort({
+    createdAt: -1
+});
                 if (subjects.length === 0) {
 
             return res.render("datesheet", {
@@ -225,6 +228,7 @@ router.get("/loadSubjects", async (req, res) => {
                 className,
                 section,
                 exam_type,
+                datesheets,
                 message: null,
                 error: "No subjects found for this class."
 
@@ -238,6 +242,7 @@ router.get("/loadSubjects", async (req, res) => {
             className,
             section,
             exam_type,
+            datesheets,
             message: null,
             error: null
 
@@ -255,6 +260,7 @@ router.get("/loadSubjects", async (req, res) => {
             className: "",
             section: "",
             exam_type: "",
+            datesheets,
             message: null,
             error: "Something went wrong."
 
@@ -401,6 +407,25 @@ exams
 );
 
 res.redirect("/datesheet");
+
+});
+router.post("/delete/:id", async (req, res) => {
+
+    try{
+
+        await Datesheet.findByIdAndDelete(req.params.id);
+
+        res.redirect("/datesheet");
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+        res.status(500).send("Unable to delete datesheet");
+
+    }
 
 });
 module.exports = router;

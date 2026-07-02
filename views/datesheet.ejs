@@ -365,7 +365,65 @@ Edit
 
 </div>
 
-        <div class="tab-content" id="delete"></div>
+        <div class="tab-content" id="delete">
+
+    <% if(datesheets.length === 0){ %>
+
+        <div class="card">
+
+            <h2>No Datesheets Available</h2>
+
+        </div>
+
+    <% } else { %>
+
+        <% datesheets.forEach(ds => { %>
+
+            <div class="datesheet-card delete-card">
+
+                <div>
+
+                    <div class="exam-badge">
+                        <%= ds.exam_type %>
+                    </div>
+
+                    <h2>
+                        Class <%= ds.class %> • Section <%= ds.section %>
+                    </h2>
+
+                    <p>
+                        <i class="ri-book-open-line"></i>
+                        <%= ds.exams.length %> Subjects
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <form
+                        action="/datesheet/delete/<%= ds._id %>"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this datesheet?');">
+
+                        <button class="delete-btn">
+
+                            <i class="ri-delete-bin-6-line"></i>
+
+                            Delete
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        <% }) %>
+
+    <% } %>
+
+</div>
 
     </div>
 

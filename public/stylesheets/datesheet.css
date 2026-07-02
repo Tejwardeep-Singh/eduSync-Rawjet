@@ -689,7 +689,67 @@ body{
 
     flex:none !important;
 }
+/* ===========================
+   DELETE PAGE
+=========================== */
 
+.delete-card{
+
+    border-left:8px solid #d32f2f;
+
+}
+
+.delete-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:14px 28px;
+
+    background:#d32f2f;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:40px;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    min-width:170px;
+
+}
+
+.delete-btn:hover{
+
+    background:#b71c1c;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(211,47,47,.3);
+
+}
+
+@media(max-width:768px){
+
+    .delete-btn{
+
+        width:100%;
+
+    }
+
+}
 @media(max-width:768px){
 
     #edit-table-wrapper{
